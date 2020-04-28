@@ -7,12 +7,12 @@
             <section  class="flex">
               <span class="text0">员工姓名：</span>
               <span class="text1" v-if='$route.query.type'>{{personInfo.userName}}</span>
-              <span class="text1" v-else>{{userInfo.user.name}}</span>
+              <!-- <span class="text1" v-else>{{userInfo.user.name}}</span> -->
             </section>
             <section  class="flex">
               <span class="text0">部门：</span>
               <span class="text1" v-if='$route.query.type'>{{personInfo.departName}}</span>
-              <span class="text1" v-else>{{userInfo.user.departmentName}}</span>
+              <!-- <span class="text1" v-else>{{userInfo.user.departmentName}}</span> -->
             </section>
           </section>
           <section class="text ">

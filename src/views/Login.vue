@@ -1,13 +1,8 @@
 <template>
   <main class="center">
-    <img class="logo_login" src="../assets/img/login/logo.png">
-    <section class="login_info flex">
-      <section class="col flex1">
-        <section class="login_title">
-          <!-- 登录 -->
-          <!-- <img src="../assets/img/head/logo.png" alt=""> -->
-        </section>
-        <el-input class="login_ipt" v-model="userAccount.loginName" placeholder="请输入账号">
+    <!-- <section class="login_info">
+      <section class="col"> -->
+        <!-- <el-input class="login_ipt" v-model="userAccount.loginName" placeholder="请输入账号">
           <img class="ipt_icon" src="../assets/img/login/icon_user.png" slot="prefix">
         </el-input>
         <el-input class="login_ipt" show-password v-model="userAccount.password" @keyup.enter.native="login" placeholder="请输入密码" >
@@ -19,11 +14,27 @@
         </section>
         <section class="login_bottom flex">
           <button class="login_btn" @click="login" type="success">登录</button>
-        </section>
-      </section>
-      <img class="log_pic" src="../assets/img/login/pic.png">
-      <img src="../assets/img/head/logo.png" alt="" style="position: absolute;bottom:20px;right:20px;width: 100px">
-    </section>
+        </section> -->
+        <div class="center" style="width: 300px">
+          <el-form label-position="left" :model="userAccount" style="width: 100%">
+            <el-form-item>
+              <el-input v-model="userAccount.loginName" placeholder="请输入账号">
+                <img class="ipt_icon" src="../assets/img/login/icon_user.png" slot="prefix" style="width: 24px; height: 24px;">
+              </el-input>
+            </el-form-item>
+            <el-form-item>
+              <el-input v-model="userAccount.password" placeholder="请输入验证码">
+                <img class="ipt_icon" src="../assets/img/login/icon_pwd.png" slot="prefix" style="width: 24px; height: 24px;">
+              </el-input>
+            </el-form-item>
+            <el-form-item>
+              <el-button type="primary" @click="login" style="width: 100%; height: 100%;">登录</el-button>
+            </el-form-item>
+          </el-form>
+        </div>
+       
+      <!-- </section>
+    </section> -->
   </main>
 </template>
 
@@ -46,16 +57,13 @@ export default class Login extends Vue {
             ))}`;
     }
   }
-  public to(name: string) {
-    this.$router.push({
-      name,
-    });
-  }
   public async login() {
     const res: any = await user.userLogin(this.userAccount, this.captchaToken);
     const { code, msg = '', data} = res.data
+    console.log(data)
     if (code === 0) {
       this.$message.success('登录成功');
+      console.log(data, this.$store.dispatch)
       this.$store.dispatch('saveUser', {
         userId: data.userId,
         token: data.token,
@@ -80,16 +88,16 @@ export default class Login extends Vue {
 
 <style lang="less" scoped>
 main{
-  width: 100vw;
+  // width: 100vw;
   height: 100vh;
-  background-color: #5792FC;
-  background-image: url('../assets/img/login/bg.png');
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  position: relative;
-  box-sizing: border-box;
-  padding: 0 15%;
+  // background-color: #5792FC;
+  // background-image: url('../assets/img/login/bg.png');
+  // background-size: contain;
+  // background-position: center;
+  // background-repeat: no-repeat;
+  // position: relative;
+  // box-sizing: border-box;
+  // padding: 0 15%;
   .logo_login{
     width: 500px;
     position: absolute;
@@ -101,8 +109,11 @@ main{
     background: #fff;
     padding: 30px 30px 30px;//65 30 50
     border-radius: 12px;
-    margin-top: 140px;
+    // margin-top: 140px;
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     .login_title{
       font-size:40px;
       color:rgba(87,146,252,1);
@@ -169,6 +180,11 @@ main{
       font-size:20px;
       color:rgba(255,255,255,1);
     }
+  }
+  /deep/.el-input__prefix{
+    line-height: 40px;
+    display: flex;
+    align-items: center;
   }
 }
 </style>

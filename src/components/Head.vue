@@ -1,15 +1,10 @@
 <template>
   <main class="cross_center main_space">
     <section class="cross_center" >
-      <img class="title_img" src="../assets/img/head/title.png" alt="title" >
-      <!-- <section class="cross_center title_word">
-        <div :class="changeClass?'':'title_height'" @click="toRoute">公共资料库</div>
-        <span class="diviLine">|</span>
-        <div :class="changeClass?'title_height':''" @click="toRoutemy">我的资料库</div>
-      </section> -->
+      <!-- <img class="title_img" src="../assets/img/head/title.png" alt="title" > -->
     </section>
-    <section class="user_info cross_center">
-       <!-- <img class="icon_medium" src="../assets/img/head/miniprogram.png" alt="link" > -->
+    <!-- <section class="user_info cross_center">
+       <img class="icon_medium" src="../assets/img/head/miniprogram.png" alt="link" >
       <section style="display: flex; align-items: center;">
         <img class="icon_medium" src="../assets/img/head/miniprogram.png" alt="link" @mouseenter="enterIcon" @mouseleave="leaveIcon">
         <section class="Icon" v-if="isIcon" >
@@ -20,7 +15,6 @@
         <img class="icon_medium" src="../assets/img/head/avatar_female.png" alt="avatar">
         <section  >
           <section class="user_name">{{loginName}}</section>
-           <!-- 下拉框显示 -->
             <div class="infoDialog" v-if='isShow' @mouseenter="changeShow"  @mouseleave="hideShow" >
                 <section class="infoItem" @click="personInfo">
                   <img src="../assets/img/mine_fill.png" alt="" style="width:24px;height:24px;margin:0">
@@ -34,7 +28,7 @@
         </section>
         <img class="icon_micro" src="../assets/img/arrow_down.png" alt="avatar">
       </section>
-    </section>
+    </section> -->
    
   </main>
 </template>
@@ -79,10 +73,10 @@ export default class Head extends Vue {
 main{
   box-sizing: border-box;
   width:100%;
-  // height:112px;
+  height:100%;
   background:rgba(255,255,255,1);
   box-shadow:0px 2px 10px 0px rgba(153,153,153,0.2);
-  padding: 0 40px 0 12px;
+  padding: 0 20px;
   .title_img{
     width: 332px;
     height: 67px;

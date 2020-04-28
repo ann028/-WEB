@@ -1,26 +1,22 @@
 <template>
-  <main class="col">
-    <Head class="head"
-    @logout="userLogout"
-    :loginName="userInfo.user.loginName"
-    v-if="showHead"
-    ></Head>
-    <section :class="[showAside? 'page_content flex' : '']">
-      <Aside class="aside col" v-if="showAside"></Aside>
-      <router-view class="router_view flex1 col"></router-view>
+  <div class="home col main" >
+    <headerNav class="head"></headerNav>
+    <section class="flex page_content">
+      <menuNav class="menu col"></menuNav>
+      <router-view class="router_view col"></router-view>
     </section>
-  </main>
+  </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue} from 'vue-property-decorator';
-import Aside from '@/components/Aside.vue';
-import Head from '@/components/Head.vue';
+import menuNav from '@/components/Aside.vue';
+import headerNav from '@/components/Head.vue';
 import { user, department } from '@/api/index';
 @Component({
   components: {
-    Aside,
-    Head,
+    menuNav,
+    headerNav,
   },
 })
 export default class Home extends Vue {
@@ -51,29 +47,44 @@ export default class Home extends Vue {
 </script>
 
 <style lang="less" scoped>
-main{
-  height: 100%;
-  .head{
+.home {
+  width: 100%;
+  height: 100vh;
+  background-color: #f4f4f6;
+  .head {
+    height: 70px;
     width: 100%;
-    z-index: 1;
   }
   .page_content{
     width: 100%;
-    .aside{
-      height: 100%;
-      z-index: 2;
-    }
-    .aside::-webkit-scrollbar {
-      display: none;
-    }
+    height: calc(100vh - 70px);
+    display: flex;
     .router_view{
-      max-width: calc(100vw - 240px);
-      min-height: calc(100vh - 112px);
-      background:rgba(245,247,250,1);
-      box-sizing: border-box;
       padding: 20px;
-      border-radius:12px;
+      box-sizing: border-box;
+      flex: 1;
+      // overflow-y: auto;
     }
   }
 }
+// .home {
+//   width: 100%;
+//   height: 100vh;
+//   background-color: #f4f4f6;
+//   .head {
+//     height: 60px;
+//     width: 100%;
+//   }
+//   .page_content{
+//     width: 100%;
+//     height: 100vh;
+//     display: flex;
+//     .router_view{
+//       padding: 20px;
+//       box-sizing: border-box;
+//       flex: 1;
+//       // overflow-y: auto;
+//     }
+//   }
+// }
 </style>

@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { user, role } from './api';
+import { user, role } from '../../api';
 import { Message } from 'element-ui';
 import router from '@/router';
 
