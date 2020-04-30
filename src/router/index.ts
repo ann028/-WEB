@@ -11,35 +11,45 @@ const routes = [
     path: '/',
     name: 'home',
     component: Home,
+    redirect: 'Index',
     meta: {
       auth: 1,
     },
     children: [
       {
-        path: 'personal',
-        name: 'personal',
-        component: () => import('@/views/Daily/PersonalDaily.vue'),
+        path: 'index',
+        name: 'index',
+        component: () => import('@/views/Index.vue'),
         meta: {
-          title: '个人表',
+          title: '首页',
           icon: '',
         },
       },
       {
-        path: 'department',
-        name: 'department',
-        component: () => import('@/views/Daily/DepartmentDaily.vue'),
+        path: 'projects',
+        name: 'projects',
+        component: () => import('@/views/Project/Projects.vue'),
         meta: {
-          title: '个人表',
+          title: '项目管理',
           icon: '',
         },
-        children: [
-          {
-            name: 'edit',
-            path: 'edit',
-            component: () => import('@/views/Daily/Edit.vue'),
-          },
-        ],
       },
+      // {
+      //   path: 'department',
+      //   name: 'department',
+      //   component: () => import('@/views/Daily/DepartmentDaily.vue'),
+      //   meta: {
+      //     title: '个人表',
+      //     icon: '',
+      //   },
+      //   children: [
+      //     {
+      //       name: 'edit',
+      //       path: 'edit',
+      //       component: () => import('@/views/Daily/Edit.vue'),
+      //     },
+      //   ],
+      // },
       // {
       //   name: 'edit',
       //   path: 'edit',

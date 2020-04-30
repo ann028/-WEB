@@ -63,7 +63,7 @@ export default class Home extends Vue {
       padding: 20px;
       box-sizing: border-box;
       flex: 1;
-      // overflow-y: auto;
+      overflow-y: auto;
     }
   }
 }

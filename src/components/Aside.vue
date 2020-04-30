@@ -3,8 +3,18 @@
      <el-menu
       :default-active="defaultMenu"
       class="el-menu-vertical-demo"
+      active-text-color="#FF8C00"
       router>
-      <el-submenu index="1">
+      <el-menu-item index="/index" @click="toRoute('index')">
+        <i class="el-icon-menu"></i>
+        <!-- <img src="../assets/img/aside/account.png" alt=""> -->
+        <span slot="title">首页</span>
+      </el-menu-item>
+      <el-menu-item index="/projects" @click="toRoute('projects')">
+        <i class="el-icon-menu"></i>
+        <span slot="title">项目管理</span>
+      </el-menu-item>
+      <!-- <el-submenu index="1">
         <template slot="title">
           <i class="el-icon-location"></i>
           <span>导航一</span>
@@ -20,15 +30,15 @@
           <template slot="title">选项4</template>
           <el-menu-item index="1-4-1">选项1</el-menu-item>
         </el-submenu>
-      </el-submenu>
-      <el-menu-item index="/personal" @click="toRoute('personal')">
+      </el-submenu> -->
+      <!-- <el-menu-item index="/personal" @click="toRoute('personal')">
         <i class="el-icon-menu"></i>
         <span slot="title">导航二</span>
       </el-menu-item>
       <el-menu-item index="/department" @click="toRoute('department')">
         <i class="el-icon-setting"></i>
         <span slot="title">导航四</span>
-      </el-menu-item>
+      </el-menu-item> -->
     </el-menu>
   </main>
 </template>
@@ -79,7 +89,7 @@ export default class Aside extends Vue {
     })
   }
   private created() {
-    console.log(this.$route) 
+    console.log(this.$route)
   }
   get defaultMenu() {
     if (this.$route.matched && this.$route.matched.length > 2) {
@@ -118,5 +128,11 @@ main{
 }
 .menu::-webkit-scrollbar{
   display: none;
+}
+.el-menu-item {
+  border-left: 4px solid transparent;
+}
+/deep/.el-menu-item.is-active{
+  border-left:4px solid #FF8C00;
 }
 </style>

@@ -10,12 +10,10 @@ import '../src/assets/css/base.css'
 import echarts from 'echarts';
 import App from './App.vue';
 import router from './router';
-import htmlToPdf from './utils/htmlToPdf'
 import * as Filter from './filters'
 
 Vue.use(VueAxios, axios);
 Vue.use(ElementUI);
-Vue.use(htmlToPdf)
 Vue.config.productionTip = false;
 Vue.prototype.$echarts = echarts;
 

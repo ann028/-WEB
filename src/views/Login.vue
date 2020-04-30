@@ -16,7 +16,7 @@
           <button class="login_btn" @click="login" type="success">登录</button>
         </section> -->
         <div class="center" style="width: 300px">
-          <el-form label-position="left" :model="userAccount" style="width: 100%">
+          <el-form label-position="left" :model="userAccount" style="width: 100%"  :rules="userRules" ref="userRuleForm">
             <el-form-item>
               <el-input v-model="userAccount.loginName" placeholder="请输入账号">
                 <img class="ipt_icon" src="../assets/img/login/icon_user.png" slot="prefix" style="width: 24px; height: 24px;">
