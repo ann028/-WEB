@@ -1,15 +1,41 @@
+.flex{
+  display: flex;
+}
+.flex3{
+  flex: 3;
+}
+.flex1{
+  flex: 1;
+}
 .center{
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .content{
-  background: #ffffff;
+  /* background: #ffffff; */
   padding: 20px;
   box-sizing: border-box;
   height: 100%;
   overflow-y: auto;
 }
-main{
-  /* background: #ffffff; */
+.cross_center{
+  display: flex;
+  align-items: center;
+}
+.main_space{
+  display: flex;
+  justify-content: space-between;
+}
+.icon_micro{
+  width: 20px;
+  height: 20px;
+}
+.flex_start{
+  /* display: flex; */
+  justify-content: flex-start;
+}
+.col{
+  display: flex;
+  flex-direction: column;
 }

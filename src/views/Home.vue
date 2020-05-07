@@ -50,17 +50,17 @@ export default class Home extends Vue {
 .home {
   width: 100%;
   height: 100vh;
-  background-color: #f4f4f6;
+  background-color: #FFF9F3;
   .head {
-    height: 70px;
+    height: 80px;
     width: 100%;
   }
   .page_content{
     width: 100%;
-    height: calc(100vh - 70px);
+    height: calc(100vh - 80px);
     display: flex;
     .router_view{
-      padding: 20px;
+      margin: 14px;
       box-sizing: border-box;
       flex: 1;
       overflow-y: auto;

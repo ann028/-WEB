@@ -93,8 +93,10 @@ export default class Aside extends Vue {
   }
   get defaultMenu() {
     if (this.$route.matched && this.$route.matched.length > 2) {
+      console.log(this.$route.path)
       return this.$route.matched[1].path
     } else {
+      console.log(this.$route.path)
       return this.$route.path + ''
     }
   }
@@ -107,7 +109,7 @@ main{
   max-height: calc(100vh - 70px);
   overflow-y: scroll;
   .el-menu{
-    width: 220px;
+    width: 200px;
     border-right: none;
   }
   .sub1{

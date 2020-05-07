@@ -11,7 +11,7 @@ const routes = [
     path: '/',
     name: 'home',
     component: Home,
-    redirect: 'Index',
+    redirect: 'index',
     meta: {
       auth: 1,
     },
