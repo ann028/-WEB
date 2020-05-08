@@ -3,8 +3,8 @@
     <div class="event_Style flex">
       <section class="flex3 flex cross_center" style="background: #ffffff; margin-right: 15px;padding: 15px; box-sizing: border-box;">
         <div class="title_name">李天风，下午好！</div>
-        <div>2014-5-7</div>
-        <div>待办事项</div>
+        <div style="margin-left: 52px;">2014-5-7</div>
+        <div style="margin-left: 16px;">待办事项</div>
       </section>
       <section class="flex1 flex" style="background: #ffffff; margin-right: 15px;padding: 15px; box-sizing: border-box;">
         <img src="../assets/img/index/icon-waiting for check.png" alt="" class="Icon">
@@ -64,10 +64,66 @@
       </section>
       <section class="event">
         <section class="main_space" style="height: 62px; border-bottom: 1px solid #EDEBE9">
-          <span class="word">事项列表</span>
+          <div class="flex">
+            <span class="word">事项列表</span>
+            <div class="cross_center" style="margin-left: 5px;">
+              <el-tooltip class="item" effect="dark" content="<事项分布>日历中所选日期对应的事项分布" placement="top-start">
+                <div slot="content">
+                  <p>《事项分布》</p>
+                  <p>日历中所选日期对应的事项分布</p>
+                </div>
+                <!-- <i class="el-icon-question" style="color: #999;"></i> -->
+                <img src="../assets/img/index/help-circle.png" alt="" style="width: 20px; height: 20px;">
+              </el-tooltip>
+          </div>
+          </div>
           <span class="time">2020-04-18</span>
         </section>
         <section class="eventItem">
+          <section class="header main_space">
+            <span>北京**国有投资有限公司</span>
+            <span>16债券01</span>
+          </section>
+          <section class="event_content main_space">
+            <span>1</span>
+            <span>2019年度披露</span>
+            <span></span>
+          </section>
+        </section>
+         <section class="eventItem">
+          <section class="header main_space">
+            <span>北京**国有投资有限公司</span>
+            <span>16债券01</span>
+          </section>
+          <section class="event_content main_space">
+            <span>1</span>
+            <span>2019年度披露</span>
+            <span></span>
+          </section>
+        </section>
+         <section class="eventItem">
+          <section class="header main_space">
+            <span>北京**国有投资有限公司</span>
+            <span>16债券01</span>
+          </section>
+          <section class="event_content main_space">
+            <span>1</span>
+            <span>2019年度披露</span>
+            <span></span>
+          </section>
+        </section>
+         <section class="eventItem">
+          <section class="header main_space">
+            <span>北京**国有投资有限公司</span>
+            <span>16债券01</span>
+          </section>
+          <section class="event_content main_space">
+            <span>1</span>
+            <span>2019年度披露</span>
+            <span></span>
+          </section>
+        </section>
+         <section class="eventItem">
           <section class="header main_space">
             <span>北京**国有投资有限公司</span>
             <span>16债券01</span>
@@ -195,12 +251,17 @@ main{
   }
   .fc{
     .fc-header-toolbar{
+      h2{
+        font-weight: normal;
+        font-size:14px;
+        line-height: 32px;
+      }
       .fc-center{
         color:#4C4C4E;
         font-size: 14px;
         position: absolute;
-        top: 20px;
-        left: 16%;
+        top: 16px;
+        left: 25%;
         width: 200px;
         font-weight: normal;
       }
@@ -213,6 +274,7 @@ main{
           background: transparent;
           color: #4C4C4E;
           font-size: 14px;
+          line-height: 30px;
         }
         .fc-prev-button:after{
           content: '上个月'
@@ -220,6 +282,18 @@ main{
         .fc-next-button:before{
           content: '下个月'
         }
+        // .fc-today-button:before{
+        //   content: "";
+        //   background: url('../assets/img/index/calendar.png') no-repeat 0 0;
+        //   width: 20px;
+        //   height: 20px;
+        //   display: inline-block;
+        //   // margin: 0 5px 0 0;
+        //   // line-height:30px;
+        //   position: absolute;
+        //   top:5px;
+        //   left:200px;
+        // }
       }
     }
     .fc-view-container{
@@ -229,19 +303,34 @@ main{
       }
       .fc-body{
         .fc-widget-content {
-          //  border: none;
+           border: none;
           .fc-day-grid-container {
             height:calc(100vh - 400px) !important;
             // overflow: hidden !important;
             .fc-day-grid{
+              border: 1px solid #ddd;
+              border-top: 0;
               .fc-row{
-                height: 104px !important;
+                height: 60px !important;
                 .fc-bg{
                   .fc-day{
-                    width: 104px !important;
+                    width: 60px !important;
+                    border: 1px solid #ddd;
                   }
                 }
               }
+            }
+            .fc-day-grid:after{
+              content: '';
+              position: absolute;
+              right: 1px;
+              // bottom: auto;
+              // right: auto;
+              top: 0;
+              // right:0;
+              height:100%;
+              width: 1px;
+              background-color: #ddd;
             }
             // &.fourLineGrid .fc-day,
             // &.fourLineGrid .fc-row {
@@ -318,8 +407,8 @@ main{
         // border: none;
         .cell-wrap {
           position: absolute;
-          top: 20%;
-          left: -14%;
+          top: 30%;
+          left: -20%;
           box-sizing: border-box;
           display: flex;
           flex-direction: column;
@@ -332,11 +421,11 @@ main{
           p {
             margin: 0;
             &.fc-Number-self {
-              width: 20px;
-              height: 20px;
+              width: 16px;
+              height: 16px;
               font-size: 14px;
               font-weight: bold;
-              line-height: 19px;
+              line-height: 16px;
               color: #ffffff;
               background: #FF8C00;
               border-radius: 50%;
@@ -351,6 +440,7 @@ main{
   .calendar{
     // flex-grow: 1;
     width:calc(100% - 293px);
+    min-width: 754px;
     background:#ffffff;
     padding: 0 24px;
     box-sizing: border-box;
@@ -373,6 +463,7 @@ main{
     margin-left: 14px;
     padding: 0 24px;
     box-sizing: border-box;
+    flex-shrink: 0;
     .word{
       display: inline-block;
       width:64px;

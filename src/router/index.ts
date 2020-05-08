@@ -33,6 +33,26 @@ const routes = [
           title: '项目管理',
           icon: '',
         },
+        children: [
+          // {
+          //   path: 'addProject',
+          //   name: 'addProject',
+          //   component: () => import('@/views/Project/AddProject.vue'),
+          //   meta: {
+          //     title: '项目管理添加',
+          //     icon: '',
+          //   },
+          // },
+        ],
+      },
+      {
+        path: 'addProject',
+        name: 'addProject',
+        component: () => import('@/views/Project/AddProject.vue'),
+        meta: {
+          title: '项目管理添加',
+          icon: '',
+        },
       },
       // {
       //   path: 'department',
