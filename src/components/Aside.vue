@@ -1,16 +1,15 @@
 <template>
   <main class="col menu">
      <el-menu
-      :default-active="$route.path"
+      :default-active="defaultMenu"
       class="el-menu-vertical-demo"
       active-text-color="#FF8C00"
       router>
       <el-menu-item index="/index" @click="toRoute('index')">
-        <!-- <i class="el-icon-menu"></i> -->
-        <img src="../assets/img/aside/icon-home.png" alt="" style="width: 17px; height: 17px;">
+        <i class="el-icon-menu"></i>
         <span slot="title">首页</span>
       </el-menu-item>
-      <el-menu-item index="/projects" @click="toRoute('projects')">
+      <el-menu-item index="/projects" @click="toRoute('project')">
         <i class="el-icon-menu"></i>
         <span slot="title">项目管理</span>
       </el-menu-item>
@@ -22,7 +21,6 @@
 import { Component, Prop, Vue, Watch} from 'vue-property-decorator';
 @Component
 export default class Aside extends Vue {
-  private defaultMenu1: any = this.$route.path
   public toRoute(name: string) {
     if ( this.$route.name !== name) {
       this.$router.push({name});
@@ -67,15 +65,14 @@ export default class Aside extends Vue {
   private created() {
     console.log(this.$route)
   }
-  // get defaultMenu() {
-  //   if (this.$route.matched && this.$route.matched.length > 2) {
-  //     console.log(this.$route.path)
-  //     return this.$route.matched[1].path
-  //   } else {
-  //     console.log(this.$route.path)
-  //     return this.$route.path + ''
-  //   }
-  // }
+
+  get defaultMenu() {
+    if (this.$route.matched && this.$route.matched.length > 2) {
+      return '/' + this.$route.matched[1].path.split('/')[1]
+    } else {
+      return this.$route.path + ''
+    }
+  }
 }
 </script>
 
@@ -112,5 +109,8 @@ main{
 }
 /deep/.el-menu-item.is-active{
   border-left:4px solid #FF8C00;
+  // color:#4C4C4E !important;
 }
 </style>
+  <!-- <img v-if="$route.path === '/index'" src="../assets/img/aside/icon-home.png" alt="" style="width: 17px; height: 17px; margin-right: 12px;"> -->
+        <!-- <img v-else src="../assets/img/aside/icon-folder.png" alt="" style="width: 17px; height: 17px; margin-right: 12px;"> -->

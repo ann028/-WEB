@@ -177,15 +177,14 @@ export default class Index extends Vue {
     today: '今天',
     month: '月',
     week: '周',
-    day: '日'
+    day: '日',
   }
- 
   private weekdayList = ['日', '一', '二', '三', '四', '五', '六'];
   private views = {
     dayGridMonth: {
       titleFormat: 'YYYY[年]MM[月]',
-      columnHeaderText: (date: any) => this.weekdayList[date.getDay()]
-    }
+      columnHeaderText: (date: any) => this.weekdayList[date.getDay()],
+    },
   }
   private dayRender(info: any) {
     // console.log(info)

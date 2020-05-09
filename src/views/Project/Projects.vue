@@ -1,5 +1,5 @@
 <template>
-  <main class="content">
+  <main class="content bg">
     <div>
       <section class="header">项目管理</section>
       <section class="searchBox main_space">
@@ -28,7 +28,7 @@
                 </el-option>
               </el-select>
             </section>
-            <el-button type="primary">查询</el-button>
+            <button class="btn primary_btn">查询</button>
             <img src="../../assets/img/project/chevrons-down-orange.png" :class="[isShow ? 'transformGo' : 'transform']" @click="isShow = !isShow" style="width: 20px; height: 20px; margin: auto 0;">
           </section>
           <transition name="bounce"  v-if="isShow">
@@ -165,7 +165,7 @@
           </transition>
         </section>
         <section class="flex right">
-          <el-button @click="doAddProject" type="primary">新增</el-button>
+          <button @click="doAddProject" class="btn primary_btn">新增</button>
           <el-upload
             class="upload-demo"
             action="https://jsonplaceholder.typicode.com/posts/"
@@ -176,9 +176,9 @@
             :limit="3"
             :show-file-list="false"
             :on-exceed="handleExceed">
-            <el-button type="primary">导入</el-button>
+            <button class="btn primary_btn">导入</button>
           </el-upload>
-          <el-button type="primary">导出</el-button>
+          <button class="btn primary_btn">导出</button>
         </section>
       </section>
       <el-table
@@ -220,12 +220,13 @@
         </el-table-column>
         <el-table-column
           label="操作"
-          align="center">
+          align="center"
+          width="200">
           <template slot-scope="scope">
-            <div>
+            <div class="flex">
               <!-- <el-button  class="border_btn">编辑</el-button> -->
-              <button class="btn border_btn">编辑</button>
-              <el-button type="primary" >到期</el-button>
+              <button class="btn primary_plain_btn">编辑</button>
+              <button class="btn primary_btn" >到期</button>
             </div>
           </template>
         </el-table-column>
@@ -255,14 +256,49 @@ export default class Projects extends Vue {
       name: '19天风01',
       code: 150001,
       direct: '湖北省武汉市天风证券',
-      place:'上交所',
+      place: '上交所',
+      matters: '（1）发行人募集资金…（2）发行人募集资金…',
+      leader: '李天风',
+    }, {
+      name: '19天风01',
+      code: 150001,
+      direct: '湖北省武汉市天风证券',
+      place: '上交所',
+      matters: '（1）发行人募集资金…（2）发行人募集资金…',
+      leader: '李天风',
+    }, {
+      name: '19天风01',
+      code: 150001,
+      direct: '湖北省武汉市天风证券',
+      place: '上交所',
+      matters: '（1）发行人募集资金…（2）发行人募集资金…',
+      leader: '李天风',
+    }, {
+      name: '19天风01',
+      code: 150001,
+      direct: '湖北省武汉市天风证券',
+      place: '上交所',
+      matters: '（1）发行人募集资金…（2）发行人募集资金…',
+      leader: '李天风',
+    }, {
+      name: '19天风01',
+      code: 150001,
+      direct: '湖北省武汉市天风证券',
+      place: '上交所',
+      matters: '（1）发行人募集资金…（2）发行人募集资金…',
+      leader: '李天风',
+    }, {
+      name: '19天风01',
+      code: 150001,
+      direct: '湖北省武汉市天风证券',
+      place: '上交所',
       matters: '（1）发行人募集资金…（2）发行人募集资金…',
       leader: '李天风',
     },
   ]
   private doAddProject() {
     this.$router.push({
-      name: 'addProject'
+      name: 'addProject',
     })
   }
 }

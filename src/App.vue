@@ -16,7 +16,7 @@
   font-family:MicrosoftYaHei;
   font-size:16px;
   color:rgba(0,0,0,1);
-  .el-input__inner{
+  .el-input__suffix,.el-input__inner{
     height: 24px;
     // padding: 0 6px;
   }
@@ -50,14 +50,20 @@
       font-size: 12px;
     }
   }
-  /deep/.el-button{
-    // background: #F88200;
-    // color: #ffffff;
-    height: 24px;
-    width:69px;
-    border: none;
-    padding: 0;
-    margin-left: 24px;
+  // /deep/.el-button{
+  //   // background: #F88200;
+  //   // color: #ffffff;
+  //   height: 24px;
+  //   width:69px;
+  //   border: none;
+  //   padding: 0;
+  //   margin-left: 24px;
+  // }
+  .el-table__header{
+    width: 100% !important;
+  }
+  .el-table__body{
+    width: 100% !important;
   }
 }
 </style>
