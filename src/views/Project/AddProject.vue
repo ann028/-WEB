@@ -9,7 +9,7 @@
           <div :class="[activeTab === 'step3' ? 'step activeStep' : 'step']" @click="onChangeActiveTab('step3')">Step3: 关联模版</div>
         </section>
         <section style="margin-top: 24px;">
-          <section v-if="activeTab === 'step1'">
+          <section v-show ="activeTab === 'step1'">
             <!-- <el-tabs v-model="step1ActiveName">
               <el-tab-pane label="债券信息" name="bondInfo" lazy>
                 <keep-alive>
@@ -38,13 +38,23 @@
               <!-- <keep-alive> -->
                 <bond-info  ref="bondInfoCon" v-show="step1ActiveName === 'bondInfo'"></bond-info>
                 <issuer-info ref="issuerInfoCon" v-show="step1ActiveName === 'issuerInfo'" ></issuer-info>
+                <release-info ref="releaseInfoCon" v-show="step1ActiveName === 'releaseInfo'"></release-info>
+                <underwriter-info ref="underwriterInfoCon" v-show="step1ActiveName === 'underwriterInfo'"></underwriter-info>
+                <grade-info ref="gradeInfoCon" v-show="step1ActiveName === 'gradeInfo'"></grade-info>
+                <guarantee-info ref="guaranteeInfoCon" v-show="step1ActiveName === 'guaranteeInfo'"></guarantee-info>
               <!-- </keep-alive> -->
 
             </div>
           </section>
+          <section v-show ="activeTab === 'step2'">
+            <person-setting ref="personSetting"></person-setting>
+          </section>
+          <section v-show ="activeTab === 'step3'">
+            step3
+          </section>
         </section>
         <div class="flex" style="width: 218px; margin: 28px auto;">
-          <button class="btn primary_btn" @click="submit('ruleForm')" style="margin-left: 0; height: 32px;">保存</button>
+          <button class="btn primary_btn"  @click="submit('ruleForm')" style="margin-left: 0; height: 32px;">保存</button>
           <button class="btn primary_plain_btn" style="margin-left: 80px;  height: 32px;">取消</button>
         </div>
       </section>
@@ -55,14 +65,27 @@
 </template>
 <script lang="ts">
 import {Vue, Component} from 'vue-property-decorator'
+// step1
 import Breadcrumb from '@/components/Breadcrumb.vue'
 import BondInfo from '@/components/projects/step1/BondInfo.vue'
 import IssuerInfo from '@/components/projects/step1/IssuerInfo.vue'
+import ReleaseInfo from '@/components/projects/step1/ReleaseInfo.vue'
+import UnderwriterInfo from '@/components/projects/step1/UnderwriterInfo.vue'
+import GradeInfo from '@/components/projects/step1/GradeInfo.vue'
+import GuaranteeInfo from '@/components/projects/step1/GuaranteeInfo.vue'
+// step2
+import PersonSetting from '@/components/projects/step2/PersonSetting.vue'
+
 @Component({
   components: {
     Breadcrumb,
     BondInfo,
     IssuerInfo,
+    ReleaseInfo,
+    UnderwriterInfo,
+    GradeInfo,
+    GuaranteeInfo,
+    PersonSetting,
   },
 })
 export default class AddProject extends Vue {
@@ -71,38 +94,77 @@ export default class AddProject extends Vue {
   // private step1ActiveName: any = 'bondInfo'
   private step1ActiveName: any = 'bondInfo'
   private onChangeActiveTab(activeTab: any) {
-    this.activeTab = activeTab
+    if (activeTab === 'step2') {
+      // this.submit()
+      this.activeTab = activeTab
+    } else if(activeTab === 'step3') {
+      this.submitStep2()
+      // this.activeTab = 'step3'
+    } else {
+      this.activeTab = activeTab
+    }
   }
   private onChangeActiveStepItem(activeStepName: any) {
     this.step1ActiveName = activeStepName
   }
-  private submit(formName: any) {
+  private submit() {
     const bonfInfoCon: any = this.$refs.bondInfoCon
     const BondInfo1: any = bonfInfoCon.$refs.ruleForm
 
     const issuerInfoCon: any = this.$refs.issuerInfoCon
     const issuerInfoCon1: any = issuerInfoCon.$refs.IssuerForm
-    console.log(this)
-    Promise.all([BondInfo1, issuerInfoCon1].map(this.getFormPromise)).then(res => {
+
+    const releaseInfoCon: any = this.$refs.releaseInfoCon
+    const releaseInfoCon1: any = releaseInfoCon.$refs.RelaseForm
+
+    const underwriterInfoCon: any = this.$refs.underwriterInfoCon
+    const underwriterInfoCon1: any = underwriterInfoCon.$refs.UnderwriterForm
+
+    const gradeInfoCon: any = this.$refs.gradeInfoCon
+    const gradeInfoCon1: any = gradeInfoCon.$refs.GradeForm
+
+    const guaranteeInfoCon: any = this.$refs.guaranteeInfoCon
+    const guaranteeInfoCon1: any = guaranteeInfoCon.$refs.GuaranteeForm
+
+    console.log(guaranteeInfoCon1)
+    let arr: any = []
+
+    Promise.all([BondInfo1, issuerInfoCon1, releaseInfoCon1, underwriterInfoCon1, gradeInfoCon1, guaranteeInfoCon1].map(this.getFormPromise)).then(res => {
       const validateResult = res.every(item => !!item);
-      console.log('====',res)
-
-
+      console.log('====', res)
       if (validateResult) {
         console.log('两个表单都校验通过');
+        this.activeTab = 'step2'
       } else {
         console.log('两个表单未校验通过');
       }
     })
   }
   private getFormPromise(form: any) {
-    // console.log(form)
-      return new Promise(resolve => {
-        form.validate((res: any) => {
-          resolve(res);
-        })
+    return new Promise(resolve => {
+      form.validate((res: any) => {
+        resolve(res);
       })
-    }
+    })
+  }
+  private submitStep2() {
+    const personSetting: any = this.$refs.personSetting
+    const personSetting1: any = personSetting.$refs.personSettingForm
+
+    console.log(personSetting)
+    
+
+    // Promise.all([personSetting1].map(this.getFormPromise)).then(res => {
+    //   const validateResult = res.every(item => !!item);
+    //   console.log('====', res)
+    //   if (validateResult) {
+    //     console.log('两个表单都校验通过');
+    //     this.activeTab = 'step3'
+    //   } else {
+    //     console.log('两个表单未校验通过');
+    //   }
+    // })
+  }
 }
 </script>
 <style lang="less" scoped>

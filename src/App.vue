@@ -16,7 +16,7 @@
   font-family:MicrosoftYaHei;
   font-size:16px;
   color:rgba(0,0,0,1);
-  .el-input__suffix,.el-input__inner{
+  .el-input .el-input__suffix,.el-input__inner{
     height: 24px;
     // padding: 0 6px;
   }
@@ -64,6 +64,14 @@
   }
   .el-table__body{
     width: 100% !important;
+  }
+  .el-form-item{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .el-form-item__content {
+    margin-left: 0 !important;
   }
 }
 </style>

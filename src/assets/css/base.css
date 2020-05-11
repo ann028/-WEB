@@ -76,3 +76,6 @@
   background: #F88200;
   color: #ffffff;
 }
+.tag > .el-form-item__label {
+  color: #F88200;
+}
