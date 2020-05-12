@@ -73,5 +73,8 @@
   .el-form-item__content {
     margin-left: 0 !important;
   }
+  .el-dialog__footer{
+    text-align: center;
+  }
 }
 </style>

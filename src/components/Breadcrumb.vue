@@ -3,12 +3,12 @@
     <section class="tab main_space">
       <section class="flex">
         <section v-for="(item, index) in tabName" :key="index" class="cross_center">
-          <span :class="[index === 0? 'activeTabName' : 'tabName']">{{item}}</span>
+          <span :class="[tabName.length > 1 && index === 0? 'activeTabName' : 'tabName']">{{item}}</span>
           <img  v-if="index !== tabName.length - 1" src="../assets/img/head/icon-enter .png" alt="" style="width: 20px; height: 20px;">
         </section>
       </section>
       <section>
-        <button class="btn primary_btn">返回</button>
+        <button class="btn primary_btn" @click="$router.go(-1)">返回</button>
       </section>
     </section>
   </main>

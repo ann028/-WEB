@@ -1,5 +1,5 @@
 <template>
-  <main class="content col flex1" style="padding: 0;">
+  <main class="content col flex1">
     <Breadcrumb :tabName = 'tabName'></Breadcrumb>
     <div class="flex flex1">
       <section class="flex1 bg"  style="border-radius:8px; padding: 21px 24px; box-sizing: border-box;">
@@ -97,9 +97,9 @@ export default class AddProject extends Vue {
     if (activeTab === 'step2') {
       // this.submit()
       this.activeTab = activeTab
-    } else if(activeTab === 'step3') {
-      this.submitStep2()
-      // this.activeTab = 'step3'
+    } else if ( activeTab === 'step3') {
+      // this.submitStep2()
+      this.activeTab = 'step3'
     } else {
       this.activeTab = activeTab
     }
@@ -127,7 +127,7 @@ export default class AddProject extends Vue {
     const guaranteeInfoCon1: any = guaranteeInfoCon.$refs.GuaranteeForm
 
     console.log(guaranteeInfoCon1)
-    let arr: any = []
+    const arr: any = []
 
     Promise.all([BondInfo1, issuerInfoCon1, releaseInfoCon1, underwriterInfoCon1, gradeInfoCon1, guaranteeInfoCon1].map(this.getFormPromise)).then(res => {
       const validateResult = res.every(item => !!item);
@@ -151,8 +151,7 @@ export default class AddProject extends Vue {
     const personSetting: any = this.$refs.personSetting
     const personSetting1: any = personSetting.$refs.personSettingForm
 
-    console.log(personSetting)
-    
+    console.log(personSetting.$data)
 
     // Promise.all([personSetting1].map(this.getFormPromise)).then(res => {
     //   const validateResult = res.every(item => !!item);

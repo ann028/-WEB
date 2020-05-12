@@ -4,15 +4,31 @@
       :default-active="defaultMenu"
       class="el-menu-vertical-demo"
       active-text-color="#FF8C00"
+      :default-openeds="defaultOpeneds"
       router>
-      <el-menu-item index="/index" @click="toRoute('index')">
+      <el-menu-item index="index" @click="toRoute('index')">
         <i class="el-icon-menu"></i>
         <span slot="title">首页</span>
       </el-menu-item>
-      <el-menu-item index="/projects" @click="toRoute('project')">
+      <el-menu-item index="projects" @click="toRoute('projects')">
         <i class="el-icon-menu"></i>
         <span slot="title">项目管理</span>
       </el-menu-item>
+      <el-menu-item index="publishers" @click="toRoute('publishers')">
+        <i class="el-icon-menu"></i>
+        <span slot="title">发行人管理</span>
+      </el-menu-item>
+      <el-submenu index="1-4">
+        <span slot="title">待办事项</span>
+        <el-menu-item index="supervision" @click="toRoute('supervision')">
+          <i class="el-icon-menu"></i>
+          <span slot="title">督导</span>
+        </el-menu-item>
+        <el-menu-item index="projectLeader" @click="toRoute('projectLeader')">
+          <i class="el-icon-menu"></i>
+          <span slot="title">项目负责人</span>
+        </el-menu-item>
+      </el-submenu>
     </el-menu>
   </main>
 </template>
@@ -64,13 +80,33 @@ export default class Aside extends Vue {
   }
   private created() {
     console.log(this.$route)
+    // this.filterMenuList = this.menuList[0].children.filter(item => {
+    //   return item.meta.title;
+    // });
+    if (this.$route.matched && this.$route.matched.length > 2) {
+      const routes = this.$route.path.split("/");
+      console.log('++++++++++++', routes)
+      // let path = this.filterMenuList.findIndex(x => x.path === routes[2]);
+      // this.defaultOpeneds.push(`${path}`);
+    }
   }
 
   get defaultMenu() {
+    console.log(this.$route)
+    // if (this.$route.matched && this.$route.matched.length > 2) {
+    //   console.log('=======', this.$route.matched)
+      // return '/' + this.$route.matched[1].path.split('/')[1]
+      // console.log(this.$route.matched)
+      // return this.$route.matched[1].name
+    // } else {
+    //   return this.$route.path + ''
+    // }
     if (this.$route.matched && this.$route.matched.length > 2) {
-      return '/' + this.$route.matched[1].path.split('/')[1]
+      console.log('======', this.$route.matched)
+      return this.$route.matched[2].name;
     } else {
-      return this.$route.path + ''
+      console.log('======', this.$route.matched)
+      return this.$route.name;
     }
   }
 }

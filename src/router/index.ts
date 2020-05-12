@@ -26,29 +26,99 @@ const routes = [
         },
       },
       {
-        path: '/projects',
-        name: 'projects',
+        path: 'project',
+        name: 'project',
         component: Index,
         children: [
           {
-            path: '/project',
-            name: 'project',
-            component: () => import('@/views/Project/Projects.vue'),
+            path: 'projects',
+            name: 'projects',
+            component: Index,
+            children: [
+              {
+                path: 'projects',
+                name: 'projects',
+                component: () => import('@/views/Project/Projects.vue'),
+                meta: {
+                  title: '项目管理添加',
+                  icon: '',
+                },
+              },
+              {
+                path: 'addProject',
+                name: 'addProject',
+                component: () => import('@/views/Project/AddProject.vue'),
+                meta: {
+                  title: '项目管理添加',
+                  icon: '',
+                },
+              },
+            ],
+          },
+        ],
+      },
+      {
+        path: 'publisher',
+        name: 'publisher',
+        component: Index,
+        children: [
+          {
+            path: 'publishers',
+            name: 'publishers',
+            component: Index,
             meta: {
-              title: '项目管理添加',
+              title: '发行人管理',
               icon: '',
-              requireAuth: true,
             },
+            children: [
+              {
+                path: 'publishers',
+                name: 'publishers',
+                component: () => import('@/views/Publisher/Publishers.vue'),
+              },
+            ],
+          },
+        ],
+      },
+      {
+        path: 'agency',
+        name: 'agency',
+        meta: {
+          title: '代办事项',
+        },
+        component: Index,
+        children: [
+          {
+            path: 'supervision',
+            name: 'supervision',
+            component: Index,
+            meta: {
+              title: '督导',
+              icon: '',
+            },
+            children: [
+              {
+                path: 'supervision',
+                name: 'supervision',
+                component: () => import('@/views/Agency/Supervision.vue'),
+              },
+            ],
           },
           {
-            path: '/addProject',
-            name: 'addProject',
-            component: () => import('@/views/Project/AddProject.vue'),
+            path: 'projectLeader',
+            name: 'projectLeader',
+            component: Index,
             meta: {
-              title: '项目管理添加',
+              title: '项目负责人',
               icon: '',
-              requireAuth: true,
             },
+            children: [
+              {
+                path: 'projectLeader',
+                name: 'projectLeader',
+                component: () => import('@/views/Agency/ProjectLeader.vue'),
+              },
+            ],
           },
         ],
       },
