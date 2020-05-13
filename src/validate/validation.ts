@@ -10,3 +10,12 @@
 //   }
 // }
 // export default validPhone
+
+export const validateMobile = (rule: any, mobile: any, callback: any) => {
+  console.log(mobile)
+  if (mobile.length === 0) {
+    callback(new Error('请添加'))
+  } else {
+    callback()
+  }
+}

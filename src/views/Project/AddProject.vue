@@ -50,7 +50,11 @@
             <person-setting ref="personSetting"></person-setting>
           </section>
           <section v-show ="activeTab === 'step3'">
-            step3
+            <div class="flex">
+              <div :class="[step1ActiveName === 'bondInfo' ? 'step1Item step1ItemActive' : 'step1Item']">发行人</div>
+              <div :class="[step1ActiveName === 'bondInfo' ? 'step1Item step1ItemActive' : 'step1Item']">项目</div>
+            </div>
+            <publisher></publisher>
           </section>
         </section>
         <div class="flex" style="width: 218px; margin: 28px auto;">
@@ -75,6 +79,8 @@ import GradeInfo from '@/components/projects/step1/GradeInfo.vue'
 import GuaranteeInfo from '@/components/projects/step1/GuaranteeInfo.vue'
 // step2
 import PersonSetting from '@/components/projects/step2/PersonSetting.vue'
+// step3
+import Publisher from '@/components/projects/step3/Publisher.vue'
 
 @Component({
   components: {
@@ -86,6 +92,7 @@ import PersonSetting from '@/components/projects/step2/PersonSetting.vue'
     GradeInfo,
     GuaranteeInfo,
     PersonSetting,
+    Publisher,
   },
 })
 export default class AddProject extends Vue {
@@ -151,18 +158,25 @@ export default class AddProject extends Vue {
     const personSetting: any = this.$refs.personSetting
     const personSetting1: any = personSetting.$refs.personSettingForm
 
-    console.log(personSetting.$data)
+    console.log(personSetting1)
 
-    // Promise.all([personSetting1].map(this.getFormPromise)).then(res => {
-    //   const validateResult = res.every(item => !!item);
-    //   console.log('====', res)
-    //   if (validateResult) {
-    //     console.log('两个表单都校验通过');
-    //     this.activeTab = 'step3'
-    //   } else {
-    //     console.log('两个表单未校验通过');
-    //   }
-    // })
+    Promise.all([personSetting1].map(this.getFormPromise)).then(res => {
+      const validateResult = res.every(item => !!item);
+      // console.log('====', res)
+      // let  validateResult: any = []
+      // console.log(personSetting.$data.ruleForm.name.length)
+      // if (personSetting.$data.ruleForm.name.length === 0) {
+      //   validateResult = [false]
+      // } else {
+      //   validateResult = [true]
+      // }
+      if (validateResult) {
+        console.log('两个表单都校验通过');
+        this.activeTab = 'step3'
+      } else {
+        console.log('两个表单未校验通过');
+      }
+    })
   }
 }
 </script>

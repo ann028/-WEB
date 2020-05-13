@@ -65,14 +65,14 @@
   .el-table__body{
     width: 100% !important;
   }
-  .el-form-item{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-  }
-  .el-form-item__content {
-    margin-left: 0 !important;
-  }
+  // .el-form-item{
+  //   display: flex;
+  //   justify-content: flex-start;
+  //   align-items: center;
+  // }
+  // .el-form-item__content {
+  //   margin-left: 0 !important;
+  // }
   .el-dialog__footer{
     text-align: center;
   }
