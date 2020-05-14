@@ -12,6 +12,7 @@ import App from './App.vue';
 import router from './router';
 import * as Filter from './filters'
 import './assets/css/element-variables.scss'
+import 'babel-polyfill'
 
 Vue.use(VueAxios, axios);
 Vue.use(ElementUI);

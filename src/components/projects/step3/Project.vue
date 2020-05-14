@@ -56,28 +56,28 @@ import {Vue, Component, Watch} from 'vue-property-decorator'
 
   }
 })
-export default class PublisherItem extends Vue {
+export default class ProjectItem extends Vue {
   private name: any = '江苏'
   private checkedAll: boolean = false
   private publisherData: any = [
     {
       date: '2016-05-02',
-      name: '王小虎',
+      name: '王小虎1',
       address: '上海市普陀区金沙江路 1518 弄',
       checked: true,
     }, {
       date: '2016-05-04',
-      name: '王小虎',
+      name: '王小虎1',
       address: '上海市普陀区金沙江路 1517 弄',
       checked: false,
     }, {
       date: '2016-05-01',
-      name: '王小虎',
+      name: '王小虎1',
       address: '上海市普陀区金沙江路 1519 弄',
       checked: true,
     }, {
       date: '2016-05-03',
-      name: '王小虎',
+      name: '王小虎1',
       address: '上海市普陀区金沙江路 1516 弄',
       checked: true,
     }
@@ -97,33 +97,6 @@ export default class PublisherItem extends Vue {
       this.checkedAll = false
     }
   }
-  private renderHeaderTable(h: any, column: any) {
-    console.log(h, column)
-    const label = [
-      '根据以下的适用条件，自动关联模板',
-      `·地区：${this.name}`,
-      `·交易所：${this.name}`,
-    ]
-    // return [
-    //   h('span', {}, '关联')
-    // ]
-    return [column.column.label, h(
-        'el-popover',
-        {
-          props: {
-            trigger: "hover",
-            placement: 'bottom',
-          },
-        },
-        [
-          label.map((item) => {
-            return h('p', {}, item)
-          }),
-          h('span', {class: 'el-icon-question', style: "color: #f88200; font-size: 20px;", slot: "reference"}),
-        ],
-      ),
-    ]
-  }
 }
 </script>
 <style lang="less" scoped>
@@ -133,13 +106,4 @@ export default class PublisherItem extends Vue {
 .el-table /deep/.DisabledSelection{
   position: relative;
 }
-//  .el-table /deep/.DisabledSelection .cell .el-checkbox__inner{
-//     margin-left: -30px;
-//     position:relative;
-//   }
-//   .el-table /deep/.DisabledSelection .cell:before{
-//     content: "关联";
-//     position: absolute;
-//     right: 27px;
-//   }
 </style>

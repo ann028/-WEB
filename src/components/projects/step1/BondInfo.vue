@@ -255,11 +255,17 @@
         </el-form-item>
       </section>
     </el-form>
+    <scroll-to-top></scroll-to-top>
   </div>
 </template>
 <script lang="ts">
 import {Vue, Component} from 'vue-property-decorator'
-@Component
+import ScrollToTop from '@/components/ScrollToTop.vue'
+@Component({
+  components: {
+    ScrollToTop,
+  },
+})
 export default class BondInfo extends Vue {
   private ruleForm: any = {
     name: '',
@@ -279,6 +285,7 @@ export default class BondInfo extends Vue {
     ],
   }
 }
+
 </script>
 <style lang="less" scoped>
 main{

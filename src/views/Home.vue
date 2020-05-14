@@ -2,7 +2,7 @@
   <div class="home col main" >
     <headerNav class="head"></headerNav>
     <section class="flex page_content">
-      <menuNav class="menu col"></menuNav>
+      <menuNav class="menu col" style="flex-shrink: 0;"></menuNav>
       <router-view class="router_view col"></router-view>
     </section>
   </div>
@@ -57,12 +57,15 @@ export default class Home extends Vue {
   }
   .page_content{
     width: 100%;
+    height: 100%;
     height: calc(100vh - 80px);
     display: flex;
     .router_view{
-      margin: 14px;
+      // margin: 14px;
+      padding: 14px;
       box-sizing: border-box;
       flex: 1;
+      width: 100%;
       overflow-y: auto;
     }
   }

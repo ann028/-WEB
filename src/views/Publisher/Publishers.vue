@@ -1,8 +1,8 @@
 <template>
   <main class="content">
-    <div>
+    <!-- <div style="height: 100%"> -->
       <Breadcrumb :tabName = 'tabName'></Breadcrumb>
-      <div class="bg" style="padding: 24px; box-sizing: border-box;">
+      <div class="bg flex1" style="padding: 24px; box-sizing: border-box;">
         <section class="searchBox main_space">
           <section class="left">
             <section  class="flex">
@@ -82,7 +82,7 @@
           </el-pagination>
         </div>
       </div>
-    </div>
+    <!-- </div> -->
   </main>
 </template>
 <script lang="ts">

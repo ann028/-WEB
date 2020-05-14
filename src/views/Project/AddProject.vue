@@ -51,10 +51,11 @@
           </section>
           <section v-show ="activeTab === 'step3'">
             <div class="flex">
-              <div :class="[step1ActiveName === 'bondInfo' ? 'step1Item step1ItemActive' : 'step1Item']">发行人</div>
-              <div :class="[step1ActiveName === 'bondInfo' ? 'step1Item step1ItemActive' : 'step1Item']">项目</div>
+              <div :class="[step3ActiveName === 'publisher' ? 'step1Item step1ItemActive' : 'step1Item']"  @click="onChangeActiveStep3Item('publisher')">发行人</div>
+              <div :class="[step3ActiveName === 'project' ? 'step1Item step1ItemActive' : 'step1Item']"  @click="onChangeActiveStep3Item('project')">项目</div>
             </div>
-            <publisher></publisher>
+            <publisher v-show="step3ActiveName === 'publisher'"></publisher>
+            <project v-show="step3ActiveName === 'project'"></project>
           </section>
         </section>
         <div class="flex" style="width: 218px; margin: 28px auto;">
@@ -81,6 +82,7 @@ import GuaranteeInfo from '@/components/projects/step1/GuaranteeInfo.vue'
 import PersonSetting from '@/components/projects/step2/PersonSetting.vue'
 // step3
 import Publisher from '@/components/projects/step3/Publisher.vue'
+import Project from '@/components/projects/step3/Project.vue'
 
 @Component({
   components: {
@@ -93,6 +95,7 @@ import Publisher from '@/components/projects/step3/Publisher.vue'
     GuaranteeInfo,
     PersonSetting,
     Publisher,
+    Project,
   },
 })
 export default class AddProject extends Vue {
@@ -100,6 +103,7 @@ export default class AddProject extends Vue {
   private activeTab: any = 'step1'
   // private step1ActiveName: any = 'bondInfo'
   private step1ActiveName: any = 'bondInfo'
+  private step3ActiveName: any = 'publisher'
   private onChangeActiveTab(activeTab: any) {
     if (activeTab === 'step2') {
       // this.submit()
@@ -113,6 +117,9 @@ export default class AddProject extends Vue {
   }
   private onChangeActiveStepItem(activeStepName: any) {
     this.step1ActiveName = activeStepName
+  }
+  private onChangeActiveStep3Item(activeStepName: any) {
+    this.step3ActiveName = activeStepName
   }
   private submit() {
     const bonfInfoCon: any = this.$refs.bondInfoCon
