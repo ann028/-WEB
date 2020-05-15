@@ -51,8 +51,14 @@
           </section>
           <section v-show ="activeTab === 'step3'">
             <div class="flex">
-              <div :class="[step3ActiveName === 'publisher' ? 'step1Item step1ItemActive' : 'step1Item']"  @click="onChangeActiveStep3Item('publisher')">发行人</div>
-              <div :class="[step3ActiveName === 'project' ? 'step1Item step1ItemActive' : 'step1Item']"  @click="onChangeActiveStep3Item('project')">项目</div>
+              <div :class="[step3ActiveName === 'publisher' ? 'step1Item step1ItemActive flex' : 'step1Item flex']"  @click="onChangeActiveStep3Item('publisher')">
+                <span>发行人</span>
+                <div class="numberIcon">4</div>
+              </div>
+              <div :class="[step3ActiveName === 'project' ? 'step1Item step1ItemActive flex' : 'step1Item flex']"  @click="onChangeActiveStep3Item('project')">
+                <span>项目</span>
+                <div class="numberIcon">4</div>
+              </div>
             </div>
             <publisher v-show="step3ActiveName === 'publisher'"></publisher>
             <project v-show="step3ActiveName === 'project'"></project>
@@ -243,6 +249,15 @@ main{
     padding: 0 24px;
     box-sizing: border-box;
     flex-shrink: 0;
+  }
+  .numberIcon {
+    width: 16px;
+    height: 16px;
+    background: #F88200;
+    color: #ffffff;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 16px;
   }
 }
 </style>

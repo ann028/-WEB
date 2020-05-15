@@ -1,7 +1,20 @@
 <template>
   <main>
    <div class="toBack">
-     back
+     <el-backtop target=".content" right="400">
+      <div
+        style="{
+          height: 100%;
+          width: 100%;
+          background-color: #f2f5f6;
+          box-shadow: 0 0 6px rgba(0,0,0, .12);
+          text-align: center;
+          line-height: 40px;
+        }"
+      >
+      Top
+    </div>
+     </el-backtop>
    </div>
   </main>
 </template>
@@ -18,7 +31,7 @@ export default class ScrollToTop extends Vue {
     window.addEventListener('scroll', this.scrollToTop, true)
   }
   private scrollToTop() {
-　　var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+　　var scrolltop =   window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
 　　console.log(scrolltop) 
   }
 }

@@ -168,16 +168,16 @@
           </section>
           <section class="flex right">
             <button @click="doAddProject" class="btn primary_btn">新增</button>
+             <!-- :on-preview="handlePreview"
+              :on-remove="handleRemove"
+              :before-remove="beforeRemove"
+               :on-exceed="handleExceed" -->
             <el-upload
               class="upload-demo"
               action="https://jsonplaceholder.typicode.com/posts/"
-              :on-preview="handlePreview"
-              :on-remove="handleRemove"
-              :before-remove="beforeRemove"
               multiple
               :limit="3"
-              :show-file-list="false"
-              :on-exceed="handleExceed">
+              :show-file-list="false">
               <button class="btn primary_btn">导入</button>
             </el-upload>
             <button class="btn primary_btn">导出</button>
@@ -237,11 +237,10 @@
           <el-pagination
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
-            :current-page="currentPage4"
-            :page-sizes="[100, 200, 300, 400]"
-            :page-size="100"
+            :current-page="pageJson.currentPage"
+            :page-size="pageJson.pageSize"
             layout="total, sizes, prev, pager, next, jumper"
-            :total="400">
+            :total="pageJson.total">
           </el-pagination>
         </div>
       </div>
@@ -261,6 +260,14 @@ import Breadcrumb from '@/components/Breadcrumb.vue'
 export default class Projects extends Vue {
   private isShow: boolean = false
   private tabName: any = ['项目管理']
+  private pageJson: any = {
+    currentPage: 1,
+    pageSize: 10,
+    total: 0,
+  }
+  private value: any = ''
+  private options: any = []
+  private input: any = ''
   private tableData: Array<any> = [
     {
       name: '19天风01',
@@ -310,6 +317,10 @@ export default class Projects extends Vue {
     this.$router.push({
       name: 'addProject',
     })
+  }
+  private handleSizeChange(val: any) {
+  }
+  private handleCurrentChange(val: any) {
   }
 }
 </script>

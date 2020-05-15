@@ -1,7 +1,7 @@
 <template>
   <main class="col menu">
+      <!-- :default-active="defaultMenu" -->
      <el-menu
-      :default-active="defaultMenu"
       class="el-menu-vertical-demo"
       active-text-color="#FF8C00"
       :default-openeds="defaultOpeneds"
@@ -93,14 +93,6 @@ export default class Aside extends Vue {
 
   get defaultMenu() {
     console.log(this.$route)
-    // if (this.$route.matched && this.$route.matched.length > 2) {
-    //   console.log('=======', this.$route.matched)
-      // return '/' + this.$route.matched[1].path.split('/')[1]
-      // console.log(this.$route.matched)
-      // return this.$route.matched[1].name
-    // } else {
-    //   return this.$route.path + ''
-    // }
     if (this.$route.matched && this.$route.matched.length > 2) {
       console.log('======', this.$route.matched)
       return this.$route.matched[2].name;

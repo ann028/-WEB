@@ -94,7 +94,7 @@
     <el-dialog
       title="项目负责人"
       :visible.sync="leaderDialog"
-      width="800px">
+      width="1000px">
       <div class="leaderDialog">
           <section>
             <el-input v-model="input" placeholder="账号姓名" class="input_width"></el-input>
@@ -103,20 +103,21 @@
           <section class="flex mt20">
             <section class="left leader_table">
               <el-table
-                :data="tableData"
+                :data="leadersData"
                 style="width: 100%"
-                :header-cell-style="{background:'#FFF9F3'}"
-                max-height="250">
+                :header-cell-style="{background:'rgba(237, 235, 233, 0.3)'}"
+                max-height="250"
+                ref="multipleTable">
                 <el-table-column
-                  type="index"
-                  width="50">
+                  type="selection"
+                  width="55">
                 </el-table-column>
                 <el-table-column
                   prop="index"
                   label="序号">
                 </el-table-column>
                 <el-table-column
-                  prop="date"
+                  prop="name"
                   label="姓名">
                 </el-table-column>
                 <el-table-column
@@ -124,16 +125,28 @@
                   label="账号">
                 </el-table-column>
                 <el-table-column
-                  prop="name"
+                  prop="phone"
+                  width="150"
                   label="手机">
                 </el-table-column>
                 <el-table-column
                   prop="address"
                   label="操作">
+                  <template slot-scope="scope">
+                    <el-button type="text" >添加</el-button>
+                  </template>
                 </el-table-column>
               </el-table>
             </section>
-            <section class="right selected_person">right</section>
+            <section class="right selected_person">
+              <span style="font-weight: bold;">已选用户</span>
+              <div class="selected_personList">
+                <div class="selected_item">
+                  <span style="color: #F88200; line-height: 32px; text-align: center;">债券1部-利泰南风</span>
+                  <div class="closeIcon">×</div>
+                </div>
+              </div>
+            </section>
           </section>
       </div>
       <span slot="footer" class="dialog-footer">
@@ -208,7 +221,13 @@ export default class PersonSetting extends Vue {
       name: '张三',
       address: '北京',
     }],
+    
   }
+  private leadersData = [{
+      index: 1,
+      name: '张三',
+      phone: '15735182768',
+    }]
   private addPublisherForm: any = {
     name: '',
     phone: '',
@@ -321,10 +340,38 @@ export default class PersonSetting extends Vue {
     flex-shrink: 0;
   }
   .selected_person{
-    width: 260px;
+    width: 270px;
     margin-left: 20px;
     padding: 10px;
     box-sizing: border-box;
+    .selected_personList{
+      // margin-top: 10px;
+      height: 400px;
+      background: #FFFCF9;
+      padding: 16px;
+      box-sizing: border-box;
+      // overflow-y: scroll;
+      .selected_item{
+        width: 150px;
+        height: 32px;
+        border: 1px solid #F88200;
+        margin: 16px 16px 0;
+        position: relative;
+      }
+    }
+  }
+  .closeIcon{
+    width: 14px;
+    height: 14px;
+    background: #F88200;
+    color: #ffffff;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 14px;
+    position: absolute;
+    top: 0;
+    right: -20px;
+    cursor: pointer;
   }
 }
 </style>
