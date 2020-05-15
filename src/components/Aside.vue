@@ -2,6 +2,7 @@
   <main class="col menu">
       <!-- :default-active="defaultMenu" -->
      <el-menu
+      :default-active="defaultMenu"
       class="el-menu-vertical-demo"
       active-text-color="#FF8C00"
       :default-openeds="defaultOpeneds"
@@ -18,17 +19,26 @@
         <i class="el-icon-menu"></i>
         <span slot="title">发行人管理</span>
       </el-menu-item>
-      <el-submenu index="1-4">
-        <span slot="title">待办事项</span>
+      <el-submenu>
+          <!-- <i class="el-icon-menu"></i> -->
+          <!-- <span slot="title">待办事项</span> -->
+        <template slot="title">
+           <i class="el-icon-menu"></i>
+          <span class="sub1">待办事项</span>
+        </template>
         <el-menu-item index="supervision" @click="toRoute('supervision')">
-          <i class="el-icon-menu"></i>
+          <!-- <i class="el-icon-menu"></i> -->
           <span slot="title">督导</span>
         </el-menu-item>
         <el-menu-item index="projectLeader" @click="toRoute('projectLeader')">
-          <i class="el-icon-menu"></i>
+          <!-- <i class="el-icon-menu"></i> -->
           <span slot="title">项目负责人</span>
         </el-menu-item>
       </el-submenu>
+      <el-menu-item index="matters" @click="toRoute('matters')">
+        <i class="el-icon-menu"></i>
+        <span slot="title">事项模板</span>
+      </el-menu-item>
     </el-menu>
   </main>
 </template>

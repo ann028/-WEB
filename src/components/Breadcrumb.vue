@@ -8,7 +8,7 @@
         </section>
       </section>
       <section>
-        <button class="btn primary_btn" @click="$router.go(-1)">返回</button>
+        <button v-if="tabName.length > 1" class="btn primary_btn" @click="$router.go(-1)">返回</button>
       </section>
     </section>
   </main>

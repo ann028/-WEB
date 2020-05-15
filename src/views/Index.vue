@@ -90,7 +90,7 @@
             <span></span>
           </section>
         </section>
-         <section class="eventItem">
+        <section class="eventItem">
           <section class="header main_space">
             <span>北京**国有投资有限公司</span>
             <span>16债券01</span>
@@ -101,7 +101,7 @@
             <span></span>
           </section>
         </section>
-         <section class="eventItem">
+        <section class="eventItem">
           <section class="header main_space">
             <span>北京**国有投资有限公司</span>
             <span>16债券01</span>
@@ -112,7 +112,7 @@
             <span></span>
           </section>
         </section>
-         <section class="eventItem">
+        <section class="eventItem">
           <section class="header main_space">
             <span>北京**国有投资有限公司</span>
             <span>16债券01</span>
@@ -123,7 +123,7 @@
             <span></span>
           </section>
         </section>
-         <section class="eventItem">
+        <section class="eventItem">
           <section class="header main_space">
             <span>北京**国有投资有限公司</span>
             <span>16债券01</span>

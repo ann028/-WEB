@@ -6,6 +6,7 @@ import store from '../store';
 
 Vue.use(Router);
 
+
 const routes = [
   {
     path: '/',
@@ -122,6 +123,29 @@ const routes = [
           },
         ],
       },
+      {
+        path: 'matter',
+        name: 'matter',
+        component: Index,
+        children: [
+          {
+            path: 'matters',
+            name: 'matters',
+            component: Index,
+            meta: {
+              title: '事项模板',
+              icon: '',
+            },
+            children: [
+              {
+                path: 'matters',
+                name: 'matters',
+                component: () => import('@/views/Matter/Matters.vue'),
+              },
+            ],
+          },
+        ],
+      }
     ],
   },
   {
@@ -132,29 +156,134 @@ const routes = [
 
 ];
 
+// const routes = [
+//   {
+//     path: '/',
+//     name: 'home',
+//     component: Home,
+//     redirect: 'index',
+//     meta: {
+//       auth: 1,
+//     },
+//     children: [
+//       {
+//         path: 'index',
+//         name: 'index',
+//         component: () => import('@/views/Index.vue'),
+//         meta: {
+//           title: '首页',
+//           icon: '',
+//         },
+//       },
+//       {
+//         path: 'project',
+//         name: 'project',
+//         component: Index,
+//         children: [
+//           {
+//             path: 'projects',
+//             name: 'projects',
+//             component: () => import('@/views/Project/Projects.vue'),
+//             meta: {
+//               title: '项目管理列表',
+//               icon: '',
+//             },
+//           },
+//           {
+//             path: 'addProject',
+//             name: 'addProject',
+//             component: () => import('@/views/Project/AddProject.vue'),
+//             meta: {
+//               title: '项目管理添加',
+//               icon: '',
+//             },
+//           },
+//         ],
+//       },
+//       {
+//         path: 'publisher',
+//         name: 'publisher',
+//         component: Index,
+//         children: [
+//           {
+//             path: 'publishers',
+//             name: 'publishers',
+//             component: () => import('@/views/Publisher/Publishers.vue'),
+//           },
+//         ],
+//       },
+//       {
+//         path: 'agency',
+//         name: 'agency',
+//         component: Index,
+//         children: [
+//           {
+//             path: 'supervision',
+//             name: 'supervision',
+//             component: Index,
+//             children: [
+//               {
+//                 path: 'supervision',
+//                 name: 'supervision',
+//                 component: () => import('@/views/Agency/Supervision.vue'),
+//               },
+//             ],
+//           },
+//           {
+//             path: 'projectLeader',
+//             name: 'projectLeader',
+//             component: Index,
+//             meta: {
+//               title: '项目负责人',
+//               icon: '',
+//             },
+//             children: [
+//               {
+//                 path: 'projectLeader',
+//                 name: 'projectLeader',
+//                 component: () => import('@/views/Agency/ProjectLeader.vue'),
+//               },
+//             ],
+//           },
+//         ],
+//       },
+//     ],
+//   },
+//   {
+//     path: '/login',
+//     name: 'login',
+//     component: () => import('../views/Login.vue'),
+//   },
+
+// ];
 const router = new Router({
   mode: 'history',
   routes,
 });
 
-// router.beforeEach((to, from, next) => {
-//   const state: any = store.state
-//   const token = state.auth.userInfo.token || window.sessionStorage.getItem('token');
-//   console.log(to)
-//   if (to.matched.some((record) => record.meta.auth)) {
-//     if (!token) {
-//       next({
-//         path: '/login',
-//         query: { redirect: to.fullPath },
-//       });
-//     } else {
-//       next();
-//     }
-//   } else {
-//     next();
-//   }
-// });
-
+router.beforeEach((to, from, next) => {
+  const state: any = store.state
+  const token = state.auth.userInfo.token || window.sessionStorage.getItem('token');
+  console.log(to)
+  // if (to.matched.some((record) => record.meta.auth)) {
+  //   if (!token) {
+  //     next({
+  //       path: '/login',
+  //       query: { redirect: to.fullPath },
+  //     });
+  //   } else {
+  //     next();
+  //   }
+  // } else {
+  //   next();
+  // }
+  if (to.matched.length === 0) {  // 如果未匹配到路由
+    from.name ? next({ name: from.name }) : next('/');   // 如果上级也未匹配到路由则跳转登录页面，如果上级能匹配到则转上级路由
+  } else {
+    console.log(111111)
+    next();    // 如果匹配到正确跳转
+  }
+});
 router.afterEach(() => {
   document.body.scrollTop = 0
   document.documentElement.scrollTop = 0
