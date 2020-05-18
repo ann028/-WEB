@@ -142,10 +142,15 @@ const routes = [
                 name: 'matters',
                 component: () => import('@/views/Matter/Matters.vue'),
               },
+              {
+                path: 'addMatters',
+                name: 'addMatters',
+                component: () => import('@/views/Matter/AddMatter.vue'),
+              },
             ],
           },
         ],
-      }
+      },
     ],
   },
   {

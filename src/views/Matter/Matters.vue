@@ -12,7 +12,7 @@
             </section>
           </section>
           <section class="flex right">
-            <button @click="doAddProject" class="btn primary_btn">新增</button>
+            <button @click="doAddMatters" class="btn primary_btn">新增</button>
           </section>
         </section>
         <div class="flex mt20">
@@ -169,9 +169,9 @@ export default class Projects extends Vue {
       place: '挂网文件要求.docx',
     },
   ]
-  private doAddProject() {
+  private doAddMatters() {
     this.$router.push({
-      name: 'addProject',
+      name: 'addMatters',
     })
   }
   private handleSizeChange(val: any) {

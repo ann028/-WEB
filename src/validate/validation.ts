@@ -19,3 +19,18 @@ export const validateMobile = (rule: any, mobile: any, callback: any) => {
     callback()
   }
 }
+
+export const validateArray = (rule: any, value: any, callback: any) => {
+  console.log(value)
+  for (const i of value) {
+    if (!i.endTime || !i.remindTime) {
+      callback(new Error('请填写完整'))
+    } else {
+      callback()
+    }
+  }
+}
+
+// export const validateArray = function(rule: any, value: any, callback: any) {
+//   console.log(value)
+// }
