@@ -10,7 +10,7 @@
           <div :class="[activeTab === 'childItems' ? 'step1Item step1ItemActive' : 'step1Item']" @click="onChangeActiveStepItem('childItems')">子事项</div>
           <div :class="[activeTab === 'associated' ? 'step1Item step1ItemActive' : 'step1Item']" @click="onChangeActiveStepItem('associated')">关联</div>
         </div>
-        <div style="margin-top: 26px; background: #FFFCF9;border-radius: 8px; padding-top: 10px;">
+        <div style="margin-top: 26px; background: #FFFCF9;border-radius: 8px;">
           <section v-show="activeTab === 'basicInfo'">
             <basic-info ref="basicInfo"></basic-info>
           </section>
@@ -18,7 +18,7 @@
             <remind-rulers ref="remindRulers"></remind-rulers>
           </section>
           <section v-show="activeTab === 'materialContent'">
-            <material-content></material-content>
+            <material-content ref="materialContent"></material-content>
           </section>
           <section v-show="activeTab === 'childItems'">
             <child-items></child-items>
@@ -52,7 +52,7 @@ import Associated from '@/components/matters/Associated.vue'
     MaterialContent,
     ChildItems,
     Associated,
-  }
+  },
 })
 export default class AddMatters extends Vue {
   private tabName: any = ['事项模板', '新增']
@@ -67,13 +67,16 @@ export default class AddMatters extends Vue {
     const remindRulers: any = this.$refs.remindRulers
     const remindRulersCon: any = remindRulers.$refs.remindRulersForm
 
-    console.log(remindRulersCon)
-    Promise.all([basicInfoCon, remindRulersCon].map(this.getFormPromise)).then(res => {
+    const materialContent: any = this.$refs.materialContent
+    const materialContentCon: any = materialContent.$refs.materialContentForm
+    console.log(materialContentCon)
+
+    Promise.all([basicInfoCon, remindRulersCon, materialContentCon].map(this.getFormPromise)).then(res => {
       const validateResult = res.every(item => !!item);
       console.log('====', res)
       if (validateResult) {
         console.log('两个表单都校验通过');
-        this.activeTab = 'step2'
+        this.activeTab = 'basicInfo'
       } else {
         console.log('两个表单未校验通过');
       }

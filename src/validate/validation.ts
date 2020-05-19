@@ -12,7 +12,6 @@
 // export default validPhone
 
 export const validateMobile = (rule: any, mobile: any, callback: any) => {
-  console.log(mobile)
   if (mobile.length === 0) {
     callback(new Error('请添加'))
   } else {
@@ -21,7 +20,6 @@ export const validateMobile = (rule: any, mobile: any, callback: any) => {
 }
 
 export const validateArray = (rule: any, value: any, callback: any) => {
-  console.log(value)
   for (const i of value) {
     if (!i.endTime || !i.remindTime) {
       callback(new Error('请填写完整'))
@@ -31,6 +29,11 @@ export const validateArray = (rule: any, value: any, callback: any) => {
   }
 }
 
-// export const validateArray = function(rule: any, value: any, callback: any) {
-//   console.log(value)
-// }
+export const validateEmpty = (rule: any, value: any, callback: any) => {
+  console.log(value)
+  if (value === '' ||  value === '<p><br></p>') {
+    callback(new Error('请填写完整'))
+  } else {
+    callback()
+  }
+}

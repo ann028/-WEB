@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style=" padding-top: 10px;">
     <el-form :model="remindRulersForm" :rules="remindRules" ref="remindRulersForm" label-width="120px" class="demo-ruleForm">
       <el-form-item label="触发方式" prop="way" class="mt20">
         <div>
@@ -97,7 +97,7 @@ export default class BasicInfo extends Vue {
       {
         remindTime: '',
         endTime: '',
-      }
+      },
     ],
     confirm: false,
     remind: [],
@@ -106,28 +106,28 @@ export default class BasicInfo extends Vue {
   }
   private remindRules: any = {
     way: [
-      {required: true, message: '请选择', trigger: 'change'}
+      {required: true, message: '请选择', trigger: 'change'},
     ],
     confirm: [
-      {required: true}
+      {required: true},
     ],
     remind: [
-      { type: 'array', required: true, message: '请至少选择一个提醒人员', trigger: 'change' }
+      { type: 'array', required: true, message: '请至少选择一个提醒人员', trigger: 'change' },
     ],
     childRemind: [
-      { type: 'array', required: true, message: '请至少选择一个提醒人员', trigger: 'change' }
+      { type: 'array', required: true, message: '请至少选择一个提醒人员', trigger: 'change' },
     ],
     quote: [
-      {required: true, message: '请选择', trigger: 'change'}
+      {required: true, message: '请选择', trigger: 'change'},
     ],
     timeList: [
-      { 
+      {
         type: 'array',
         required: true,
         validator: Validation.validateArray,
         trigger: 'change',
-      }
-    ]
+      },
+    ],
   }
 }
 </script>

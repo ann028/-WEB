@@ -47,9 +47,7 @@ export default class Login extends Vue {
   private captchaUrl = '';
   private captchaToken = '';
   private userAccount = {};
-  private userRules: any = {
-    
-  }
+  private userRules: any = {}
   public async getCaptchaUrl() {
     const res: any = await user.getCaptcha();
     if (res.status === 200) {

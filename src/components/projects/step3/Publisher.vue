@@ -54,7 +54,7 @@ import {Vue, Component, Watch} from 'vue-property-decorator'
 @Component({
   components: {
 
-  }
+  },
 })
 export default class PublisherItem extends Vue {
   private name: any = '江苏'
@@ -80,7 +80,7 @@ export default class PublisherItem extends Vue {
       name: '王小虎',
       address: '上海市普陀区金沙江路 1516 弄',
       checked: true,
-    }
+    },
   ]
   private doCheckedAll() {
     this.checkedAll = this.checkedAll

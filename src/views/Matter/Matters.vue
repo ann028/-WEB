@@ -174,10 +174,8 @@ export default class Projects extends Vue {
       name: 'addMatters',
     })
   }
-  private handleSizeChange(val: any) {
-  }
-  private handleCurrentChange(val: any) {
-  }
+  private handleSizeChange(val: any) {}
+  private handleCurrentChange(val: any) {}
   private onChangeActiveName(activeName: any) {
     this.activeName = activeName
   }

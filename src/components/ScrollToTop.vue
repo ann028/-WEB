@@ -23,16 +23,16 @@ import {Vue, Component, Watch} from 'vue-property-decorator'
 @Component({
   components: {
 
-  }
+  },
 })
 export default class ScrollToTop extends Vue {
-  private mounted(){
+  private mounted() {
     console.log('111111111', window)
     window.addEventListener('scroll', this.scrollToTop, true)
   }
   private scrollToTop() {
-　　var scrolltop =   window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-　　console.log(scrolltop) 
+    const scrolltop =   window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+    console.log(scrolltop)
   }
 }
 </script>

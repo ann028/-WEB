@@ -318,10 +318,8 @@ export default class Projects extends Vue {
       name: 'addProject',
     })
   }
-  private handleSizeChange(val: any) {
-  }
-  private handleCurrentChange(val: any) {
-  }
+  private handleSizeChange(val: any) {}
+  private handleCurrentChange(val: any) {}
 }
 </script>
 <style lang="less" scoped>

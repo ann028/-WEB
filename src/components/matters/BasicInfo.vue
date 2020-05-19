@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style=" padding-top: 10px;">
     <el-form :model="basicInfoForm" :rules="basicInfoRules" ref="basicInfoForm" label-width="100px" class="demo-ruleForm">
       <el-form-item label="分类" prop="category" class="mt20">
         <el-select v-model="basicInfoForm.category"  class="input_width" placeholder="请选择活动区域">
@@ -46,7 +46,7 @@ export default class BasicInfo extends Vue {
     name: '',
     shortName: '',
     explain: '',
-    childItems: false
+    childItems: false,
   }
   private basicInfoRules: any = {
     category: [
@@ -59,11 +59,11 @@ export default class BasicInfo extends Vue {
       {required: true, message: '请填写名称', trigger: 'blur'},
     ],
     explain: [
-      {required: true, message: '请填写说明', trigger: 'blur'}
+      {required: true, message: '请填写说明', trigger: 'blur'},
     ],
     childItems: [
-      {required: true}
-    ]
+      {required: true},
+    ],
   }
 }
 </script>
