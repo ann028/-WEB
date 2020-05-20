@@ -149,8 +149,8 @@ export default class AddProject extends Vue {
     console.log(guaranteeInfoCon1)
     const arr: any = []
 
-    Promise.all([BondInfo1, issuerInfoCon1, releaseInfoCon1, underwriterInfoCon1, gradeInfoCon1, guaranteeInfoCon1].map(this.getFormPromise)).then(res => {
-      const validateResult = res.every(item => !!item);
+    Promise.all([BondInfo1, issuerInfoCon1, releaseInfoCon1, underwriterInfoCon1, gradeInfoCon1, guaranteeInfoCon1].map(this.getFormPromise)).then((res) => {
+      const validateResult = res.every((item) => !!item);
       console.log('====', res)
       if (validateResult) {
         console.log('两个表单都校验通过');
@@ -160,8 +160,8 @@ export default class AddProject extends Vue {
       }
     })
   }
-  private getFormPromise(form: any) {
-    return new Promise(resolve => {
+  private async getFormPromise(form: any) {
+    return new Promise((resolve) => {
       form.validate((res: any) => {
         resolve(res);
       })
@@ -173,8 +173,8 @@ export default class AddProject extends Vue {
 
     console.log(personSetting1)
 
-    Promise.all([personSetting1].map(this.getFormPromise)).then(res => {
-      const validateResult = res.every(item => !!item);
+    Promise.all([personSetting1].map(this.getFormPromise)).then((res) => {
+      const validateResult = res.every((item) => !!item);
       // console.log('====', res)
       // let  validateResult: any = []
       // console.log(personSetting.$data.ruleForm.name.length)

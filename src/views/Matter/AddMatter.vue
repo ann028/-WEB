@@ -4,11 +4,11 @@
     <div class="flex flex1">
       <div class="flex1 bg" style="border-radius:8px; padding: 21px 24px; box-sizing: border-box;">
         <div class="flex">
-          <div :class="[activeTab === 'basicInfo' ? 'step1Item step1ItemActive' : 'step1Item']" @click="onChangeActiveStepItem('basicInfo')">基本信息</div>
-          <div :class="[activeTab === 'remindRulers' ? 'step1Item step1ItemActive' : 'step1Item']" @click="onChangeActiveStepItem('remindRulers')">提醒规则</div>
-          <div :class="[activeTab === 'materialContent' ? 'step1Item step1ItemActive' : 'step1Item']" @click="onChangeActiveStepItem('materialContent')">材料内容</div>
-          <div :class="[activeTab === 'childItems' ? 'step1Item step1ItemActive' : 'step1Item']" @click="onChangeActiveStepItem('childItems')">子事项</div>
-          <div :class="[activeTab === 'associated' ? 'step1Item step1ItemActive' : 'step1Item']" @click="onChangeActiveStepItem('associated')">关联</div>
+          <div :class="[activeTab === 'basicInfo' ? 'step1Item step1ItemActive' : 'step1Item']" @click="onChangeActiveTab('basicInfo')">基本信息</div>
+          <div :class="[activeTab === 'remindRulers' ? 'step1Item step1ItemActive' : 'step1Item']" @click="onChangeActiveTab('remindRulers')">提醒规则</div>
+          <div :class="[activeTab === 'materialContent' ? 'step1Item step1ItemActive' : 'step1Item']" @click="onChangeActiveTab('materialContent')">材料内容</div>
+          <div :class="[activeTab === 'childItems' ? 'step1Item step1ItemActive' : 'step1Item']" @click="onChangeActiveTab('childItems')">子事项</div>
+          <div :class="[activeTab === 'associated' ? 'step1Item step1ItemActive' : 'step1Item']" @click="onChangeActiveTab('associated')">关联</div>
         </div>
         <div style="margin-top: 26px; background: #FFFCF9;border-radius: 8px;">
           <section v-show="activeTab === 'basicInfo'">
@@ -21,14 +21,14 @@
             <material-content ref="materialContent"></material-content>
           </section>
           <section v-show="activeTab === 'childItems'">
-            <child-items></child-items>
+            <child-items ref="childItems"></child-items>
           </section>
           <section v-show="activeTab === 'associated'">
             <associated></associated>
           </section>
         </div>
         <div class="flex" style="width: 218px; margin: 28px auto;">
-          <button class="btn primary_btn"  @click="save('ruleForm')" style="margin-left: 0; height: 32px;">保存</button>
+          <button class="btn primary_btn"  @click="onSaveButtonClick" style="margin-left: 0; height: 32px;">保存</button>
           <button class="btn primary_plain_btn" style="margin-left: 80px;  height: 32px;">取消</button>
         </div>
       </div>
@@ -57,10 +57,10 @@ import Associated from '@/components/matters/Associated.vue'
 export default class AddMatters extends Vue {
   private tabName: any = ['事项模板', '新增']
   private activeTab: string = 'basicInfo'
-  private onChangeActiveStepItem(activeTab: any) {
+  private onChangeActiveTab(activeTab: any) {
     this.activeTab = activeTab
   }
-  private save() {
+  private onSaveButtonClick() {
     const basicInfo: any = this.$refs.basicInfo
     const basicInfoCon: any = basicInfo.$refs.basicInfoForm
 
@@ -69,21 +69,23 @@ export default class AddMatters extends Vue {
 
     const materialContent: any = this.$refs.materialContent
     const materialContentCon: any = materialContent.$refs.materialContentForm
-    console.log(materialContentCon)
 
-    Promise.all([basicInfoCon, remindRulersCon, materialContentCon].map(this.getFormPromise)).then(res => {
-      const validateResult = res.every(item => !!item);
+    const childItems: any = this.$refs.childItems
+    const childItemsCon: any = childItems.$refs.childItemForm
+    console.log(childItemsCon)
+    Promise.all([basicInfoCon, remindRulersCon, materialContentCon, childItemsCon].map(this.getFormPromise)).then((res: any) => {
+      const validateResult = res.every((item: any) => !!item);
       console.log('====', res)
       if (validateResult) {
         console.log('两个表单都校验通过');
-        this.activeTab = 'basicInfo'
+        this.activeTab = this.activeTab
       } else {
         console.log('两个表单未校验通过');
       }
     })
   }
-  private getFormPromise(form: any) {
-    return new Promise(resolve => {
+  private async getFormPromise(form: any) {
+    return new Promise((resolve) => {
       form.validate((res: any) => {
         resolve(res);
       })

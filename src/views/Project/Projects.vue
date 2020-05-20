@@ -268,7 +268,7 @@ export default class Projects extends Vue {
   private value: any = ''
   private options: any = []
   private input: any = ''
-  private tableData: Array<any> = [
+  private tableData: any[] = [
     {
       name: '19天风01',
       code: 150001,
@@ -318,8 +318,12 @@ export default class Projects extends Vue {
       name: 'addProject',
     })
   }
-  private handleSizeChange(val: any) {}
-  private handleCurrentChange(val: any) {}
+  private handleSizeChange(val: any) {
+    console.log(val)
+  }
+  private handleCurrentChange(val: any) {
+    console.log(val)
+  }
 }
 </script>
 <style lang="less" scoped>

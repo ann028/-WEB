@@ -221,7 +221,6 @@ export default class PersonSetting extends Vue {
       name: '张三',
       address: '北京',
     }],
-    
   }
   private leadersData = [{
       index: 1,

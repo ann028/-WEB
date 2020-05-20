@@ -19,26 +19,40 @@
         <i class="el-icon-menu"></i>
         <span slot="title">发行人管理</span>
       </el-menu-item>
-      <el-submenu>
+      <el-submenu index="agency">
           <!-- <i class="el-icon-menu"></i> -->
           <!-- <span slot="title">待办事项</span> -->
         <template slot="title">
            <i class="el-icon-menu"></i>
-          <span class="sub1">待办事项</span>
+          <span>待办事项</span>
         </template>
         <el-menu-item index="supervision" @click="toRoute('supervision')">
           <!-- <i class="el-icon-menu"></i> -->
-          <span slot="title">督导</span>
+          <span slot="title"  class="sub1">督导</span>
         </el-menu-item>
         <el-menu-item index="projectLeader" @click="toRoute('projectLeader')">
           <!-- <i class="el-icon-menu"></i> -->
-          <span slot="title">项目负责人</span>
+          <span slot="title"  class="sub1">项目负责人</span>
         </el-menu-item>
       </el-submenu>
       <el-menu-item index="matters" @click="toRoute('matters')">
         <i class="el-icon-menu"></i>
         <span slot="title">事项模板</span>
       </el-menu-item>
+      <el-submenu index="draft">
+        <template slot="title">
+           <i class="el-icon-menu"></i>
+          <span>底稿管理</span>
+        </template>
+        <el-menu-item index="1" >
+          <!-- <i class="el-icon-menu"></i> -->
+          <span slot="title"  class="sub1">项目底稿</span>
+        </el-menu-item>
+        <el-menu-item index="2" @click="toRoute('projectLeader')">
+          <!-- <i class="el-icon-menu"></i> -->
+          <span slot="title"  class="sub1">目录管理</span>
+        </el-menu-item>
+      </el-submenu>
     </el-menu>
   </main>
 </template>
@@ -124,7 +138,7 @@ main{
     border-right: none;
   }
   .sub1{
-    margin-left: 12px;
+    margin-left: 24px;
     font-size:14px;
     color:rgba(96,98,102,1);
   }

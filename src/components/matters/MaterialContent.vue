@@ -45,7 +45,8 @@
       </el-form-item>
        <el-form-item label="事项内容" prop="editor">
          <!-- <vue-editor></vue-editor> -->
-         <div id="editor"  style="width: 700px; margin-top: 40px;"></div>
+         <!-- <div id="editor"  style="width: 700px; margin-top: 40px;"></div> -->
+         <Editor v-bind:value = "materialContentForm.editor" @change="changeParent"></Editor>
        </el-form-item>
     </el-form>
   </div>
@@ -54,10 +55,11 @@
 import {Vue, Component} from 'vue-property-decorator'
 import * as Validation from '../../validate/validation'
 import { VueEditor } from "vue2-editor";
+import Editor from './wangEditor.vue'
 
 @Component({
   components: {
-    VueEditor,
+    Editor,
   },
 })
 export default class BasicInfo extends Vue {
@@ -81,48 +83,54 @@ export default class BasicInfo extends Vue {
   }
 
   private mounted() {
-    const E = require('wangeditor');
-    // 创建编辑器
-    const editor = new E('#editor');
-    // console.log('editor1', editor);
-    // this.editorConfig = editor;
-    editor.customConfig.uploadImgShowBase64 = true;  // 使用 base64 保存图片
-    // editor.customConfig.uploadImgServer = '/upload'  // 上传图片到服务器
-    editor.customConfig.showLinkImg = false;
-    editor.customConfig.customUploadVideo = true;
-    editor.customConfig.menus = [
-        'head',
-        'bold',
-        'fontSize',  // 字号
-        'fontName',  // 字体
-        'italic',  // 斜体
-        'underline',  // 下划线
-        'strikeThrough',  // 删除线
-        'foreColor',  // 文字颜色
-        'backColor',  // 背景颜色
-        'link',  // 插入链接
-        'list',  // 列表
-        'justify',  // 对齐方式
-        'quote',  // 引用
-        'emoticon',  // 表情
-        'image',  // 插入图片
-        'table',  // 表格
-        // 'video',  // 插入视频
-        'code',  // 插入代码
-        'undo',  // 撤销
-        'redo',  // 重复
-    ];
+    // const E = require('wangeditor');
+    // // 创建编辑器
     // const editor = new E('#editor');
-    editor.customConfig.onchange = (html: any) => {
-      this.materialContentForm.editor = html
-      const materialContentValidate: any = this.$refs.materialContentForm
-      materialContentValidate.validateField('editor')
-    };
+    // // console.log('editor1', editor);
+    // // this.editorConfig = editor;
+    // editor.customConfig.uploadImgShowBase64 = true;  // 使用 base64 保存图片
+    // // editor.customConfig.uploadImgServer = '/upload'  // 上传图片到服务器
+    // editor.customConfig.showLinkImg = false;
+    // editor.customConfig.customUploadVideo = true;
+    // editor.customConfig.menus = [
+    //     'head',
+    //     'bold',
+    //     'fontSize',  // 字号
+    //     'fontName',  // 字体
+    //     'italic',  // 斜体
+    //     'underline',  // 下划线
+    //     'strikeThrough',  // 删除线
+    //     'foreColor',  // 文字颜色
+    //     'backColor',  // 背景颜色
+    //     'link',  // 插入链接
+    //     'list',  // 列表
+    //     'justify',  // 对齐方式
+    //     'quote',  // 引用
+    //     'emoticon',  // 表情
+    //     'image',  // 插入图片
+    //     'table',  // 表格
+    //     // 'video',  // 插入视频
+    //     'code',  // 插入代码
+    //     'undo',  // 撤销
+    //     'redo',  // 重复
+    // ];
+    // // const editor = new E('#editor');
+    // editor.customConfig.onchange = (html: any) => {
+    //   this.materialContentForm.editor = html
+    //   const materialContentValidate: any = this.$refs.materialContentForm
+    //   materialContentValidate.validateField('editor')
+    // };
 
-    editor.create();
-    // editor.txt.html('')
+    // editor.create();
+    // // editor.txt.html('')
   }
 
+  private changeParent(val: any) {
+    console.log(val, '========')
+    this.materialContentForm.editor = val
+    const materialContentValidate: any = this.$refs.materialContentForm
+    materialContentValidate.validateField('editor')
+  }
 }
 </script>
 <style lang="less" scoped>

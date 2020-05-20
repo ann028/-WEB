@@ -30,7 +30,7 @@ export const validateArray = (rule: any, value: any, callback: any) => {
 }
 
 export const validateEmpty = (rule: any, value: any, callback: any) => {
-  console.log(value)
+  // console.log(value)
   if (value === '' ||  value === '<p><br></p>') {
     callback(new Error('请填写完整'))
   } else {

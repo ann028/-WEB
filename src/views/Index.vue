@@ -41,7 +41,7 @@
         themeSystem="bootstrap"/>
         
     </div> -->
-    <section class="flex" style="height: 100%;">
+    <section class="flex" style="height: 100%">
       <section class="calendar">
         <section class="main_space" style="height: 62px; border-bottom: 1px solid #EDEBE9">
           <span class="word">事项分布-最后期限</span>
@@ -300,104 +300,20 @@ main{
         height: 30px;
         line-height: 30px;
       }
-      .fc-body{
-        .fc-widget-content {
-           border: none;
-          .fc-day-grid-container {
-            height:calc(100vh - 400px) !important;
-            // overflow: hidden !important;
-            .fc-day-grid{
-              border: 1px solid #ddd;
-              border-top: 0;
-              .fc-row{
-                height: 60px !important;
-                .fc-bg{
-                  .fc-day{
-                    width: 60px !important;
-                    border: 1px solid #ddd;
-                  }
-                }
-              }
-            }
-            .fc-day-grid:after{
-              content: '';
-              position: absolute;
-              right: 1px;
-              // bottom: auto;
-              // right: auto;
-              top: 0;
-              // right:0;
-              height:100%;
-              width: 1px;
-              background-color: #ddd;
-            }
-            // &.fourLineGrid .fc-day,
-            // &.fourLineGrid .fc-row {
-            //   height: 77px !important;
-            //   min-height: 77px;
-            //   overflow: hidden;
-            // }
-            // &.fiveLineGrid .fc-day,
-            // &.fiveLineGrid .fc-row {
-            //   height: 62px !important;
-            //   min-height: 62px;
-            //   overflow: hidden;
-            // }
-            // &.sixLineGrid .fc-day,
-            // &.sixLineGrid .fc-row {
-            //   height: 51px !important;
-            //   min-height: 51px;
-            //   overflow: hidden;
-            // }
-            // .fc-bg {
-            //   .fc-day {
-            //     position: relative;
-            //     cursor: pointer;
-            //     // border: none;
-            //     .cell-wrap {
-            //       position: absolute;
-            //       top: 50%;
-            //       left: 50%;
-            //       box-sizing: border-box;
-            //       display: flex;
-            //       flex-direction: column;
-            //       align-items: center;
-            //       justify-content: center;
-            //       width: 44px;
-            //       height: 44px;
-            //       border-radius: 50%;
-            //       transform: translate(-50%, -50%);
-            //       p {
-            //         margin: 0;
-            //         &.fc-Number-self {
-            //           font-size: 14px;
-            //           font-weight: bold;
-            //           line-height: 19px;
-            //           color: #4a4a4a;
-            //         }
-            //       }
-            //     }
-            //   }
-            // }
-            // &.sixLineGrid .fc-bg {
-            //   .fc-day {
-            //     .cell-wrap {
-            //       width: 38px;
-            //       height: 38px;
-            //     }
-            //     .OtherHoliday {
-            //       bottom: 0;
-            //     }
-            //   }
-            // }
-            // .fc-content-skeleton {
-            //   .fc-day-number {
-            //     display: none;
-            //   }
-            // }
-          }
+      .fc-head-container{
+        .fc-row{
+          height: 30px !important;
         }
       }
+      .fc-row{
+        height: 60px !important;
+      }
+      .fc-view-container{
+        height: 560px !important;
+      }
+    }
+    .fc-day-grid-container {
+      height: auto !important;
     }
     .fc-bg {
       .fc-day {

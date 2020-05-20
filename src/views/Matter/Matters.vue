@@ -151,7 +151,7 @@ export default class Projects extends Vue {
   private value: any = ''
   private options: any = []
   private input: any = ''
-  private publisherData: Array<any> = [
+  private publisherData: any[] = [
     {
       name: '2019年披露',
       direct: '提醒：01-20  最后期限：02-10',
@@ -174,8 +174,12 @@ export default class Projects extends Vue {
       name: 'addMatters',
     })
   }
-  private handleSizeChange(val: any) {}
-  private handleCurrentChange(val: any) {}
+  private handleSizeChange(val: any) {
+    console.log(val)
+  }
+  private handleCurrentChange(val: any) {
+    console.log(val)
+  }
   private onChangeActiveName(activeName: any) {
     this.activeName = activeName
   }
