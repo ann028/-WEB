@@ -81,6 +81,8 @@ export default class AddMatters extends Vue {
         this.activeTab = this.activeTab
       } else {
         console.log('两个表单未校验通过');
+        console.log('??????', childItemsCon.model)
+
       }
     })
   }

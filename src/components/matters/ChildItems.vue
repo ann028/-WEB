@@ -6,10 +6,31 @@
           <el-form-item label="名称" :prop="'userList.'+ index +'.username'" :rules="childItemRules.username" class="mt20">
             <el-input v-model="item.username" size="mini" class="input_width"/>
           </el-form-item>
-          <el-form-item label="最后期限" :prop="'userList.'+ index +'.password'" :rules="childItemRules.password">
+          <el-form-item label="最后期限" :prop="'userList.'+ index +'.password'" :rules="childItemRules.password" style="position: relative;">
             <el-input v-model="item.password" type="password" class="input_width"/>
-            <div style="display: inline-block; " class="cross_center">
-              <img src="../../assets/img/project/icon-guid.png" alt="" >
+            <div style="position: absolute; top: 3px; left: 140px;">
+              <el-popover
+                placement="right-start"
+                width="240"
+                trigger="hover">
+                <div>
+                  <p>通过引用项目中的元素,配置目标时间</p>
+                  <p>元素：</p>
+                  <div class="ml20">
+                    <p style="color: blue;">· T: 付息日</p>
+                    <p style="color: blue;">· G: 偿保划款日(Guarantee)</p>
+                    <p style="color: blue;">· N: 票面利用率调整公告日</p>
+                    <p style="color: blue;">· n: 回售登记天数</p>
+                    <p>· M: 月</p>
+                    <p>· D: 工作日</p>
+                    <p>· d: 自然日</p>
+                  </div>
+                  <p>例如: </p>
+                  <p class="ml20">· T-2: 代表付息日前两个工作日(纯数字代表工作日天数)</p>
+                  <p class="ml20">· T-2M-7d: 代表付息日前(2个月+7天)</p>
+                </div>
+                <img slot="reference" src="../../assets/img/project/icon-guid.png" alt="" >
+              </el-popover>
             </div>
           </el-form-item>
           <el-form-item label="频率" :prop="'userList.'+ index +'.phone'" :rules="childItemRules.phone">
@@ -19,10 +40,29 @@
             <el-input v-model="item.phone" size="mini" style="margin: auto 10px; width: 57px;"/>
             <span style="color: #606266;">个工作日</span>
           </el-form-item>
-          <el-form-item label="事项内容" :prop="'userList.'+ index +'.content'" :rules="childItemRules.content">
+          <el-form-item label="事项内容" :prop="'userList.'+ index +'.content'" :rules="childItemRules.content" style="position: relative;">
             <!-- <el-input v-model="item.phone" size="mini" class="input_width"/> -->
             <!-- <div id="editor1"  style="width: 700px; margin-top: 40px;"></div> -->
             <Editor :index ="index" :userList="childItemForm.userList" @change="changeValue"></Editor>
+            <div style="position: absolute; top: 35px; left: 730px;">
+              <el-popover
+                placement="right-start"
+                width="200"
+                trigger="hover">
+                <div>
+                  <p>通过<span style="color: red">{ }</span>引用项目中的元素，例如{债券简称}</p>
+                  <p>可引用元素如下：</p>
+                  <div class="ml20">
+                    <p>· 债券简称</p>
+                    <p>· 抵押资产跟踪评估报告最晚出具日</p>
+                    <p>· 付息日</p>
+                  </div>
+                  
+                </div>
+                <!-- <el-button >hover 激活</el-button> -->
+                <img src="../../assets/img/project/icon-guid.png" alt="" slot="reference">
+              </el-popover>
+            </div>
           </el-form-item>
           <el-form-item label="适用条件" :prop="'userList.'+ index +'.conditions'" :rules="childItemRules.conditions">
             <el-checkbox v-model="item.conditions"></el-checkbox>
@@ -56,16 +96,19 @@
       </el-form>
     </div>
     <button @click="add" class="btn primary_btn">增加</button>
+    <ScrollToTop></ScrollToTop>
   </div>
 </template>
 <script lang="ts">
 import {Vue, Component} from 'vue-property-decorator'
 import * as Validation from '../../validate/validation'
 import Editor from './wangEditor.vue'
+import ScrollToTop from '@/components/ScrollToTop.vue'
 
 @Component({
   components: {
     Editor,
+    ScrollToTop,
   },
 })
 export default class BasicInfo extends Vue {
@@ -126,3 +169,6 @@ export default class BasicInfo extends Vue {
   }
 };
 </script>
+<style lang="less" scoped>
+
+</style>

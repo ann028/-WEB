@@ -151,6 +151,87 @@ const routes = [
           },
         ],
       },
+      {
+        path: 'draft',
+        name: 'draft',
+        meta: {
+          title: '底稿管理',
+        },
+        component: Index,
+        children: [
+          {
+            path: 'projectDraft',
+            name: 'projectDraft',
+            component: Index,
+            meta: {
+              title: '项目底稿',
+              icon: '',
+            },
+            children: [
+              {
+                path: 'projectDraft',
+                name: 'projectDraft',
+                component: () => import('@/views/Draft/ProjectDraft.vue'),
+              },
+            ],
+          },
+          {
+            path: 'directoryManage',
+            name: 'directoryManage',
+            component: Index,
+            meta: {
+              title: '目录管理',
+              icon: '',
+            },
+            children: [
+              {
+                path: 'directoryManage',
+                name: 'directoryManage',
+                component: () => import('@/views/Draft/DirectoryManage.vue'),
+              },
+            ],
+          },
+        ],
+      },
+      {
+        path: 'mailRecord',
+        name: 'mailRecord',
+        component: Index,
+        children: [
+          {
+            path: 'mailRecord',
+            name: 'mailRecord',
+            component: Index,
+            meta: {
+              title: '发信记录',
+              icon: '',
+            },
+            children: [
+              {
+                path: 'mailRecord',
+                name: 'mailRecord',
+                component: () => import('@/views/MailRecord/MailRecords.vue'),
+              },
+            ],
+          },
+        ],
+      },
+      {
+        path: 'personCenter',
+        name: 'personCenter',
+        component: Index,
+        children: [
+          {
+            path: 'personCenter',
+            name: 'personCenter',
+            component: () => import('@/views/PersonCenter.vue'),
+            meta: {
+              title: '个人中心',
+              icon: '',
+            },
+          },
+        ],
+      },
     ],
   },
   {
@@ -158,7 +239,6 @@ const routes = [
     name: 'login',
     component: () => import('../views/Login.vue'),
   },
-
 ];
 
 // const routes = [

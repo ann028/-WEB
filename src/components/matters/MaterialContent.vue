@@ -43,10 +43,26 @@
           </el-table>
         </div>
       </el-form-item>
-       <el-form-item label="事项内容" prop="editor">
-         <!-- <vue-editor></vue-editor> -->
-         <!-- <div id="editor"  style="width: 700px; margin-top: 40px;"></div> -->
-         <Editor v-bind:value = "materialContentForm.editor" @change="changeParent"></Editor>
+       <el-form-item label="事项内容" prop="editor" style="position: relative;">
+        <!-- <vue-editor></vue-editor> -->
+        <!-- <div id="editor"  style="width: 700px; margin-top: 40px;"></div> -->
+        <Editor v-bind:value = "materialContentForm.editor" @change="changeParent"></Editor>
+        <div style="position: absolute; top: 30px; left: 730px;">
+          <el-popover
+            placement="right-start"
+            width="200"
+            trigger="hover">
+            <div>
+              <p>通过<span style="color: red">{ }</span>引用项目中的元素，例如{债券简称}</p>
+              <p>可引用元素如下：</p>
+              <p style="margin-left: 30px;">· 债券简称</p>
+              <p style="margin-left: 30px;">· 付息日</p>
+            </div>
+            <!-- <el-button >hover 激活</el-button> -->
+            <img src="../../assets/img/project/icon-guid.png" alt="" slot="reference">
+          </el-popover>
+         </div>
+         
        </el-form-item>
     </el-form>
   </div>

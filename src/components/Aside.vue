@@ -1,11 +1,11 @@
 <template>
   <main class="col menu">
-      <!-- :default-active="defaultMenu" -->
+      <!-- :default-active="defaultMenu" 
+      :default-openeds="defaultOpeneds"-->
      <el-menu
       :default-active="defaultMenu"
       class="el-menu-vertical-demo"
       active-text-color="#FF8C00"
-      :default-openeds="defaultOpeneds"
       router>
       <el-menu-item index="index" @click="toRoute('index')">
         <i class="el-icon-menu"></i>
@@ -44,15 +44,19 @@
            <i class="el-icon-menu"></i>
           <span>底稿管理</span>
         </template>
-        <el-menu-item index="1" >
+        <el-menu-item index="projectDraft" @click="toRoute('projectDraft')">
           <!-- <i class="el-icon-menu"></i> -->
           <span slot="title"  class="sub1">项目底稿</span>
         </el-menu-item>
-        <el-menu-item index="2" @click="toRoute('projectLeader')">
+        <el-menu-item index="directoryManage" @click="toRoute('directoryManage')">
           <!-- <i class="el-icon-menu"></i> -->
           <span slot="title"  class="sub1">目录管理</span>
         </el-menu-item>
       </el-submenu>
+      <el-menu-item index="mailRecord" @click="toRoute('mailRecord')">
+        <i class="el-icon-menu"></i>
+        <span slot="title">发信记录</span>
+      </el-menu-item>
     </el-menu>
   </main>
 </template>

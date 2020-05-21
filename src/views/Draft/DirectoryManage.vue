@@ -1,0 +1,85 @@
+<template>
+  <main class="content">
+    <Breadcrumb :tabName = 'tabName'></Breadcrumb>
+    <div class="bg flex1 flex" style="padding: 24px; box-sizing: border-box;">
+      <section class="left draftTree" style="display: flex; flex-direction: column;">
+        <section>
+          <img src="../../assets/img/draft/add.png" alt="">
+          <img src="../../assets/img/draft/trash (1).png" alt="" style="margin-left: 24px;">
+          <img src="../../assets/img/draft/edit-fill.png" alt="" style="margin-left: 24px;">
+        </section>
+        <div class="flex1" style="background: #FFF9F3; margin-top: 24px;">
+
+        </div>
+      </section>
+      <section class="right relationEvent flex1 ml20">
+        <div class="main_space">
+          <span style="font-size: 14px;">关联事项</span>
+          <button class="btn primary_btn">新增</button>
+        </div>
+        <el-table
+          ref="multipleTable"
+          :data="tableData"
+          tooltip-effect="dark"
+          style="width: 100%"
+          @selection-change="handleSelectionChange"
+          :header-cell-style="{background:'#FFF9F3'}"
+          class="mt20">
+          <el-table-column
+            type="selection"
+            width="55">
+          </el-table-column>
+          <el-table-column
+            type="index"
+            label="序号"
+            align="center"
+            width="55">
+          </el-table-column>
+          <el-table-column
+            align="center"
+            prop="name"
+            label="事项类型">
+          </el-table-column>
+          <el-table-column
+            align="center"
+            prop="name"
+            label="事项名称">
+          </el-table-column>
+          <el-table-column
+            align="center"
+            label="操作">
+            <div slot-scope="scope">
+              <button class="btn primary_plain_btn" style="margin-left: 0;">删除</button>
+            </div>
+          </el-table-column>
+        </el-table>
+      </section>
+    </div>
+  </main>
+</template>
+<script lang="ts">
+import {Vue, Component} from 'vue-property-decorator'
+import Breadcrumb from '@/components/Breadcrumb.vue'
+
+@Component({
+  components: {
+    Breadcrumb,
+  },
+})
+export default class DirectoryManage extends Vue {
+  private tabName: any = ['底稿管理', '目录管理']
+  private tableData: any = [
+    {
+      name: '发行人',
+    }
+  ]
+}
+</script>
+<style lang="less" scoped>
+main{
+  .draftTree{
+    width: 200px;
+    height: 100%;
+  }
+}
+</style>

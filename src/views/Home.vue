@@ -1,6 +1,6 @@
 <template>
   <div class="home col main" >
-    <headerNav class="head"></headerNav>
+    <headerNav class="head" @doLogout="userLogout"></headerNav>
     <section class="flex page_content">
       <menuNav class="menu col" style="flex-shrink: 0;"></menuNav>
       <router-view class="router_view col"></router-view>
@@ -30,7 +30,7 @@ export default class Home extends Vue {
       type: 'warning',
     })
     .then(() => {
-      this.$store.dispatch('logOut');
+      // this.$store.dispatch('logOut');
     })
   }
   private get showHead() {

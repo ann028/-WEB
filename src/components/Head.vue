@@ -15,18 +15,18 @@
             <img class="icon_medium" src="../assets/img/head/avatar_female.png" alt="avatar">
             <span class="user_name" style="margin-left: 6px;">李天风</span>
           </div>
-          <div class="popover" style="line-height: 20px;">
-            <section>
-              <i class="el-icon-s-tools" style="font-size: 20px;"></i>
-              <span @click="doLogout" style="margin-left: 10px; font-size: 16px; cursor: pointer;">退出登录</span>
+          <div class="popover" >
+            <section @click="toPersonCenter" class="popoverItem" style="height: 30px; line-height: 30px;">
+              <i class="el-icon-s-tools" style="font-size: 14px;"></i>
+              <span  style="margin-left: 10px; font-size: 14px; cursor: pointer;">个人中心</span>
             </section>
-            <section>
-              <i class="el-icon-s-tools" style="font-size: 20px;"></i>
-              <span @click="doLogout" style="margin-left: 10px; font-size: 16px; cursor: pointer;">退出登录</span>
+            <section class="popoverItem" style="height: 30px; line-height: 30px;">
+              <i class="el-icon-s-tools" style="font-size: 14px;"></i>
+              <span @click="doLogout" style="margin-left: 10px; font-size: 14px; cursor: pointer;">退出登录</span>
             </section>
           </div>
         </section>
-        <img :class="['icon_micro', isTransform ? 'icon_transform' : '']" src="../assets/img/head/arrow_down.png" alt="avatar" @click="toTransformUserInfo">
+        <img :class="['icon_micro icon_transform']" src="../assets/img/head/arrow_down.png" alt="avatar" >
       </section>
     </section>
   </main>
@@ -36,31 +36,11 @@ import { Component, Prop, Vue, Watch} from 'vue-property-decorator';
 @Component
 export default class Head extends Vue {
   @Prop(String) public readonly loginName!: string;
-  private isShow = false;
-  private changeClass: boolean = false ;
-  private isIcon: boolean = false
-  private isTransform: boolean = false
-  public async logout() {
-    this.$emit('logout');
+  public async doLogout() {
+    this.$emit('doLogout');
   }
-  private changeShow() {
-    this.isShow = true;
-  }
-  private hideShow() {
-    this.isShow = false;
-  }
-  private enterIcon() {
-    this.isIcon = true
-  }
-  private leaveIcon() {
-    this.isIcon = false
-  }
-  private personInfo() {
-    this.$router.push({name: 'PersonCenter'})
-  }
-  private toTransformUserInfo() {
-    this.isTransform = !this.isTransform
-    console.log(this.isTransform)
+  private toPersonCenter() {
+    this.$router.push({name: 'personCenter'})
   }
 }
 </script>
@@ -112,9 +92,17 @@ main{
     &:hover .popover {
       display: block;
     }
+    &:hover .icon_transform {
+      transform: rotate(-180deg);
+      transition: all .5s;
+    }
+  }
+  .icon_transform{
+    transition: all .5s;
   }
   .popover {
     display: none;
+    // display: block;
     position: absolute;
     margin-right: 11px;
     top: 70px;
@@ -127,6 +115,9 @@ main{
     z-index: 10;
     cursor: default;
     padding: 10px;
+  }
+  .popoverItem:hover{
+      background: #FFF9F3;
   }
   .icon_transform{
     // transform:rotate(180deg);
