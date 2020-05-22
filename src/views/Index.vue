@@ -3,7 +3,7 @@
     <div class="event_Style flex">
       <section class="flex3 flex cross_center" style="background: #ffffff; margin-right: 15px;padding: 15px; box-sizing: border-box;">
         <div class="title_name">李天风，下午好！</div>
-        <div style="margin-left: 52px;">2014-5-7</div>
+        <div style="margin-left: 52px;">{{date | formatDate}}</div>
         <div style="margin-left: 16px;">待办事项</div>
       </section>
       <section class="flex1 flex" style="background: #ffffff; margin-right: 15px;padding: 15px; box-sizing: border-box;">
@@ -16,14 +16,14 @@
       <section class="flex1 flex" style="background: #ffffff; margin-right: 15px; padding: 15px; box-sizing: border-box;">
         <img src="../assets/img/index/icon-processing.png" alt="" class="Icon">
         <section class=" col main_space" style="height: 62px; margin-left: 24px;">
-          <section class="icon_word">待确认</section>
+          <section class="icon_word">待处理</section>
           <section class="icon_number">12</section>
         </section>
       </section>
       <section class="flex1 flex" style="background: #ffffff;padding: 15px; box-sizing: border-box;">
         <img src="../assets/img/index/icon-verify.png" alt="" class="Icon">
         <section class=" col main_space" style="height: 62px; margin-left: 24px;">
-          <section class="icon_word">待确认</section>
+          <section class="icon_word">待审核</section>
           <section class="icon_number">12</section>
         </section>
       </section>
@@ -150,6 +150,7 @@ import momentPlugin from '@fullcalendar/moment';
   },
 })
 export default class Index extends Vue {
+  private date: any = new Date()
   private calendarPlugins = [ dayGridPlugin, interactionPlugin, momentPlugin ]
   private header = {
     left: '',

@@ -216,6 +216,87 @@ const routes = [
           },
         ],
       },
+      // {
+      //   path: 'accountManage',
+      //   name: 'accountManage',
+      //   component: Index,
+      //   children: [
+      //     {
+      //       path: 'userManage',
+      //       name: 'userManage',
+      //       component: Index,
+      //       meta: {
+      //         title: '用户管理',
+      //         icon: '',
+      //       },
+      //       children: [
+      //         {
+      //           path: 'userManage',
+      //           name: 'userManage',
+      //           component: () => import('@/views/AccountManage/UserManage.vue'),
+      //         },
+      //       ],
+      //     },
+      //     {
+      //       path: 'roleManage',
+      //       name: 'roleManage',
+      //       component: Index,
+      //       meta: {
+      //         title: '角色管理',
+      //         icon: '',
+      //       },
+      //       children: [
+      //         {
+      //           path: 'roleManage',
+      //           name: 'roleManage',
+      //           component: () => import('@/views/AccountManage/RolesManage.vue'),
+      //         },
+      //       ],
+      //     },
+      //   ],
+      // },
+      {
+        path: 'account',
+        name: 'account',
+        meta: {
+          title: '账号管理',
+        },
+        component: Index,
+        children: [
+          {
+            path: 'userManage',
+            name: 'userManage',
+            component: Index,
+            meta: {
+              title: '用户管理',
+              icon: '',
+            },
+            children: [
+              {
+                path: 'userManage',
+                name: 'userManage',
+                component: () => import('@/views/AccountManage/UserManage.vue'),
+              },
+            ],
+          },
+          {
+            path: 'roleManage',
+            name: 'roleManage',
+            component: Index,
+            meta: {
+              title: '角色管理',
+              icon: '',
+            },
+            children: [
+              {
+                path: 'roleManage',
+                name: 'roleManage',
+                component: () => import('@/views/AccountManage/RoleManage.vue'),
+              },
+            ],
+          },
+        ],
+      },
       {
         path: 'personCenter',
         name: 'personCenter',

@@ -13,3 +13,13 @@ export function leaveStatusFilter(status: any) {
   }
 }
 
+import moment from 'moment'
+
+export function formatDate(timestap: any) {
+  if (timestap) {
+    return moment(timestap).format('YYYY' + '年' + 'MM' + '月' + 'DD' + '日')
+  } else {
+    return '-'
+  }
+}
+

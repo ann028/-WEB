@@ -15,5 +15,6 @@ export function ergodicTree(tree: object[], callback: any = () => {}, props = {i
   }
 
   _ergodicTree(tree);
+  console.log('ergodic', tree)
   return tree;
 }

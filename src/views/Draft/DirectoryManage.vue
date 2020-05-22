@@ -2,14 +2,14 @@
   <main class="content">
     <Breadcrumb :tabName = 'tabName'></Breadcrumb>
     <div class="bg flex1 flex" style="padding: 24px; box-sizing: border-box;">
-      <section class="left draftTree" style="display: flex; flex-direction: column;">
+      <section class="left draftTree" style="">
         <section>
-          <img src="../../assets/img/draft/add.png" alt="">
-          <img src="../../assets/img/draft/trash (1).png" alt="" style="margin-left: 24px;">
-          <img src="../../assets/img/draft/edit-fill.png" alt="" style="margin-left: 24px;">
+          <img src="../../assets/img/draft/add.png" alt="" style="cursor: pointer;">
+          <img src="../../assets/img/draft/trash (1).png" alt="" style="margin-left: 24px; cursor: pointer;">
+          <img src="../../assets/img/draft/edit-fill.png" alt="" style="margin-left: 24px; cursor: pointer;">
         </section>
         <div class="flex1" style="background: #FFF9F3; margin-top: 24px;">
-
+          <el-tree :data="treeData" :props="defaultProps" @node-click="handleNodeClick"></el-tree>
         </div>
       </section>
       <section class="right relationEvent flex1 ml20">
@@ -73,13 +73,41 @@ export default class DirectoryManage extends Vue {
       name: '发行人',
     }
   ]
+  private treeData: any = [
+    {
+      label: '一级 1',
+      id: 1,
+      children: [
+        {
+          label: '一级1-1',
+          id: 2,
+        },
+      ],
+    },
+    {
+      label: '二级 2',
+      id: 3,
+    },
+  ]
+  private handleNodeClick(data: any) {
+    console.log(data)
+  }
 }
 </script>
 <style lang="less" scoped>
+/deep/ .el-tree{
+  background: #FFF9F3;
+}
+/deep/.el-table__body tr:hover > td{
+  background-color:#FFF9F3 !important;
+}
 main{
   .draftTree{
     width: 200px;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
   }
 }
 </style>

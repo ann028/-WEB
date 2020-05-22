@@ -57,6 +57,20 @@
         <i class="el-icon-menu"></i>
         <span slot="title">发信记录</span>
       </el-menu-item>
+      <el-submenu index="account">
+        <template slot="title">
+           <i class="el-icon-menu"></i>
+          <span>账户管理</span>
+        </template>
+        <el-menu-item index="userManage" @click="toRoute('userManage')">
+          <!-- <i class="el-icon-menu"></i> -->
+          <span slot="title"  class="sub1">用户管理</span>
+        </el-menu-item>
+        <el-menu-item index="roleManage" @click="toRoute('roleManage')">
+          <!-- <i class="el-icon-menu"></i> -->
+          <span slot="title"  class="sub1">角色管理</span>
+        </el-menu-item>
+      </el-submenu>
     </el-menu>
   </main>
 </template>
@@ -165,7 +179,11 @@ main{
 }
 /deep/.el-menu-item.is-active{
   border-left:4px solid #FF8C00;
+  background: #fef3e6;
   // color:#4C4C4E !important;
+}
+/deep/ .el-submenu__title{
+  border-left:4px solid transparent;
 }
 </style>
   <!-- <img v-if="$route.path === '/index'" src="../assets/img/aside/icon-home.png" alt="" style="width: 17px; height: 17px; margin-right: 12px;"> -->

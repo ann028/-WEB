@@ -30,14 +30,14 @@
       <div class="mt20">
         <el-table :data="list" :row-style="tableRowStyle" >
           <el-table-column type="selection" width="55"></el-table-column>
-          <el-table-column prop="id" label="名称" width="180">
+          <el-table-column prop="name" label="名称" width="180">
             <template slot-scope="scope">
             <span class="collapse"
                 :class="collapseClass(scope.row)"
                 :style="tableRowPaddingStyle(scope.row)"
                 @click="handleCollapseClick(scope.row)">
             </span>
-            <span>{{ scope.row.id }}</span>
+            <span>{{ scope.row.name }}</span>
             </template>
           </el-table-column>
           <el-table-column prop="name1" label="操作人"></el-table-column>
@@ -130,7 +130,6 @@ export default class ProjectDraft extends Vue {
        
       // 将一维数组转成树形结构并存储于tree变量
       this.tree = arrayToTree(_list);
-      console.log('===========', this.tree)
       // 考虑到实际应用过程中接口返回的数据是无序的，所以我们对tree进行先序遍历将节点一一插入到list变量
       this.list = [];
       ergodicTree(this.tree, (node: any) => {
@@ -139,10 +138,17 @@ export default class ProjectDraft extends Vue {
         // 遍历过程中并对每个节点挂载open和show属性
         // open：控制节点的打开和关闭
         // show：控制节点的显示和隐藏
-        this.$set(node, 'open', true);
-        this.$set(node, 'show', true)
+        // this.$set(node, 'open', true);
+        // this.$set(node, 'show', true)
+        // if(node.pid) {
+        //   this.$set(node, 'open', true);
+        //   this.$set(node, 'show', false)
+        // } else {
+          this.$set(node, 'open', true);
+          this.$set(node, 'show', true);
+        // }
+        // this.$forceUpdate()
       })
-      console.log('!!!!!!!!!!!!!!!', this.list)
   }
   // 控制行的显示和隐藏
   tableRowStyle(scope: any) {
@@ -161,14 +167,13 @@ export default class ProjectDraft extends Vue {
   // 控制展开按钮的展开和关闭状态
   collapseClass(row: any) {
     return {
-      'collapse--open': row.open == false && row.children && row.children.length > 0,
-      'collapse--close': row.open == true && row.children && row.children.length > 0
+      'collapse--open': row.open === false && row.children && row.children.length > 0,
+      'collapse--close': row.open === true && row.children && row.children.length > 0
     }
   }
 
   // 处理展开按钮的点击事件
   handleCollapseClick(row: any) {
-    console.log('row', row)
     const _open = row.open;
     // 通过节点访问路径控制节点的显示隐藏，由于内存指针的关系list和tree的节点操作都会相互影响
     ergodicTree(this.tree, (node: any) => {
