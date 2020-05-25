@@ -112,11 +112,11 @@ export default class AddProject extends Vue {
   private step3ActiveName: any = 'publisher'
   private onChangeActiveTab(activeTab: any) {
     if (activeTab === 'step2') {
-      // this.submit()
-      this.activeTab = activeTab
+      this.submit()
+      // this.activeTab = activeTab
     } else if ( activeTab === 'step3') {
-      // this.submitStep2()
-      this.activeTab = 'step3'
+      this.submitStep2()
+      // this.activeTab = 'step3'
     } else {
       this.activeTab = activeTab
     }

@@ -1,28 +1,28 @@
 <template>
   <main>
     <div class="event_Style flex">
-      <section class="flex3 flex cross_center" style="background: #ffffff; margin-right: 15px;padding: 15px; box-sizing: border-box;">
+      <section class="flex3 flex cross_center" style="background: #ffffff; margin-right: 15px;padding: 15px; box-sizing: border-box; flex-shrink: 0;">
         <div class="title_name">李天风，下午好！</div>
         <div style="margin-left: 52px;">{{date | formatDate}}</div>
         <div style="margin-left: 16px;">待办事项</div>
       </section>
       <section class="flex1 flex" style="background: #ffffff; margin-right: 15px;padding: 15px; box-sizing: border-box;">
         <img src="../assets/img/index/icon-waiting for check.png" alt="" class="Icon">
-        <section class=" col main_space" style="height: 62px; margin-left: 24px;">
+        <section class=" col main_space" style="height: 62px; margin-left: 24px; flex-shrink: 0;">
           <section class="icon_word">待确认</section>
           <section class="icon_number">12</section>
         </section>
       </section>
       <section class="flex1 flex" style="background: #ffffff; margin-right: 15px; padding: 15px; box-sizing: border-box;">
         <img src="../assets/img/index/icon-processing.png" alt="" class="Icon">
-        <section class=" col main_space" style="height: 62px; margin-left: 24px;">
+        <section class=" col main_space" style="height: 62px; margin-left: 24px; flex-shrink: 0;">
           <section class="icon_word">待处理</section>
           <section class="icon_number">12</section>
         </section>
       </section>
       <section class="flex1 flex" style="background: #ffffff;padding: 15px; box-sizing: border-box;">
         <img src="../assets/img/index/icon-verify.png" alt="" class="Icon">
-        <section class=" col main_space" style="height: 62px; margin-left: 24px;">
+        <section class=" col main_space" style="height: 62px; margin-left: 24px; flex-shrink: 0;">
           <section class="icon_word">待审核</section>
           <section class="icon_number">12</section>
         </section>
@@ -42,11 +42,12 @@
         
     </div> -->
     <section class="flex" style="height: 100%">
-      <section class="calendar">
+      <section class="calendar" style="height: 100%; overflow-y: scroll;">
         <section class="main_space" style="height: 62px; border-bottom: 1px solid #EDEBE9">
           <span class="word">事项分布-最后期限</span>
         </section>
         <section>
+           <!-- width: 455px !important; -->
            <div style="background: #ffffff; padding: 20px;">
             <fullcalendar
               defaultView="dayGridMonth"
@@ -79,58 +80,14 @@
           </div>
           <span class="time">2020-04-18</span>
         </section>
-        <section class="eventItem">
+        <section class="eventItem" v-for="(item, index) in eventList" :key="index">
           <section class="header main_space">
-            <span>北京**国有投资有限公司</span>
-            <span>16债券01</span>
+            <span>{{item.companyName}}</span>
+            <span>{{item.bondNum}}</span>
           </section>
           <section class="event_content main_space">
-            <span>1</span>
-            <span>2019年度披露</span>
-            <span></span>
-          </section>
-        </section>
-        <section class="eventItem">
-          <section class="header main_space">
-            <span>北京**国有投资有限公司</span>
-            <span>16债券01</span>
-          </section>
-          <section class="event_content main_space">
-            <span>1</span>
-            <span>2019年度披露</span>
-            <span></span>
-          </section>
-        </section>
-        <section class="eventItem">
-          <section class="header main_space">
-            <span>北京**国有投资有限公司</span>
-            <span>16债券01</span>
-          </section>
-          <section class="event_content main_space">
-            <span>1</span>
-            <span>2019年度披露</span>
-            <span></span>
-          </section>
-        </section>
-        <section class="eventItem">
-          <section class="header main_space">
-            <span>北京**国有投资有限公司</span>
-            <span>16债券01</span>
-          </section>
-          <section class="event_content main_space">
-            <span>1</span>
-            <span>2019年度披露</span>
-            <span></span>
-          </section>
-        </section>
-        <section class="eventItem">
-          <section class="header main_space">
-            <span>北京**国有投资有限公司</span>
-            <span>16债券01</span>
-          </section>
-          <section class="event_content main_space">
-            <span>1</span>
-            <span>2019年度披露</span>
+            <span>{{item.index}}</span>
+            <span>{{item.name}}</span>
             <span></span>
           </section>
         </section>
@@ -206,6 +163,78 @@ export default class Index extends Vue {
   private dateClick(info: any) {
     console.log(info.dateStr)
   }
+  private eventList: any = [
+    {
+      id: 1,
+      index: 1,
+      companyName: '北京**国有投资有限公司',
+      bondNum: '16债券01',
+      name: '2019年度披露',
+    },
+    {
+      id: 2,
+      index: 2,
+      companyName: '北京**国有投资有限公司',
+      bondNum: '16债券01',
+      name: '2019年度披露',
+    },
+    {
+      id: 3,
+      index: 3,
+      companyName: '北京**国有投资有限公司',
+      bondNum: '16债券01',
+      name: '2019年度披露',
+    },
+    {
+      id: 4,
+      index: 4,
+      companyName: '北京**国有投资有限公司',
+      bondNum: '16债券01',
+      name: '2019年度披露',
+    },
+    {
+      id: 5,
+      index: 5,
+      companyName: '北京**国有投资有限公司',
+      bondNum: '16债券01',
+      name: '2019年度披露',
+    },
+    {
+      id: 6,
+      index: 6,
+      companyName: '北京**国有投资有限公司',
+      bondNum: '16债券01',
+      name: '2019年度披露',
+    },
+    {
+      id: 7,
+      index: 7,
+      companyName: '北京**国有投资有限公司',
+      bondNum: '16债券01',
+      name: '2019年度披露',
+    },
+    {
+      id: 8,
+      index: 8,
+      companyName: '北京**国有投资有限公司',
+      bondNum: '16债券01',
+      name: '2019年度披露',
+    },
+    {
+      id: 9,
+      index: 9,
+      companyName: '北京**国有投资有限公司',
+      bondNum: '16债券01',
+      name: '2019年度披露',
+    },
+    {
+      id: 10,
+      index: 10,
+      companyName: '北京**国有投资有限公司',
+      bondNum: '16债券01',
+      name: '2019年度披露',
+    },
+  ]
 }
 </script>
 <style lang="less">
@@ -304,6 +333,9 @@ main{
       .fc-head-container{
         .fc-row{
           height: 30px !important;
+          // th{
+          //   width: 64px !important;
+          // }
         }
       }
       .fc-row{
@@ -316,8 +348,13 @@ main{
     .fc-day-grid-container {
       height: auto !important;
     }
+    .fc-day-grid-container::-webkit-scrollbar{
+      display: none;
+    }
     .fc-bg {
       .fc-day {
+        // width: 64px !important;
+        height: 64px !important;
         position: relative;
         cursor: pointer;
         // border: none;
@@ -372,6 +409,9 @@ main{
       border-bottom: 4px solid #F88200;
     }
   }
+  .calendar::-webkit-scrollbar{
+    display: none;
+  }
   .event{
     width:293px;
     height:100%;
@@ -380,6 +420,7 @@ main{
     padding: 0 24px;
     box-sizing: border-box;
     flex-shrink: 0;
+    overflow-y: scroll;
     .word{
       display: inline-block;
       width:64px;
@@ -429,6 +470,9 @@ main{
         box-sizing: border-box;
       }
     }
+  }
+  .event::-webkit-scrollbar{
+    display: none;
   }
 }
 </style>
