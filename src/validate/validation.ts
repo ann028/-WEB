@@ -37,3 +37,11 @@ export const validateEmpty = (rule: any, value: any, callback: any) => {
     callback()
   }
 }
+
+// export const validateEmpty = (rules: any, value: any, callback: any) => {
+//   if (value === '') {
+//     callback(new Error('请添加'))
+//   } else {
+//     callback()
+//   }
+// }

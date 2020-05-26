@@ -7,12 +7,12 @@
         <section class="searchBox main_space">
           <section class="left">
             <section  class="flex">
-              <el-input v-model="input" placeholder="债券代码/简称/发行人" class="input_width"></el-input>
+              <el-input v-model="searchInfo.name" placeholder="债券代码/简称/发行人" class="input_width"></el-input>
               <section style="margin-left: 10px;">
                 <span class="search_title">地区</span>
-                <el-select v-model="value" placeholder="请选择" class="search_width">
+                <el-select v-model="searchInfo.province" placeholder="请选择" class="search_width">
                   <el-option
-                    v-for="item in options"
+                    v-for="item in search_province"
                     :key="item.value"
                     :label="item.label"
                     :value="item.value">
@@ -21,26 +21,26 @@
               </section>
               <section style="margin-left: 10px;">
                 <span class="search_title">上市场所</span>
-                <el-select v-model="value" placeholder="请选择" class="search_width">
+                <el-select v-model="searchInfo.listedPlace" placeholder="请选择" class="search_width">
                   <el-option
-                    v-for="item in options"
+                    v-for="item in search_listedPlace"
                     :key="item.value"
                     :label="item.label"
                     :value="item.value">
                   </el-option>
                 </el-select>
               </section>
-              <button class="btn primary_btn">查询</button>
+              <button class="btn primary_btn" @click="onSearchButtonClick">查询</button>
               <img src="../../assets/img/project/chevrons-down-orange.png" :class="[isShow ? 'transformGo' : 'transform']" @click="isShow = !isShow" style="width: 20px; height: 20px; margin: auto 0;">
             </section>
-            <transition name="bounce"  v-if="isShow">
-              <section>
+            <transition name="bounce">
+              <section v-if="isShow">
                 <div class="flex" style="margin-top: 17px">
                   <section>
                     <span class="search_title"  style="margin-left: 0;">债券类型</span>
-                    <el-select v-model="value" placeholder="请选择" class="search_width">
+                    <el-select v-model="searchInfo.deptType" placeholder="请选择" class="search_width">
                       <el-option
-                        v-for="item in options"
+                        v-for="item in search_deptType"
                         :key="item.value"
                         :label="item.label"
                         :value="item.value">
@@ -49,9 +49,9 @@
                   </section>
                   <section>
                     <span class="search_title">项目负责人</span>
-                    <el-select v-model="value" placeholder="请选择" class="search_width">
+                    <el-select v-model="searchInfo.leader" placeholder="请选择" class="search_width">
                       <el-option
-                        v-for="item in options"
+                        v-for="item in search_leader"
                         :key="item.value"
                         :label="item.label"
                         :value="item.value">
@@ -59,36 +59,30 @@
                     </el-select>
                   </section>
                   <section>
-                    <span class="search_title" >兑换年</span>
+                    <span class="search_title" >兑付年</span>
                     <el-date-picker
-                      v-model="value1"
-                      type="date"
+                      v-model="searchInfo.payDayBegin"
+                      type="year"
                       placeholder="选择日期"
+                      value-format="yyyy-MM-dd"
                       class="search_width">
                     </el-date-picker>
                     <span>~</span>
                     <el-date-picker
-                      v-model="value1"
-                      type="date"
+                      v-model="searchInfo.payDayEnd"
+                      type="year"
+                      value-format="yyyy-MM-dd"
                       placeholder="选择日期"
                       class="search_width">
                     </el-date-picker>
-                    <!-- <el-select v-model="value" placeholder="请选择" class="search_width">
-                      <el-option
-                        v-for="item in options"
-                        :key="item.value"
-                        :label="item.label"
-                        :value="item.value">
-                      </el-option>
-                    </el-select> -->
                   </section>
                 </div>
                 <div class="flex" style="margin-top: 17px">
                   <section>
                     <span class="search_title"  style="margin-left: 0;">受托管理人</span>
-                    <el-select v-model="value" placeholder="请选择" class="search_width">
+                    <el-select v-model="searchInfo.manager" placeholder="请选择" class="search_width">
                       <el-option
-                        v-for="item in options"
+                        v-for="item in search_managerType"
                         :key="item.value"
                         :label="item.label"
                         :value="item.value">
@@ -97,9 +91,9 @@
                   </section>
                   <section>
                     <span class="search_title">担保机构</span>
-                    <el-select v-model="value" placeholder="请选择" class="search_width">
+                    <el-select v-model="searchInfo.guaranteeCompany" placeholder="请选择" class="search_width">
                       <el-option
-                        v-for="item in options"
+                        v-for="item in search_guaranteeCompany"
                         :key="item.value"
                         :label="item.label"
                         :value="item.value">
@@ -109,15 +103,17 @@
                   <section>
                     <span class="search_title" >起息日</span>
                     <el-date-picker
-                      v-model="value1"
+                      v-model="searchInfo.valueDateBegin"
                       type="date"
+                      value-format="yyyy-MM-dd"
                       placeholder="选择日期"
                       class="search_width">
                     </el-date-picker>
                     <span>~</span>
                     <el-date-picker
-                      v-model="value1"
+                      v-model="searchInfo.valueDateEnd"
                       type="date"
+                      value-format="yyyy-MM-dd"
                       placeholder="选择日期"
                       class="search_width">
                     </el-date-picker>
@@ -148,19 +144,9 @@
                   </section> -->
                   <section>
                     <span class="search_title" >期限</span>
-                    <el-date-picker
-                      v-model="value1"
-                      type="date"
-                      placeholder="选择日期"
-                      class="search_width">
-                    </el-date-picker>
+                    <el-input-number v-model="searchInfo.timeLimitBegin" :controls='false' :min="1" class="search_width"></el-input-number>
                     <span>~</span>
-                    <el-date-picker
-                      v-model="value1"
-                      type="date"
-                      placeholder="选择日期"
-                      class="search_width">
-                    </el-date-picker>
+                    <el-input-number v-model="searchInfo.timeLimitEnd" :controls='false' :min="1" class="search_width"></el-input-number>
                   </section>
                 </div>
               </section>
@@ -251,6 +237,7 @@
 <script lang="ts">
 import {Vue, Component} from 'vue-property-decorator'
 import Breadcrumb from '@/components/Breadcrumb.vue'
+import * as Factory from '@/factory/index'
 
 @Component({
   components: {
@@ -260,14 +247,32 @@ import Breadcrumb from '@/components/Breadcrumb.vue'
 export default class Projects extends Vue {
   private isShow: boolean = false
   private tabName: any = ['项目管理']
+  private search_province: any[] = []
+  private search_listedPlace: any[] = Factory.search_listedPlace()
+  private search_deptType: any[] = Factory.search_deptType()
+  private search_managerType: any[] = Factory.search_managerType()
+  private search_leader: any[] = []
+  private search_guaranteeCompany: any[] = []
+  private searchInfo: any = {
+    name: '',
+    province: '',
+    listedPlace: '',
+    deptType: '',
+    leader: '',
+    payDayBegin: '',
+    payDayEnd: '',
+    manager: '',
+    guaranteeCompany: '',
+    valueDateBegin: '',
+    valueDateEnd: '',
+    timeLimitBegin: undefined,
+    timeLimitEnd: undefined,
+  }
   private pageJson: any = {
     currentPage: 1,
     pageSize: 10,
     total: 0,
   }
-  private value: any = ''
-  private options: any = []
-  private input: any = ''
   private tableData: any[] = [
     {
       name: '19天风01',
@@ -324,6 +329,9 @@ export default class Projects extends Vue {
   private handleCurrentChange(val: any) {
     console.log(val)
   }
+  private onSearchButtonClick() {
+    console.log(this.searchInfo)
+  }
 }
 </script>
 <style lang="less" scoped>
@@ -347,12 +355,36 @@ main{
   //   border: none;
   //   padding: 0;
   // }
-  .bounce-enter-active {
-    animation: bounce-in 0s;
+  // .bounce-enter-active {
+  //   animation: bounce-in 0s;
+  // }
+  // .bounce-leave-active {
+  //   animation: bounce-in 0s reverse;
+  // }
+  .bounce-enter{
+    opacity: 1;
+    transform: translateY(-30px)
   }
-  .bounce-leave-active {
-    animation: bounce-in 0s reverse;
+
+  .bounce-enter-active, .bounce-leave-active{
+    transition: all .5s
   }
+  
+  .bounce-leave-to{
+    opacity: 0;
+    transform: translateY(-30px)
+  }
+  // .bounce-enter-active {
+  //   transition: all .3s ease;
+  // }
+  // .bounce-leave-active {
+  //   transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  // }
+  // .bounce-enter, .bounce-leave-to
+  // /* .slide-fade-leave-active for below version 2.1.8 */ {
+  //   transform: translateX(10px);
+  //   opacity: 0;
+  // }
   .transform{
     transition: all .5s;
   }

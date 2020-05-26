@@ -2,18 +2,17 @@
   <div style="background: #FFFCF9; border-radius: 8px; padding-top: 10px;">
     <el-form :model="UnderwriterForm" :rules="rules" ref="UnderwriterForm" label-width="200px" class="demo-ruleForm">
       <section class="flex">
-        <el-form-item label="主承销商" prop="name">
-          <el-input v-model="UnderwriterForm.name"></el-input>
+        <el-form-item label="主承销商" prop="underwriterName">
+          <el-input v-model="UnderwriterForm.underwriterName"></el-input>
         </el-form-item>
-        <el-form-item label="副主承销商" prop="name1">
-          <el-input v-model="UnderwriterForm.name1"></el-input>
+        <el-form-item label="副主承销商" prop="viceUnderwriterName">
+          <el-input v-model="UnderwriterForm.viceUnderwriterName"></el-input>
         </el-form-item>
       </section>
       <section class="flex">
-        <el-form-item label="承销方式" prop="region">
-          <el-select v-model="UnderwriterForm.region" placeholder="请选择活动区域">
-            <el-option label="区域一" value="shanghai"></el-option>
-            <el-option label="区域二" value="beijing"></el-option>
+        <el-form-item label="承销方式" prop="underwritingMode">
+          <el-select v-model="UnderwriterForm.underwritingMode" placeholder="请选择活动区域">
+            <el-option v-for="item in underwritingMode" :key="item.value" :label="item.label" :value="item.value"></el-option>
           </el-select>
         </el-form-item>
       </section>
@@ -22,24 +21,25 @@
 </template>
 <script lang="ts">
 import {Vue, Component} from 'vue-property-decorator'
+import * as Factory from '@/factory/index'
+
 @Component
 export default class BondInfo extends Vue {
+  private underwritingMode: any[] = Factory.underwritingMode()
   private UnderwriterForm: any = {
-    name: '',
-    name1: '',
-    region: '',
+    underwriterName: '',
+    viceUnderwriterName: '',
+    underwritingMode: '',
   }
   private rules: any = {
-    name: [
-      { required: true, message: '请输入活动名称', trigger: 'blur' },
-      { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' },
+    underwriterName: [
+      { required: true, message: '请输入主承销商', trigger: 'blur' },
     ],
-    name1: [
-      { required: true, message: '请输入活动名称', trigger: 'blur' },
-      { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' },
+    viceUnderwriterName: [
+      { required: true, message: '请输入副主承销商', trigger: 'blur' },
     ],
-    region: [
-      { required: true, message: '请选择活动区域', trigger: 'change' },
+    underwritingMode: [
+      { required: true, message: '请选择承销方式', trigger: 'change' },
     ],
   }
 }
