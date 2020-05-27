@@ -213,6 +213,8 @@ import {Vue, Component} from 'vue-property-decorator'
 import * as Validation from '../../../validate/validation'
 @Component
 export default class PersonSetting extends Vue {
+  private input: any = ''
+  private right: any = ''
   private personSettingForm: any = {
     leaderList: [],
     publisherList: [],

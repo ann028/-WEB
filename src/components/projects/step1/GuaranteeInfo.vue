@@ -6,9 +6,8 @@
           <el-input v-model="GuaranteeForm.guaranteeCompany1"></el-input>
         </el-form-item>
         <el-form-item label="担保方式" prop="guaranteeMode1">
-          <el-select v-model="GuaranteeForm.guaranteeMode1" placeholder="请选择活动区域">
-            <el-option label="区域一" value="shanghai"></el-option>
-            <el-option label="区域二" value="beijing"></el-option>
+          <el-select v-model="GuaranteeForm.guaranteeMode1" placeholder="请选择担保方式">
+            <el-option v-for="item in guaranteeMode1" :key="item.value" :label="item.label" :value="item.value"></el-option>
           </el-select>
         </el-form-item>
       </section>
@@ -17,9 +16,8 @@
           <el-input v-model="GuaranteeForm.guaranteeCompany2"></el-input>
         </el-form-item>
         <el-form-item label="担保方式" prop="guaranteeMode2">
-          <el-select v-model="GuaranteeForm.guaranteeMode2" placeholder="请选择活动区域">
-            <el-option label="区域一" value="shanghai"></el-option>
-            <el-option label="区域二" value="beijing"></el-option>
+          <el-select v-model="GuaranteeForm.guaranteeMode2" placeholder="请选择担保方式">
+            <el-option v-for="item in guaranteeMode2" :key="item.value" :label="item.label" :value="item.value"></el-option>
           </el-select>
         </el-form-item>
       </section>
@@ -36,8 +34,12 @@
 </template>
 <script lang="ts">
 import {Vue, Component} from 'vue-property-decorator'
+import * as Factory from '@/factory/index'
+
 @Component
 export default class BondInfo extends Vue {
+  private guaranteeMode1: any =  Factory.guaranteeMode()
+  private guaranteeMode2: any = Factory.guaranteeMode()
   private GuaranteeForm: any = {
     guaranteeCompany1: '',
     guaranteeMode1: '',

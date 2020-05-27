@@ -213,7 +213,7 @@
             <template slot-scope="scope">
               <div class="flex">
                 <!-- <el-button  class="border_btn">编辑</el-button> -->
-                <button class="btn primary_plain_btn">编辑</button>
+                <button class="btn primary_plain_btn" @click="onEditButtonClick">编辑</button>
                 <button class="btn primary_btn" >到期</button>
               </div>
             </template>
@@ -331,6 +331,14 @@ export default class Projects extends Vue {
   }
   private onSearchButtonClick() {
     console.log(this.searchInfo)
+  }
+  private onEditButtonClick() {
+    this.$router.push({
+      name: 'addProject',
+      query: {
+        id: '1',
+      }
+    })
   }
 }
 </script>

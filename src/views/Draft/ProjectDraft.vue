@@ -28,7 +28,7 @@
         </section>
       </section>
       <div class="mt20">
-        <el-table :data="list" :row-style="tableRowStyle" >
+        <el-table :data="list" :row-style="tableRowStyle"  @selection-change="handleSelectionChange">
           <el-table-column type="selection" width="55"></el-table-column>
           <el-table-column prop="name" label="名称" width="180">
             <template slot-scope="scope">

@@ -240,6 +240,7 @@ import * as Factory from '@/factory/index'
   },
 })
 export default class BondInfo extends Vue {
+  private right: any = ''
   private search_deptType: any[] = Factory.search_deptType()
   private search_rateType: any[] = Factory.search_rateType()
   private search_listedPlace: any[] = Factory.search_listedPlace()

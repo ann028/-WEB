@@ -5,21 +5,17 @@
       <section class="searchBox main_space">
         <section class="left">
           <section  class="flex">
-            <el-input v-model="input" placeholder="债券代码/简称/发行人" class="input_width"></el-input>
+            <el-input v-model="searchInfo.name" placeholder="债券代码/简称/发行人" class="input_width"></el-input>
             <section style="margin-left: 10px;">
               <span class="search_title">事件类型</span>
-              <el-select v-model="value" placeholder="发行人" class="search_width">
-                <el-option
-                  v-for="item in options"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value">
-                </el-option>
+              <el-select v-model="searchInfo.eventType" placeholder="发行人" class="search_width">
+                <el-option label="发行人" value="publisher"></el-option>
+                <el-option label="项目" value="program"></el-option>
               </el-select>
             </section>
             <section style="margin-left: 10px;">
               <span class="search_title">事项</span>
-              <el-input v-model="input" class="search_width"></el-input>
+              <el-input v-model="searchInfo.event" class="search_width"></el-input>
             </section>
             <button class="btn primary_btn" @click="doSearch">查询</button>
           
@@ -94,6 +90,12 @@ export default class Supervision extends Vue {
   private tabName: any = ['代办事项-督导']
   private checkedAll: boolean = false
   private tabActiveName: any = 'allEvent'
+  private eventType: any = ''
+  private searchInfo: any = {
+    name: '',
+    eventType: '',
+    event: '',
+  }
   private tableData: any = [
     {
       id: 122222222222,

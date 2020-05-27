@@ -1,7 +1,7 @@
 <template>
   <main>
    <div class="toBack">
-     <el-backtop target=".content" right="400">
+     <el-backtop target=".content" :right="400">
       <div
         style="{
           height: 100%;
@@ -12,7 +12,7 @@
           line-height: 40px;
         }"
       >
-      Top
+      <i class="el-icon-caret-top"></i>
     </div>
      </el-backtop>
    </div>
@@ -27,7 +27,6 @@ import {Vue, Component, Watch} from 'vue-property-decorator'
 })
 export default class ScrollToTop extends Vue {
   private mounted() {
-    console.log('111111111', window)
     window.addEventListener('scroll', this.scrollToTop, true)
   }
   private scrollToTop() {

@@ -5,28 +5,24 @@
       <section class="searchBox main_space">
         <section class="left">
           <section  class="flex">
-            <el-input v-model="input" placeholder="债券代码/简称/发行人" class="input_width"></el-input>
+            <el-input v-model="searchInfo.name" placeholder="债券代码/简称/发行人" class="input_width"></el-input>
             <section style="margin-left: 10px;">
               <span class="search_title">事件类型</span>
-              <el-select v-model="value" placeholder="发行人" class="search_width">
-                <el-option
-                  v-for="item in options"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value">
-                </el-option>
+              <el-select v-model="searchInfo.eventType" placeholder="发行人" class="search_width">
+                <el-option label="发行人" value="publisher"></el-option>
+                <el-option label="项目" value="program"></el-option>
               </el-select>
             </section>
             <section style="margin-left: 10px;">
               <span class="search_title">事项</span>
-              <el-input v-model="input" class="search_width"></el-input>
+              <el-input v-model="searchInfo.event" class="search_width"></el-input>
             </section>
             <button class="btn primary_btn" @click="doSearch">查询</button>
           
           </section>
         </section>
         <section class="right cross_center">
-          <button class="btn primary_btn">重生</button>
+          <button class="btn primary_btn" @click="onRebirthButtonClick">重生</button>
           <!-- <img src="../../assets/img/project/icon-help-circle.png" alt="" class="icon_micro" style="margin-left: 8px;"> -->
           <div style="margin-left: 5px;">
             <el-tooltip class="item" effect="dark" placement="top-start">
@@ -69,8 +65,8 @@
               <tr class="flex2">{{item.doc}}</tr>
               <tr class="flex1">{{item.status}}</tr>
               <tr class="flex1 center">
-                <button class="btn primary_plain_btn" style="margin-left: 0;">确认</button>
-                <button class="btn primary_btn">作废</button>
+                <button class="btn primary_plain_btn" style="margin-left: 0;" @click="onConfirmButtonClick(item.id)">确认</button>
+                <button class="btn primary_btn" @click="onCancleButtonClick(item.id)">作废</button>
               </tr>
             </tbody>
           </div>
@@ -92,6 +88,11 @@ export default class ProjectLeader extends Vue {
   private tabName: any = ['代办事项-督导']
   private checkedAll: boolean = false
   private tabActiveName: any = 'allEvent'
+  private searchInfo: any = {
+    name: '',
+    eventType: '',
+    event: '',
+  }
   private tableData: any = [
     {
       id: 122222222222,
@@ -135,11 +136,22 @@ export default class ProjectLeader extends Vue {
     }
   }
   private doSearch() {
+    console.log(this.searchInfo)
+  }
+  private onRebirthButtonClick() {
     const arr = this.tableData.filter((item: any) => item.checked === true)
     const ids = arr.map((item: any) => {
       return item.id
     })
     console.log(ids)
+  }
+
+  private onConfirmButtonClick(id: any) {
+    console.log('确认', id)
+  }
+
+  private onCancleButtonClick(id: any) {
+    console.log('作废', id)
   }
 
   private onChangeActiveTab(tabName: any) {

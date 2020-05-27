@@ -7,7 +7,7 @@
         <section class="searchBox main_space">
           <section class="left">
             <section  class="flex">
-              <el-input v-model="input" placeholder="事项名称" class="input_width"></el-input>
+              <el-input v-model="searchInfo.name" placeholder="事项名称" class="input_width"></el-input>
               <button class="btn primary_btn">查询</button>
             </section>
           </section>
@@ -63,8 +63,8 @@
             <template slot-scope="scope">
               <div class="flex">
                 <!-- <el-button  class="border_btn">编辑</el-button> -->
-                <button class="btn primary_plain_btn">编辑</button>
-                <button class="btn primary_btn" >删除</button>
+                <button class="btn primary_plain_btn" @click="onEditButtonClick(scope.row.id)">编辑</button>
+                <button class="btn primary_btn" @click="onDelButtonClick(scope.row.id)">删除</button>
               </div>
             </template>
           </el-table-column>
@@ -109,7 +109,7 @@
             <template slot-scope="scope">
               <div class="flex">
                 <!-- <el-button  class="border_btn">编辑</el-button> -->
-                <button class="btn primary_plain_btn">编辑</button>
+                <button class="btn primary_plain_btn" @click="onEditButtonClick(scope.row.id)">编辑</button>
                 <button class="btn primary_btn" >删除</button>
               </div>
             </template>
@@ -143,20 +143,22 @@ export default class Projects extends Vue {
   private isShow: boolean = false
   private tabName: any = ['事项模板']
   private activeName: any = 'publisher'
+  private searchInfo: any = {
+    name: '',
+  }
   private pageJson: any = {
     currentPage: 1,
     pageSize: 10,
     total: 0,
   }
-  private value: any = ''
-  private options: any = []
-  private input: any = ''
   private publisherData: any[] = [
     {
+      id: 1,
       name: '2019年披露',
       direct: '提醒：01-20  最后期限：02-10',
       place: '挂网文件要求.docx',
     }, {
+      id: 2,
       name: '2019年披露',
       direct: '提醒：01-20  最后期限：02-10',
       place: '上挂网文件要求.docx交所',
@@ -182,6 +184,18 @@ export default class Projects extends Vue {
   }
   private onChangeActiveName(activeName: any) {
     this.activeName = activeName
+  }
+  private onEditButtonClick(id: any) {
+    this.$router.push({
+      name: 'addMatters',
+      query: {
+        id: id,
+      }
+    })
+  }
+
+  private onDelButtonClick(id: any) {
+    console.log('删除', id)
   }
 }
 </script>
