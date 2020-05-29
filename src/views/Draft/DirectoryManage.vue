@@ -9,7 +9,11 @@
           <img src="../../assets/img/draft/edit-fill.png" alt="" style="margin-left: 24px; cursor: pointer;">
         </section>
         <div class="flex1" style="background: #FFF9F3; margin-top: 24px;">
-          <el-tree :data="treeData" :props="defaultProps" @node-click="handleNodeClick"></el-tree>
+          <el-tree :data="treeData" :props="defaultProps" @node-click="handleNodeClick">
+            <span  class="title_node" slot-scope="{ node }">
+              <span :title="node.label">{{node.label}}</span>
+            </span>
+          </el-tree>
         </div>
       </section>
       <section class="right relationEvent flex1 ml20">
@@ -71,7 +75,7 @@ export default class DirectoryManage extends Vue {
   private tableData: any = [
     {
       name: '发行人',
-    }
+    },
   ]
   private treeData: any = [
     {

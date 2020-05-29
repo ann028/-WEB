@@ -67,8 +67,8 @@
               <tr class="flex2">{{item.doc}}</tr>
               <tr class="flex1">{{item.status}}</tr>
               <tr class="flex1 center">
-                <button class="btn primary_plain_btn" style="margin-left: 0;">确认</button>
-                <button class="btn primary_btn">作废</button>
+                <button class="btn primary_plain_btn" style="margin-left: 0;" @click="onConfirmButtonClick(item.id)">确认</button>
+                <button class="btn primary_btn" @click="onCancleButtonClick(item.id)">作废</button>
               </tr>
             </tbody>
           </div>
@@ -251,6 +251,14 @@ export default class Supervision extends Vue {
           },
         ]
       }
+  }
+
+  private onConfirmButtonClick(id: any) {
+    console.log('======', id)
+  }
+
+  private onCancleButtonClick(id: any) {
+    console.log('=====', id)
   }
 }
 </script>

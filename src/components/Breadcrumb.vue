@@ -8,7 +8,7 @@
         </section>
       </section>
       <section>
-        <button v-if="tabName.length > 1" class="btn primary_btn" @click="$router.go(-1)">返回</button>
+        <button v-if="isShowBack" class="btn primary_btn" @click="$router.go(-1)">返回</button>
       </section>
     </section>
   </main>
@@ -18,6 +18,7 @@ import { Component, Prop, Vue} from 'vue-property-decorator';
 @Component({})
 export default class Step extends Vue {
   @Prop()public tabName!: any;
+  @Prop({default: false}) public isShowBack !: boolean
 }
 </script>
 <style lang="less" scoped>

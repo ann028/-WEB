@@ -3,17 +3,19 @@
     <el-form :model="materialContentForm" :rules="materialContentRules" ref="materialContentForm" label-width="120px" class="demo-ruleForm">
       <el-form-item label="所需材料" prop="needData" class="mt20">
         <div>
-          <input type="button" value="新增"  class="btn primary_btn" style="float: right; margin-bottom: 20px;">
-          <!-- <table>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>这是一个word文档，很长很长的名字的文件是什么样子的呢，大概就是这样的吧…</td>
-                <td>下载</td>
-                <td>删除…</td>
-              </tr>
-            </tbody>
-          </table> -->
+          <!-- <input type="button" value="新增"  class="btn primary_btn" style="float: right; margin-bottom: 20px;"> -->
+            <!-- :on-preview="handlePreview"
+            :on-remove="handleRemove"
+            :before-remove="beforeRemove"
+            :on-exceed="handleExceed" -->
+          <el-upload
+            class="upload-demo"
+            action="https://jsonplaceholder.typicode.com/posts/"
+            :show-file-list = 'false'
+            style="float: right; margin-bottom: 20px;">
+            <input type="button" value="新增"  class="btn primary_btn" style="margin-right: 20px;">
+            <!-- <el-button size="small" type="primary">新增</el-button> -->
+          </el-upload>
            <el-table
             :data="materialContentForm.needData"
             style="width: 100%">

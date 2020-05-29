@@ -1,6 +1,6 @@
 <template>
   <main class="content col flex1">
-    <Breadcrumb :tabName = 'tabName'></Breadcrumb>
+    <Breadcrumb :tabName = 'tabName' :isShowBack = "isShowBack"></Breadcrumb>
     <div class="flex flex1">
       <section class="flex1 bg"  style="border-radius:8px; padding: 21px 24px; box-sizing: border-box;">
         <section class="flex" style="">
@@ -106,6 +106,7 @@ import Project from '@/components/projects/step3/Project.vue'
 })
 export default class AddProject extends Vue {
   private tabName: any = ['项目管理', '新增']
+  private isShowBack: boolean = true
   private activeTab: any = 'step1'
   // private step1ActiveName: any = 'bondInfo'
   private step1ActiveName: any = 'bondInfo'

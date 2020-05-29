@@ -101,6 +101,16 @@ import fullcalendar from '@fullcalendar/vue'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction';
 import momentPlugin from '@fullcalendar/moment';
+
+interface ItreeNode {
+  children?: any[];
+  id: number,
+  index: number,
+  companyName?: string,
+  bondNum?: string,
+  name: string,
+}
+
 @Component({
   components: {
     fullcalendar,
@@ -163,6 +173,7 @@ export default class Index extends Vue {
   private dateClick(info: any) {
     console.log(info.dateStr)
   }
+  
   private eventList: any = [
     {
       id: 1,

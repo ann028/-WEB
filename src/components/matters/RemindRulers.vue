@@ -62,7 +62,6 @@
               </section>
             </section>
          </el-form-item>
-      
         </div>
       </el-form-item>
       <el-form-item label="督导确认" prop="confirm" class="mt20">
@@ -75,7 +74,7 @@
           <el-checkbox label="发行对接人"></el-checkbox>
         </el-checkbox-group>
       </el-form-item>
-      <el-form-item label="子事项提醒人" prop="childRemind" class="mt20">
+      <el-form-item v-if="isChild" label="子事项提醒人" prop="childRemind" class="mt20">
         <el-checkbox-group v-model="remindRulersForm.childRemind">
           <el-checkbox label="督导"></el-checkbox>
           <el-checkbox label="项目负责人"></el-checkbox>
@@ -86,11 +85,12 @@
   </div>
 </template>
 <script lang="ts">
-import {Vue, Component} from 'vue-property-decorator'
+import {Vue, Component, Prop} from 'vue-property-decorator'
 import * as Validation from '../../validate/validation'
 
 @Component
 export default class BasicInfo extends Vue {
+  @Prop(Boolean) public readonly isChild!: boolean;
   private remindRulersForm: any = {
     way: '1',
     timeList: [

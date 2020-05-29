@@ -37,7 +37,6 @@
       },
       userList: {
         type: Array,
-        default: [],
       },
     },
     watch: {
@@ -56,8 +55,9 @@
       // value为编辑框输入的内容，这里我监听了一下值，当父组件调用得时候，如果给value赋值了，子组件将会显示父组件赋给的值
     },
     mounted() {
+      console.log('===========', this.userList)
       this.seteditor();
-      if (this.userList.length) {
+      if (this.userList && this.userList.length) {
         this.editor.txt.html(this.userList[this.index].content)
       } else {
         this.editor.txt.html(this.value);

@@ -59,10 +59,15 @@
   font-size:14px;
   color:rgba(76,76,78,1);
   margin-left: 70px;
+  line-height: 24px;
+  flex-shrink: 0;
 }
 .search_width{
   width: 89px !important;
   height: 24px;
+  margin-left: 10px;
+}
+.ml10 {
   margin-left: 10px;
 }
 .ml20 {

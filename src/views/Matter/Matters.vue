@@ -188,9 +188,7 @@ export default class Projects extends Vue {
   private onEditButtonClick(id: any) {
     this.$router.push({
       name: 'addMatters',
-      query: {
-        id: id,
-      }
+      query: {id},
     })
   }
 

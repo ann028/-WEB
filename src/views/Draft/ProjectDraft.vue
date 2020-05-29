@@ -62,118 +62,109 @@ export default class ProjectDraft extends Vue {
   private tabName: any = ['底稿管理', '项目底稿']
   private list: object[] = [];
   private tree: object[] = [];
-  created() {
+  private created() {
       // 准备一组含有父子级关系的一维数组方便示例测试
       // 在实际项目应用中，理应通过后端接口返回
-      let _list = [
+      const list = [
         {
           id: 'a',
           pid: '',
           name: '部门a',
-          children: []
+          children: [],
         },
         {
           id: 'a1',
           pid: 'a',
           name: '子部门a1',
-          children: []
+          children: [],
         },
         {
           id: 'a2',
           pid: 'a',
           name: '子部门a2',
-          children: []
+          children: [],
         },
         {
           id: 'a2-1',
           pid: 'a2',
           name: '子部门a2-1',
-          children: []
+          children: [],
         },
         {
           id: 'a2-2',
           pid: 'a2',
           name: '子部门a2-2',
-          children: []
+          children: [],
         },
         {
           id: 'a3',
           pid: 'a',
           name: '子部门a3',
-          children: []
+          children: [],
         },
         {
           id: 'a3-1',
           pid: 'a3',
           name: '子部门a3-1',
-          children: []
+          children: [],
         },
         {
           id: 'b',
           pid: '',
           name: '部门b',
-          children: []
+          children: [],
         },
         {
           id: 'b1',
           pid: 'b',
           name: '子部门b1',
-          children: []
+          children: [],
         },
         {
           id: 'c',
           pid: '',
           name: '部门c',
-          children: []
+          children: [],
         },
       ];
        
       // 将一维数组转成树形结构并存储于tree变量
-      this.tree = arrayToTree(_list);
+      this.tree = arrayToTree(list);
       // 考虑到实际应用过程中接口返回的数据是无序的，所以我们对tree进行先序遍历将节点一一插入到list变量
       this.list = [];
       ergodicTree(this.tree, (node: any) => {
         this.list.push(node);
-         
         // 遍历过程中并对每个节点挂载open和show属性
         // open：控制节点的打开和关闭
         // show：控制节点的显示和隐藏
-        // this.$set(node, 'open', true);
-        // this.$set(node, 'show', true)
-        // if(node.pid) {
-        //   this.$set(node, 'open', true);
-        //   this.$set(node, 'show', false)
-        // } else {
-          this.$set(node, 'open', true);
-          this.$set(node, 'show', true);
-        // }
-        // this.$forceUpdate()
+        this.$set(node, 'open', true);
+        this.$set(node, 'show', true);
       })
   }
   // 控制行的显示和隐藏
-  tableRowStyle(scope: any) {
+  private tableRowStyle(scope: any) {
     return {
-      'display': scope.row.show ? '' : 'none'
+      display: scope.row.show ? '' : 'none',
     }
   }
 
   // 通过每个节点的深度，设置行的缩进实现视觉上的层级效果
-  tableRowPaddingStyle(row: any) {
+  private tableRowPaddingStyle(row: any) {
     return {
-      'margin-left': `${(row._depth - 1) * 24}px`
+      'margin-left': `${(row._depth - 1) * 24}px`,
     }
   }
 
   // 控制展开按钮的展开和关闭状态
-  collapseClass(row: any) {
+  private collapseClass(row: any) {
     return {
       'collapse--open': row.open === false && row.children && row.children.length > 0,
-      'collapse--close': row.open === true && row.children && row.children.length > 0
+      'collapse--close': row.open === true && row.children && row.children.length > 0,
     }
   }
 
   // 处理展开按钮的点击事件
-  handleCollapseClick(row: any) {
+  private handleCollapseClick(row: any) {
     const _open = row.open;
     // 通过节点访问路径控制节点的显示隐藏，由于内存指针的关系list和tree的节点操作都会相互影响
     ergodicTree(this.tree, (node: any) => {

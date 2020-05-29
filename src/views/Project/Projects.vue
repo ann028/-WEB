@@ -12,7 +12,7 @@
                 <span class="search_title">地区</span>
                 <el-select v-model="searchInfo.province" placeholder="请选择" class="search_width">
                   <el-option
-                    v-for="item in search_province"
+                    v-for="item in province"
                     :key="item.value"
                     :label="item.label"
                     :value="item.value">
@@ -23,7 +23,7 @@
                 <span class="search_title">上市场所</span>
                 <el-select v-model="searchInfo.listedPlace" placeholder="请选择" class="search_width">
                   <el-option
-                    v-for="item in search_listedPlace"
+                    v-for="item in listedPlace"
                     :key="item.value"
                     :label="item.label"
                     :value="item.value">
@@ -40,7 +40,7 @@
                     <span class="search_title"  style="margin-left: 0;">债券类型</span>
                     <el-select v-model="searchInfo.deptType" placeholder="请选择" class="search_width">
                       <el-option
-                        v-for="item in search_deptType"
+                        v-for="item in deptType"
                         :key="item.value"
                         :label="item.label"
                         :value="item.value">
@@ -51,7 +51,7 @@
                     <span class="search_title">项目负责人</span>
                     <el-select v-model="searchInfo.leader" placeholder="请选择" class="search_width">
                       <el-option
-                        v-for="item in search_leader"
+                        v-for="item in leader"
                         :key="item.value"
                         :label="item.label"
                         :value="item.value">
@@ -82,7 +82,7 @@
                     <span class="search_title"  style="margin-left: 0;">受托管理人</span>
                     <el-select v-model="searchInfo.manager" placeholder="请选择" class="search_width">
                       <el-option
-                        v-for="item in search_managerType"
+                        v-for="item in managerType"
                         :key="item.value"
                         :label="item.label"
                         :value="item.value">
@@ -93,7 +93,7 @@
                     <span class="search_title">担保机构</span>
                     <el-select v-model="searchInfo.guaranteeCompany" placeholder="请选择" class="search_width">
                       <el-option
-                        v-for="item in search_guaranteeCompany"
+                        v-for="item in guaranteeCompany"
                         :key="item.value"
                         :label="item.label"
                         :value="item.value">
@@ -247,12 +247,12 @@ import * as Factory from '@/factory/index'
 export default class Projects extends Vue {
   private isShow: boolean = false
   private tabName: any = ['项目管理']
-  private search_province: any[] = []
-  private search_listedPlace: any[] = Factory.search_listedPlace()
-  private search_deptType: any[] = Factory.search_deptType()
-  private search_managerType: any[] = Factory.search_managerType()
-  private search_leader: any[] = []
-  private search_guaranteeCompany: any[] = []
+  private province: any[] = []
+  private listedPlace: any[] = Factory.search_listedPlace()
+  private deptType: any[] = Factory.search_deptType()
+  private managerType: any[] = Factory.search_managerType()
+  private leader: any[] = []
+  private guaranteeCompany: any[] = []
   private searchInfo: any = {
     name: '',
     province: '',
@@ -337,7 +337,7 @@ export default class Projects extends Vue {
       name: 'addProject',
       query: {
         id: '1',
-      }
+      },
     })
   }
 }
