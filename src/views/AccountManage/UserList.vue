@@ -58,7 +58,7 @@
 <script lang="ts">
 import {Vue, Component, Prop} from 'vue-property-decorator'
 @Component
-export default class UserList extends Vue{
+export default class UserList extends Vue {
   @Prop() private readonly roleId!: any
   private searchInfo: any = {
     name: '',

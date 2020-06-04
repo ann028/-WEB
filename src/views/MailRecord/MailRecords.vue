@@ -104,7 +104,7 @@ export default class MailRecord extends Vue {
   private pageJson: any = {
     total: 0,
     currentPage: 1,
-    pageSize: 10
+    pageSize: 10,
   }
   private recordData: any = []
   private handleSizeChange(val: any) {

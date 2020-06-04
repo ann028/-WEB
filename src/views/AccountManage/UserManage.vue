@@ -88,7 +88,7 @@ export default class UserManage extends Vue {
   private pageJson: any = {
     total: 0,
     currentPage: 1,
-    pageSize: 10
+    pageSize: 10,
   }
   private onSearchButtonClick() {
     console.log('search')

@@ -58,7 +58,7 @@ export default {
     expandAll: {
       type: Boolean,
       default: true
-    }
+    },
   },
   computed: {
     // 格式化数据源
