@@ -21,12 +21,12 @@
           </el-select>
         </el-form-item>
         <el-form-item label="上市公司股票代码" prop="stockCode">
-          <el-input v-model="IssuerForm.stockCode" placeholder="请输入上市公司股票代码"></el-input>
+          <el-input v-model="IssuerForm.stockCode" placeholder="请输入上市公司股票代码" maxlength="30"></el-input>
         </el-form-item>
       </section>
       <section class="flex">
         <el-form-item label="债券全称发行人个数" prop="companyCount">
-          <el-input v-model="IssuerForm.companyCount" placeholder="请输入债券全称发行人个数"></el-input>
+          <el-input v-model="IssuerForm.companyCount" placeholder="请输入债券全称发行人个数" maxlength="30"></el-input>
         </el-form-item>
         <el-form-item label="行业（门类）" prop="industryType">
           <el-select v-model="IssuerForm.industryType" placeholder="请选择">

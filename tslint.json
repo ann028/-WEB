@@ -6,8 +6,8 @@
   "linterOptions": {
     "exclude": [
       "node_modules/**",
-      "src/views/Daily/**",
-      "src/views/dataBase/**"
+      // "src/views/Daily/**",
+      // "src/views/dataBase/**"
     ]
   },
   "rules": {

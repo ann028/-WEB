@@ -3,15 +3,15 @@
     <el-form :model="ruleForm" :rules="rules" ref="ruleForm" :label-position="right" label-width="200px" class="demo-ruleForm" >
       <section class="flex" style="margin-top: 20px;">
         <el-form-item label="债券简称" prop="shortname">
-          <el-input v-model="ruleForm.shortname"></el-input>
+          <el-input v-model="ruleForm.shortname" maxlength="30"></el-input>
         </el-form-item>
         <el-form-item label="债券全称" prop="name">
-          <el-input v-model="ruleForm.name"></el-input>
+          <el-input v-model="ruleForm.name" maxlength="120"></el-input>
         </el-form-item>
       </section>
       <section class="flex"  style="position: relative;">
         <el-form-item label="债券代码" prop="code">
-          <el-input v-model="ruleForm.code"></el-input>
+          <el-input v-model="ruleForm.code" maxlength="30"></el-input>
         </el-form-item>
         <div style="margin-left: 5px; position: absolute;  left: 364px; top: 10px;">
             <el-tooltip class="item" effect="dark" placement="top-start">
@@ -21,19 +21,19 @@
         </div>
         <el-form-item label="债券类型" prop="deptType">
           <el-select v-model="ruleForm.deptType" placeholder="请选择债券类型">
-            <el-option v-for="item in search_deptType" :key="item.value" :label="item.label" :value="item.value"></el-option>
+            <el-option v-for="item in deptType" :key="item.value" :label="item.label" :value="item.value"></el-option>
           </el-select>
         </el-form-item>
       </section>
       <section class="flex">
         <el-form-item label="利率类型" prop="rateType">
           <el-select v-model="ruleForm.rateType" placeholder="请选择利率类型">
-            <el-option v-for="item in search_rateType" :key="item.value" :label="item.label" :value="item.value"></el-option>
+            <el-option v-for="item in rateType" :key="item.value" :label="item.label" :value="item.value"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="上市场所" prop="listedPlace">
           <el-select v-model="ruleForm.listedPlace" placeholder="请选择上市场所">
-            <el-option v-for="item in search_listedPlace" :key="item.value" :label="item.label" :value="item.value"></el-option>
+            <el-option v-for="item in listedPlace" :key="item.value" :label="item.label" :value="item.value"></el-option>
           </el-select>
         </el-form-item>
       </section>
@@ -63,25 +63,25 @@
       </section>
       <section class="flex">
         <el-form-item label="债券受托管理人/债权代理人" prop="bondManager">
-          <el-input v-model="ruleForm.bondManager"></el-input>
+          <el-input v-model="ruleForm.bondManager" maxlength="100"></el-input>
         </el-form-item>
       </section>
       <section class="flex">
         <el-form-item label="票面金额" prop="currentPeriodAmount">
-          <el-input v-model="ruleForm.currentPeriodAmount"></el-input>
+          <el-input-number v-model="ruleForm.currentPeriodAmount" :precision="2" :step="0.1" :controls="false"></el-input-number>
         </el-form-item>
         <el-form-item label="票面利率（%）" prop="rate">
-          <el-input v-model="ruleForm.rate"></el-input>
+          <el-input-number v-model="ruleForm.rate" :precision="2" :step="0.1" :controls="false"></el-input-number>
         </el-form-item>
       </section>
       <section class="flex">
         <el-form-item label="余额（亿元）" prop="balance">
-          <el-input v-model="ruleForm.balance"></el-input>
+          <el-input-number v-model="ruleForm.balance" :precision="2" :step="0.1" :controls="false"></el-input-number>
         </el-form-item>
         <el-form-item label="本金偿还方式" prop="repayMode">
           <el-select v-model="ruleForm.repayMode" placeholder="请选择本金偿还方式">
             <el-option
-              v-for="item in search_repayMode"
+              v-for="item in repayMode"
               :key="item.value"
               :label="item.label"
               :value="item.value">
@@ -102,17 +102,17 @@
         </el-form-item>
         <el-form-item label="付息频率" prop="payFrequency">
           <el-select v-model="ruleForm.payFrequency" placeholder="请选择付息频率">
-            <el-option label="按年支付" value="1"></el-option>
-            <el-option label="按季支付" value="0"></el-option>
+            <el-option label="年付" value="1"></el-option>
+            <el-option label="季付" value="0"></el-option>
           </el-select>
         </el-form-item>
       </section>
       <section class="flex">
         <el-form-item label="期限（年）" prop="timeLimit">
-          <el-input v-model="ruleForm.timeLimit"></el-input>
+          <el-input-number v-model="ruleForm.timeLimit" :controls="false" min="1"></el-input-number>
         </el-form-item>
         <el-form-item label="特殊期限（年）" prop="specialTimeLimit">
-          <el-input v-model="ruleForm.specialTimeLimit"></el-input>
+          <el-input-number v-model="ruleForm.specialTimeLimit" :controls="false" min="1"></el-input-number>
         </el-form-item>
       </section>
       <section class="flex">
@@ -130,7 +130,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="行权期" prop="exerciseSchedule">
-          <el-input v-model="ruleForm.exerciseSchedule"></el-input>
+          <el-input v-model="ruleForm.exerciseSchedule" maxlength="100"></el-input>
         </el-form-item>
       </section>
       <section class="flex">
@@ -138,7 +138,7 @@
           <el-date-picker v-model="ruleForm.rateAdjudtDate" type="date" placeholder="选择日期" style="width: 167px;" value-format="yyyy-MM-dd"></el-date-picker>
         </el-form-item>
         <el-form-item label="回售登记天数" prop="backSaleDay" class="tag">
-          <el-input v-model="ruleForm.backSaleDay"></el-input>
+          <el-input-number v-model="ruleForm.backSaleDay" :controls="false" min="1"></el-input-number>
         </el-form-item>
       </section>
       <section class="flex">
@@ -152,7 +152,7 @@
             </el-tooltip>
         </div>
         <el-form-item label="偿保划款日(兑付年)" prop="transferDayByYear" class="tag">
-          <el-input v-model="ruleForm.transferDayByYear"></el-input>
+          <el-input v-model="ruleForm.transferDayByYear" maxlength="30"></el-input>
         </el-form-item>
       </section>
       <section class="flex">
@@ -168,15 +168,15 @@
       </section>
       <section class="flex">
         <el-form-item label="票面利率调整上限（%）" prop="rateHigh">
-          <el-input v-model="ruleForm.rateHigh"></el-input>
+          <el-input-number v-model="ruleForm.rateHigh" :controls="false" min="1"></el-input-number>
         </el-form-item>
         <el-form-item label="票面利率调整下限（%）" prop="rateLow">
-          <el-input v-model="ruleForm.rateLow"></el-input>
+          <el-input-number v-model="ruleForm.rateLow" :controls="false" min="1"></el-input-number>
         </el-form-item>
       </section>
       <section class="flex">
         <el-form-item label="内含特殊条款" prop="specialTerm">
-          <el-input v-model="ruleForm.specialTerm"></el-input>
+          <el-input v-model="ruleForm.specialTerm" maxlength="300"></el-input>
         </el-form-item>
         <el-form-item label="特殊条款类别" prop="specailTermType">
           <el-select v-model="ruleForm.specailTermType" placeholder="请选择特殊条款类别">
@@ -186,18 +186,18 @@
       </section>
       <section class="flex">
         <el-form-item label="批文额度" prop="documentAmount">
-          <el-input v-model="ruleForm.documentAmount"></el-input>
+          <el-input v-model="ruleForm.documentAmount" maxlength="100"></el-input>
         </el-form-item>
         <el-form-item label="初始换股价格（元）" prop="stockExchangePrice">
-          <el-input v-model="ruleForm.stockExchangePrice"></el-input>
+          <el-input-number v-model="ruleForm.stockExchangePrice" :precision="2" :step="0.1" :controls="false"></el-input-number>
         </el-form-item>
       </section>
       <section class="flex">
         <el-form-item label="初始换股比例（%）" prop="stockExchangeRatio">
-          <el-input v-model="ruleForm.stockExchangeRatio"></el-input>
+          <el-input-number v-model="ruleForm.stockExchangeRatio" :precision="2" :step="0.1" :controls="false"></el-input-number>
         </el-form-item>
         <el-form-item label="转股标的股票代码" prop="stockExchangeCode">
-          <el-input v-model="ruleForm.stockExchangeCode"></el-input>
+          <el-input v-model="ruleForm.stockExchangeCode" maxlength="30"></el-input>
         </el-form-item>
       </section>
       <section class="flex">
@@ -212,18 +212,18 @@
           <el-input type="textarea" :rows="5"  placeholder="请输入内容" v-model="ruleForm.desc"></el-input>
         </el-form-item> -->
         <el-form-item label="回售条款" prop="backSaleTerm">
-          <el-input type="textarea" :rows="5" placeholder="请输入内容" v-model="ruleForm.backSaleTerm" style="width: 223px;"></el-input>
+          <el-input type="textarea" :rows="5" placeholder="请输入内容" v-model="ruleForm.backSaleTerm" style="width: 223px;" maxlength="30"></el-input>
         </el-form-item>
         <el-form-item label="赎回条款" prop="ransomTerm" label-width="144px">
-          <el-input type="textarea" :rows="5" placeholder="请输入内容" v-model="ruleForm.ransomTerm" style="width: 223px;"></el-input>
+          <el-input type="textarea" :rows="5" placeholder="请输入内容" v-model="ruleForm.ransomTerm" style="width: 223px;" maxlength="30"></el-input>
         </el-form-item>
       </section>
       <section class="flex">
         <el-form-item label="可交换股票条款" prop="exchangeStockTerm">
-          <el-input type="textarea" :rows="5" placeholder="请输入内容" v-model="ruleForm.exchangeStockTerm" style="width: 223px;"></el-input>
+          <el-input type="textarea" :rows="5" placeholder="请输入内容" v-model="ruleForm.exchangeStockTerm" style="width: 223px;" maxlength="30"></el-input>
         </el-form-item>
         <el-form-item label="减记条款" prop="writeDownTerm" label-width="144px">
-          <el-input type="textarea" :rows="5" placeholder="请输入内容" v-model="ruleForm.writeDownTerm" style="width: 223px;"></el-input>
+          <el-input type="textarea" :rows="5" placeholder="请输入内容" v-model="ruleForm.writeDownTerm" style="width: 223px;" maxlength="30"></el-input>
         </el-form-item>
       </section>
     </el-form>
@@ -241,10 +241,10 @@ import * as Factory from '@/factory/index'
 })
 export default class BondInfo extends Vue {
   private right: any = ''
-  private search_deptType: any[] = Factory.search_deptType()
-  private search_rateType: any[] = Factory.search_rateType()
-  private search_listedPlace: any[] = Factory.search_listedPlace()
-  private search_repayMode: any[] = Factory.repayMode()
+  private deptType: any[] = Factory.search_deptType()
+  private rateType: any[] = Factory.search_rateType()
+  private listedPlace: any[] = Factory.search_listedPlace()
+  private repayMode: any[] = Factory.repayMode()
   private interestPayMode: any[] = Factory.interestPayMode()
   private optionType: any[] = Factory.optionType()
   private specailTermType: any[] = Factory.specailTermType()
@@ -259,30 +259,30 @@ export default class BondInfo extends Vue {
     dropListedDate: '1',
     listedDate: '',
     bondManager: '',
-    currentPeriodAmount: '',
-    rate: '',
-    balance: '',
+    currentPeriodAmount: undefined,
+    rate: undefined,
+    balance: undefined,
     repayMode: '',
     interestPayMode: '',
     payFrequency: '',
-    timeLimit: '',
-    specialTimeLimit: '',
+    timeLimit: undefined,
+    specialTimeLimit: undefined,
     valueDate: '',
     payDay: '',
     optionType: '',
     exerciseSchedule: '',
     rateAdjudtDate: '',
-    backSaleDay: '',
+    backSaleDay: undefined,
     transferDay: '',
     transferDayByYear: '',
     reportLatestDay: '',
-    rateHigh: '',
-    rateLow: '',
+    rateHigh: undefined,
+    rateLow: undefined,
     specialTerm: '',
     specailTermType: '',
     documentAmount: '',
-    stockExchangePrice: '',
-    stockExchangeRatio: '',
+    stockExchangePrice: undefined,
+    stockExchangeRatio: undefined,
     stockExchangeCode: '',
     stockExchangeBegin: '',
     stockExchangeEnd: '',
@@ -293,7 +293,7 @@ export default class BondInfo extends Vue {
   }
   private rules: any = {
     shortname: [
-      {required: true, message: '请输入债券简称', trigger: 'blur'}
+      {required: true, message: '请输入债券简称', trigger: 'blur'},
     ],
     name: [
       { required: true, message: '请输入债券全称', trigger: 'blur' },
@@ -308,13 +308,13 @@ export default class BondInfo extends Vue {
       { required: true, message: '请选择利率类型', trigger: 'change'},
     ],
     listedPlace: [
-      { required: true, message: '请选择上市场所', trigger: 'change'}
+      { required: true, message: '请选择上市场所', trigger: 'change'},
     ],
     crossMarket: [
-      { required: true, message: '请选择是否跨市场', trigger: 'change'}
+      { required: true, message: '请选择是否跨市场', trigger: 'change'},
     ],
     listedDate: [
-      { required: true, message: '请选择上市日期', trigger: 'change'}
+      { required: true, message: '请选择上市日期', trigger: 'change'},
     ],
     bondManager: [
       { required: true, message: '请输入债券受托管理人', trigger: 'blur' },

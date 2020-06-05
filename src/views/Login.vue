@@ -59,24 +59,24 @@ export default class Login extends Vue {
     }
   }
   public async login() {
-     this.$router.push({name: 'index'});
-    // const res: any = await user.userLogin(this.userAccount, this.captchaToken);
-    // const { code, msg = '', data} = res.data
-    // console.log(data)
-    // if (code === 0) {
-    //   this.$message.success('登录成功');
-    //   console.log(data, this.$store.dispatch)
-    //   this.$store.dispatch('saveUser', {
-    //     userId: data.userId,
-    //     token: data.token,
-    //   });
-    //   this.$router.push({name: 'home'});
-    // } else {
-    //   this.$message.error(`登录失败,${msg}`);
-    //   if (code === 105) {
-    //     this.showCaptcha = true;
-    //   }
-    // }
+    this.$router.push({name: 'index'});
+    const res: any = await user.userLogin(this.userAccount, this.captchaToken);
+    const { code, msg = '', data} = res.data
+    console.log(data)
+    if (code === 0) {
+      this.$message.success('登录成功');
+      console.log(data, this.$store.dispatch)
+      this.$store.dispatch('saveUser', {
+        userId: data.userId,
+        token: data.token,
+      });
+      this.$router.push({name: 'home'});
+    } else {
+      this.$message.error(`登录失败,${msg}`);
+      if (code === 105) {
+        this.showCaptcha = true;
+      }
+    }
   }
   private created() {
     // this.getCaptchaUrl();

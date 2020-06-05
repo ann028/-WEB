@@ -173,7 +173,6 @@ export default class Index extends Vue {
   private dateClick(info: any) {
     console.log(info.dateStr)
   }
-  
   private eventList: any = [
     {
       id: 1,

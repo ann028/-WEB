@@ -77,36 +77,24 @@ export function getFirstDay(endValue?: any) {
 export function search_listedPlace() {
   return [
     {
-      label: 'MP01-上海证券交易所',
-      value: 'MP01-上海证券交易所',
+      label: '上海证券交易所',
+      value: '上海证券交易所',
     },
     {
-      label: 'MP02-深圳证券交易所',
-      value: 'MP02-深圳证券交易所',
+      label: '深圳证券交易所',
+      value: '深圳证券交易所',
     },
     {
-      label: 'MP03-银行间市场',
-      value: 'MP03-银行间市场',
+      label: '银行间市场',
+      value: '银行间市场',
     },
     {
-      label: 'MP04-全国中小企业股份转让系统',
-      value: 'MP04-全国中小企业股份转让系统',
-    },
-    {
-      label: 'MP05-机构间私募产品报价与服务系统',
-      value: 'MP05-机构间私募产品报价与服务系统',
-    },
-    {
-      label: 'MP06-证券公司柜台转让',
-      value: 'MP06-证券公司柜台转让',
+      label: '机构间私募产品报价与服务系统',
+      value: '机构间私募产品报价与服务系统',
     },
     {
       label: 'MP99-其他',
       value: 'MP99-其他',
-    },
-    {
-      label: '9999-信息缺失',
-      value: '9999-信息缺失',
     },
   ]
 }
@@ -233,96 +221,88 @@ export function search_rateType() {
 export function repayMode() {
   return [
     {
-      label: 'RE01-到期一次性偿还',
-      value: 'RE01-到期一次性偿还',
+      label: '到期一次性偿还',
+      value: '到期一次性偿还',
     },
     {
-      label: 'RE02-分期偿还',
-      value: 'RE02-分期偿还',
+      label: '分期偿还',
+      value: '分期偿还',
     },
     {
-      label: 'RE03-其他',
-      value: 'RE03-其他',
-    },
-    {
-      label: '9999-信息缺失',
-      value: '9999-信息缺失',
+      label: '其他',
+      value: '其他',
     },
   ]
 }
 export function interestPayMode() {
   return [
     {
-      label: 'IPC01-贴现式',
-      value: 'IPC01-贴现式',
+      label: '贴现式',
+      value: '贴现式',
     },
     {
-      label: 'IPC02-零息式',
-      value: 'IPC02-零息式',
+      label: '零息式',
+      value: '零息式',
     },
     {
-      label: 'IPC03-利随本清式',
-      value: 'IPC03-利随本清式',
+      label: '利随本清式',
+      value: '利随本清式',
     },
     {
-      label: 'IPC04-附息式固定利率',
-      value: 'IPC04-附息式固定利率',
+      label: '附息式固定利率',
+      value: '附息式固定利率',
     },
     {
-      label: 'IPC05-附息式浮动利率',
-      value: 'IPC05-附息式浮动利率',
+      label: '附息式浮动利率',
+      value: '附息式浮动利率',
     },
     {
-      label: '9999-信息缺失',
-      value: '9999-信息缺失',
+      label: '其他',
+      value: '其他',
     },
   ]
 }
 export function optionType() {
   return [
     {
-      label: 'PC01-发行人赎回选择权',
-      value: 'PC01-发行人赎回选择权',
+      label: '发行人赎回选择权',
+      value: '发行人赎回选择权',
     },
     {
-      label: 'PC02-发行人调整票面利率选择权',
-      value: 'PC02-发行人调整票面利率选择权',
+      label: '发行人调整票面利率选择权',
+      value: '发行人调整票面利率选择权',
     },
     {
-      label: 'PC03-发行人合并债券选择权',
-      value: 'PC03-发行人合并债券选择权',
+      label: '发行人合并债券选择权',
+      value: '发行人合并债券选择权',
     },
     {
-      label: 'PC04-投资人回售选择权',
-      value: 'PC04-投资人回售选择权',
+      label: '投资人回售选择权',
+      value: '投资人回售选择权',
     },
     {
-      label: 'PC05-投资人定向转让选择权',
-      value: 'PC05-投资人定向转让选择权',
+      label: '投资人定向转让选择权',
+      value: '投资人定向转让选择权',
     },
     {
-      label: 'PC06-投资人调换债券选择权',
-      value: 'PC06-投资人调换债券选择权',
+      label: '投资人调换债券选择权',
+      value: '投资人调换债券选择权',
     },
     {
-      label: 'PC07-延期兑付选择权',
-      value: 'PC07-延期兑付选择权',
+      label: '延期兑付选择权',
+      value: '延期兑付选择权',
     },
     {
-      label: 'PC08-投资人可转换选择权',
-      value: 'PC08-投资人可转换选择权',
+      label: '投资人可转换选择权',
+      value: '投资人可转换选择权',
     },
     {
-      label: 'PC99-其他选择权',
-      value: 'PC99-其他选择权',
+      label: '其他选择权',
+      value: '其他选择权',
     },
     {
-      label: 'PC00-无选择权',
-      value: 'PC00-无选择权',
-    },
-    {
-      label: '9999-信息缺失',
-      value: '9999-信息缺失',
+      label: '无选择权',
+      value: '无选择权',
     },
   ]
 }
@@ -361,32 +341,32 @@ export function specailTermType() {
 export function industryScale() {
   return [
     {
-      label: 'CS00-非企业',
-      value: 'CS00-非企业',
+      label: '非企业',
+      value: '非企业',
     },
     {
-      label: 'CS01-金融企业',
-      value: 'CS01-金融企业',
+      label: '金融企业',
+      value: '金融企业',
     },
     {
-      label: 'CS02-大型非金融企业',
-      value: 'CS02-大型非金融企业',
+      label: '大型非金融企业',
+      value: '大型非金融企业',
     },
     {
-      label: 'CS03-中型非金融企业',
-      value: 'CS03-中型非金融企业',
+      label: '中型非金融企业',
+      value: '中型非金融企业',
     },
     {
-      label: 'CS04-小型非金融企业',
-      value: 'CS04-小型非金融企业',
+      label: '小型非金融企业',
+      value: '小型非金融企业',
     },
     {
-      label: 'CS05-微型非金融企业',
-      value: 'CS05-微型非金融企业',
+      label: '微型非金融企业',
+      value: '微型非金融企业',
     },
     {
-      label: '9999-信息缺失',
-      value: '9999-信息缺失',
+      label: '其他',
+      value: '其他',
     },
   ]
 }

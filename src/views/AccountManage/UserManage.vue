@@ -36,13 +36,13 @@
           align="center">
         </el-table-column>
         <el-table-column
-          prop="place"
-          label="邮箱"
+          prop="matters"
+          label="手机"
           align="center">
         </el-table-column>
         <el-table-column
-          prop="matters"
-          label="电话"
+          prop="place"
+          label="邮箱"
           align="center">
         </el-table-column>
         <el-table-column

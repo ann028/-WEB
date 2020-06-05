@@ -1,9 +1,21 @@
 <template>
   <main>
-    {{roleId}}
-    <section>
-      <el-input v-model="searchInfo.name" placeholder="账号姓名" class="input_width"></el-input>
-      <button class="btn primary_btn" @click="onSearchButtonClick">查询</button>
+    <!-- {{roleId}} -->
+    <section class="main_space">
+      <section>
+        <el-input v-model="searchInfo.name" placeholder="账号姓名" class="input_width"></el-input>
+        <button class="btn primary_btn" @click="onSearchButtonClick">查询</button>
+      </section>
+      <section class="flex">
+        <section class="cross_center" style="cursor: pointer;">
+          <span style="font-size: 14px;">添加用户</span>
+          <img src="../../assets/img/user/user-plus.png" alt="" style="width: 16px; height: 16px;">
+        </section>
+        <section class="cross_center" style="margin-left: 34px; cursor: pointer;">
+          <span style="font-size: 14px;">移除</span>
+          <img src="../../assets/img/project/trash-2.png" alt="" style="width: 16px; height: 16px;">
+        </section>
+      </section>
     </section>
     <el-table
         :data="userData"
@@ -31,13 +43,13 @@
           align="center">
         </el-table-column>
         <el-table-column
-          prop="place"
-          label="邮箱"
+          prop="matters"
+          label="手机"
           align="center">
         </el-table-column>
         <el-table-column
-          prop="matters"
-          label="电话"
+          prop="place"
+          label="邮箱"
           align="center">
         </el-table-column>
         <el-table-column

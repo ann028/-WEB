@@ -156,7 +156,7 @@ export default class ProjectDraft extends Vue {
       {
         id: 1,
         labelName: '年报',
-      }
+      },
     ]
     console.log(this.tableData)
     this.ergodicTree(this.tableData)
