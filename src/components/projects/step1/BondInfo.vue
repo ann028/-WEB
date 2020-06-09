@@ -109,10 +109,10 @@
       </section>
       <section class="flex">
         <el-form-item label="期限（年）" prop="timeLimit">
-          <el-input-number v-model="ruleForm.timeLimit" :controls="false" min="1"></el-input-number>
+          <el-input-number v-model="ruleForm.timeLimit" :controls="false" :min="1"></el-input-number>
         </el-form-item>
         <el-form-item label="特殊期限（年）" prop="specialTimeLimit">
-          <el-input-number v-model="ruleForm.specialTimeLimit" :controls="false" min="1"></el-input-number>
+          <el-input-number v-model="ruleForm.specialTimeLimit" :controls="false" :min="1"></el-input-number>
         </el-form-item>
       </section>
       <section class="flex">
@@ -138,7 +138,7 @@
           <el-date-picker v-model="ruleForm.rateAdjudtDate" type="date" placeholder="选择日期" style="width: 167px;" value-format="yyyy-MM-dd"></el-date-picker>
         </el-form-item>
         <el-form-item label="回售登记天数" prop="backSaleDay" class="tag">
-          <el-input-number v-model="ruleForm.backSaleDay" :controls="false" min="1"></el-input-number>
+          <el-input-number v-model="ruleForm.backSaleDay" :controls="false" :min="1"></el-input-number>
         </el-form-item>
       </section>
       <section class="flex">
@@ -168,10 +168,10 @@
       </section>
       <section class="flex">
         <el-form-item label="票面利率调整上限（%）" prop="rateHigh">
-          <el-input-number v-model="ruleForm.rateHigh" :controls="false" min="1"></el-input-number>
+          <el-input-number v-model="ruleForm.rateHigh" :controls="false" :min="1"></el-input-number>
         </el-form-item>
         <el-form-item label="票面利率调整下限（%）" prop="rateLow">
-          <el-input-number v-model="ruleForm.rateLow" :controls="false" min="1"></el-input-number>
+          <el-input-number v-model="ruleForm.rateLow" :controls="false" :min="1"></el-input-number>
         </el-form-item>
       </section>
       <section class="flex">

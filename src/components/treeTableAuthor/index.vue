@@ -62,7 +62,7 @@ export default {
   },
   computed: {
     // 格式化数据源
-    formatData: function () {
+    formatData: function() {
       let tmp
       if (!Array.isArray(this.data)) {
         tmp = [this.data]
@@ -74,25 +74,25 @@ export default {
       return func.apply(null, args)
     }
   },
-  created () {
+  created() {
     this.defaultSelcet()
   },
   methods: {
-    showRow: function (row) {
+    showRow: function(row) {
       const show = (row.row.parent ? (row.row.parent._expanded && row.row.parent._show) : true)
       row.row._show = show
       return show ? 'animation:treeTableShow 1s;-webkit-animation:treeTableShow 1s;' : 'display:none;'
     },
     // 切换下级是否展开
-    toggleExpanded: function (trIndex) {
+    toggleExpanded: function(trIndex) {
       const record = this.formatData[trIndex]
       record._expanded = !record._expanded
     },
     // 图标显示
-    iconShow (index, record) {
+    iconShow(index, record) {
       return (index === 0 && record.children && record.children.length > 0)
     },
-    handleCheckAllChange (index, row, opt) {
+    handleCheckAllChange(index, row, opt) {
       this.cc()
       if (row.selectchecked.length && row.selectchecked.length !== opt.length) {
         let arr = []
@@ -116,15 +116,15 @@ export default {
         row.isIndeterminate = false
       }
     },
-    handleCheckedCitiesChange (index, row, opt) {
+    handleCheckedCitiesChange(index, row, opt) {
       row.checkAll = row.selectchecked.length === opt.length
       row.isIndeterminate = row.selectchecked.length > 0 && row.selectchecked.length < opt.length
       this.cc()
     },
-    handleCheckAllChange1 (index, row, opt) {
+    handleCheckAllChange1(index, row, opt) {
       if (row.children) {
         row.children.forEach(val => {
-          let arr = []
+          const arr = []
           if (row.checkAll) {
             val[opt].forEach(element => {
               arr.push(element.id)
@@ -141,7 +141,7 @@ export default {
       }
       this.cc()
     },
-    defaultSelcet () {
+    defaultSelcet() {
       this.data.forEach(val => {
         if (val.children) {
           val.children.forEach(el => {
@@ -160,7 +160,7 @@ export default {
         }
       })
     },
-    cc () {
+    cc() {
       this.data.forEach(val => {
         let checkAllArr = []
         let isIndeterminateArr = []
@@ -198,9 +198,9 @@ export default {
         }
       })
     },
-    getAuth () {
+    getAuth() {
       this.$emit('getAuth', this.data)
-    }
+    },
   }
 }
 </script>

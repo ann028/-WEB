@@ -37,8 +37,7 @@
    <el-dialog
     :title="dialogTitle"
     :visible.sync="roleDialogVisible"
-    width="30%"
-    :before-close="handleClose">
+    width="30%">
     <el-input v-model="dialogName" placeholder="请输入内容" ></el-input>
     <span slot="footer" class="dialog-footer">
       <el-button @click="roleDialogVisible = false">取 消</el-button>

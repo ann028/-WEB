@@ -68,10 +68,30 @@ import * as Factory from '@/factory/index'
 export default class BondInfo extends Vue {
   private economicSector: any[] = Factory.economicSector()
   private industryScale: any[] = Factory.industryScale()
-  private industryType: any[] = []
-  private industryBigType: any[] = []
-  private economicDepartment: any[] = []
-  private economicDepartmentDetail: any[] = []
+  private industryType: any[] = [
+    {
+      label: '1',
+      value: '11',
+    },
+  ]
+  private industryBigType: any[] = [
+    {
+      label: '1',
+      value: '11',
+    },
+  ]
+  private economicDepartment: any[] = [
+    {
+      label: '1',
+      value: '11',
+    },
+  ]
+  private economicDepartmentDetail: any[] = [
+    {
+      label: '1',
+      value: '11',
+    },
+  ]
   private companyNameList: any[] = []
   private IssuerForm: any = {
     companyName: '',

@@ -127,7 +127,6 @@ export default class ProjectDraft extends Vue {
           children: [],
         },
       ];
-       
       // 将一维数组转成树形结构并存储于tree变量
       this.tree = arrayToTree(list);
       // 考虑到实际应用过程中接口返回的数据是无序的，所以我们对tree进行先序遍历将节点一一插入到list变量

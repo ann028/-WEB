@@ -3,10 +3,10 @@
     <el-form :model="RelaseForm" :rules="rules" ref="RelaseForm" label-width="200px" class="demo-ruleForm">
       <section class="flex">
         <el-form-item label="发行规模（亿元）" prop="scale">
-          <el-input-number v-model="ruleForm.scale" :precision="2" :step="0.1" :controls="false"></el-input-number>
+          <el-input-number v-model="RelaseForm.scale" :precision="2" :step="0.1" :controls="false"></el-input-number>
         </el-form-item>
         <el-form-item label="发行价格（元）" prop="price">
-          <el-input-number v-model="ruleForm.price" :precision="2" :step="0.1" :controls="false"></el-input-number>
+          <el-input-number v-model="RelaseForm.price" :precision="2" :step="0.1" :controls="false"></el-input-number>
         </el-form-item>
       </section>
       <section class="flex">
@@ -33,8 +33,8 @@ export default class BondInfo extends Vue {
   private publishType: any[] = Factory.publishType()
   private fixPriceType: any[] = Factory.fixPriceType()
   private RelaseForm: any = {
-    scale: '',
-    price: '',
+    scale: undefined,
+    price: undefined,
     publishType: '',
     fixPriceType: '',
   }

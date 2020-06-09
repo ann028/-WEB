@@ -65,7 +65,7 @@
           </section>
         </section>
         <div class="flex" style="width: 218px; margin: 28px auto;">
-          <button class="btn primary_btn"  @click="submit('ruleForm')" style="margin-left: 0; height: 32px;">保存</button>
+          <button class="btn primary_btn"  @click="saveProgress('ruleForm')" style="margin-left: 0; height: 32px;">保存</button>
           <button class="btn primary_plain_btn" style="margin-left: 80px;  height: 32px;">取消</button>
         </div>
       </section>
@@ -127,6 +127,19 @@ export default class AddProject extends Vue {
   }
   private onChangeActiveStep3Item(activeStepName: any) {
     this.step3ActiveName = activeStepName
+  }
+  private saveProgress() {
+    switch (this.activeTab) {
+      case 'step1':
+        this.submit();
+        break;
+      case 'step2':
+        this.submitStep2();
+        break;
+      case 'step3':
+        console.log('提交');
+        break;
+    }
   }
   private submit() {
     const bonfInfoCon: any = this.$refs.bondInfoCon
