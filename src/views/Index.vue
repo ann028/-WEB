@@ -78,7 +78,7 @@
               </el-tooltip>
           </div>
           </div>
-          <span class="time">2020-04-18</span>
+          <span class="time">{{currentDate| formatDateBy}}</span>
         </section>
         <section class="eventItem" v-for="(item, index) in eventList" :key="index">
           <section class="header main_space">
@@ -118,6 +118,7 @@ interface ItreeNode {
 })
 export default class Index extends Vue {
   private date: any = new Date()
+  private currentDate: any = new Date()
   private calendarPlugins = [ dayGridPlugin, interactionPlugin, momentPlugin ]
   private header = {
     left: '',
@@ -153,25 +154,6 @@ export default class Index extends Vue {
       titleFormat: 'YYYY[年]MM[月]',
       columnHeaderText: (date: any) => this.weekdayList[date.getDay()],
     },
-  }
-  private dayRender(info: any) {
-    // console.log(info)
-    if (this.events.length) {
-      this.events.map((item: any) => {
-        // console.log(item)
-        const itemDate = new Date(item.start + ' 00:00:00');
-        if (itemDate.getTime() === info.date.getTime()) {
-          console.log(11)
-          info.el.innerHTML = `
-            <div class="cell-wrap">
-              <p class="fc-Number-self">${item.title}</p>
-            </div>`;
-        }
-      })
-    }
-  }
-  private dateClick(info: any) {
-    console.log(info.dateStr)
   }
   private eventList: any = [
     {
@@ -245,6 +227,26 @@ export default class Index extends Vue {
       name: '2019年度披露',
     },
   ]
+  private dayRender(info: any) {
+    // console.log(info)
+    if (this.events.length) {
+      this.events.map((item: any) => {
+        // console.log(item)
+        const itemDate = new Date(item.start + ' 00:00:00');
+        if (itemDate.getTime() === info.date.getTime()) {
+          console.log(11)
+          info.el.innerHTML = `
+            <div class="cell-wrap">
+              <p class="fc-Number-self">${item.title}</p>
+            </div>`;
+        }
+      })
+    }
+  }
+  private dateClick(info: any) {
+    console.log(info.dateStr)
+    this.currentDate = info.dateStr
+  }
 }
 </script>
 <style lang="less">

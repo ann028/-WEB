@@ -12,7 +12,7 @@
 import { Component, Prop, Vue} from 'vue-property-decorator';
 import menuNav from '@/components/Aside.vue';
 import headerNav from '@/components/Head.vue';
-import { user, department } from '@/api/index';
+import { user } from '@/api/index';
 @Component({
   components: {
     menuNav,

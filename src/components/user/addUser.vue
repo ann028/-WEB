@@ -43,7 +43,7 @@
               prop="address"
               label="操作">
               <template slot-scope="scope">
-                <el-button type="text" >添加</el-button>
+                <el-button type="text" @click="addUser(scope.row)">添加</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -51,9 +51,9 @@
         <section class="right selected_person">
           <span style="font-weight: bold;">已选用户</span>
           <div class="selected_personList">
-            <div class="selected_item">
-              <span style="color: #F88200; line-height: 32px; text-align: center;">债券1部-利泰南风</span>
-              <div class="closeIcon">×</div>
+            <div class="selected_item" v-for="(item, index) in selectedUser" :key="index">
+              <span style="color: #F88200; line-height: 32px; text-align: center;">{{item.depart}}-{{item.name}}</span>
+              <div class="closeIcon" @click="delUser(index)">×</div>
             </div>
           </div>
         </section>
@@ -69,14 +69,39 @@
 <script lang="ts">
 import {Vue, Component} from 'vue-property-decorator'
 @Component
-export default class addUser extends Vue {
+export default class AddUser extends Vue {
   private searchUserName: any = ''
-  private userList: any = []
+  private userList: any = [
+    {
+      id: 2,
+      name: 'zs',
+      phone: '15735182769',
+    },
+  ]
+  private selectedUser: any = [
+    {
+      id: 1,
+      depart: '债券1部',
+      name: '利泰南风',
+    },
+  ]
   private hide() {
     this.$emit('hide')
   }
   private save() {
     this.$emit('save')
+  }
+  private addUser(row: any) {
+    if (this.selectedUser.every((ele: any) => {
+      return ele.id !== row.id
+    })) {
+      this.selectedUser.push(row)
+    } else {
+      this.$message.warning(`${row.name} 已经在已选用户中`)
+    }
+  }
+  private delUser(index: number) {
+    this.selectedUser.splice(index, 1)
   }
 }
 </script>

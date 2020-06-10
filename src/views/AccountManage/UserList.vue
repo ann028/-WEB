@@ -3,7 +3,7 @@
     <!-- {{roleId}} -->
     <section class="main_space">
       <section>
-        <el-input v-model="searchInfo.name" placeholder="账号姓名" class="input_width"></el-input>
+        <el-input v-model="searchInfo.name" placeholder="姓名/账号" class="input_width"></el-input>
         <button class="btn primary_btn" @click="onSearchButtonClick">查询</button>
       </section>
       <section class="flex">

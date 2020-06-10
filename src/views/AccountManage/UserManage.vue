@@ -3,7 +3,7 @@
     <Breadcrumb :tabName = 'tabName'></Breadcrumb>
     <div class="bg flex1" style="padding: 24px; box-sizing: border-box;">
       <section class="flex">
-        <el-input v-model="searchInfo.name" placeholder="账号姓名" class="input_width"></el-input>
+        <el-input v-model="searchInfo.name" placeholder="姓名/账号" class="input_width"></el-input>
         <section class="flex">
           <span class="search_title">角色</span>
           <el-input v-model="searchInfo.role" placeholder="角色" class="input_width ml10"></el-input>
@@ -91,7 +91,10 @@ export default class UserManage extends Vue {
     pageSize: 10,
   }
   private onSearchButtonClick() {
-    console.log('search')
+    const searchParam: any = {
+      ...this.searchInfo,
+    }
+    console.log('searchParam', searchParam)
   }
   private handleSelectionChange(val: any) {
     console.log(val)
@@ -101,6 +104,15 @@ export default class UserManage extends Vue {
   }
   private handleCurrentChange(val: any) {
     console.log(val)
+  }
+  /**
+   * 获取用户列表
+   */
+  private getUserList() {
+    console.log('列表详情')
+  }
+  private mounted() {
+    this.getUserList()
   }
 }
 </script>

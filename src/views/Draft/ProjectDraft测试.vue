@@ -168,7 +168,7 @@ export default class ProjectDraft extends Vue {
     // 通过节点访问路径控制节点的显示隐藏，由于内存指针的关系list和tree的节点操作都会相互影响
     ergodicTree(this.tree, (node: any) => {
       node._idPath.forEach((pathId: any) => {
-        if (pathId == row.id) {
+        if (pathId === row.id) {
           this.$set(node, 'show', !_open);
           this.$set(node, 'open', !_open)
         }

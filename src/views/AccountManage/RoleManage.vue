@@ -38,7 +38,7 @@
     :title="dialogTitle"
     :visible.sync="roleDialogVisible"
     width="30%">
-    <el-input v-model="dialogName" placeholder="请输入内容" ></el-input>
+    <el-input v-model="dialogName" placeholder="请输入内容" maxlength="30"></el-input>
     <span slot="footer" class="dialog-footer">
       <el-button @click="roleDialogVisible = false">取 消</el-button>
       <el-button type="primary" @click="roleDialogVisible = false">确 定</el-button>
@@ -62,177 +62,159 @@ import RoleSetting from './RoleSetting.vue'
   },
 })
 export default class RoleManage extends Vue {
-  //  private columns: any = [
-  //   {
-  //     text: '菜单列表',
-  //     value: 'description',
-  //     width: 200,
-  //     option: 'sonData1',
-  //   },
-  //   {
-  //     text: '功能权限',
-  //     value: 'sonData1',
-  //     option: 'sonData1',
-  //     act: 'act',
-  //   },
-  // ]
-  // private data: any = [
-  //   {
-  //     type: 0,
-  //     'checked': false,
-  //     'id': '1',
-  //     'description': '用户管理',
-  //     isIndeterminate: false,
-  //     checkAll: false,
-  //     act: '全选',
-  //     children: [
-  //       {
-  //         type: 1,
-  //         id: 6,
-  //         'description': '用户列表',
-  //         'parentId': '-1',
-  //         'checked': false,
-  //         selectchecked: ['7'],
-  //         checkAll: false,
-  //         isIndeterminate: false,
-  //         'sonData1': [
-  //           {
-  //             type: 2,
-  //             'description': '用户新增',
-  //             'parentId': '6',
-  //             'checked': false,
-  //             'id': '7',
-  //           },
-  //           {
-  //             type: 2,
-  //             'description': '用户修改',
-  //             'parentId': '6',
-  //             'checked': false,
-  //             'id': '8',
-  //           },
-  //           {
-  //             type: 2,
-  //             'description': '用户删除',
-  //             'parentId': '6',
-  //             'checked': false,
-  //             'id': '9',
-  //           }
-  //         ]
-  //       },
-  //       {
-  //         type: 1,
-  //         id: 13,
-  //         'description': '角色列表',
-  //         'parentId': '-1',
-  //         'checked': false,
-  //         selectchecked: ['10', '11', '12'],
-  //         checkAll: false,
-  //         isIndeterminate: false,
-  //         'sonData1': [
-  //           {
-  //             type: 2,
-  //             'description': '角色授权',
-  //             'parentId': '6',
-  //             'checked': false,
-  //             'id': '10',
-  //           },
-  //           {
-  //             type: 2,
-  //             'description': '角色修改',
-  //             'parentId': '6',
-  //             'checked': false,
-  //             'id': '11',
-  //           },
-  //           {
-  //             type: 2,
-  //             'description': '角色删除',
-  //             'parentId': '6',
-  //             'checked': false,
-  //             'id': '12',
-  //           }
-  //         ]
-  //       }
-  //     ]
-  //   },
-  //   {
-  //     type: 0,
-  //     'checked': false,
-  //     'id': '2',
-  //     'description': '设备管理',
-  //     isIndeterminate: false,
-  //     checkAll: false,
-  //     act: '全选',
-  //     children: [
-  //       {
-  //         type: 1,
-  //         id: 6,
-  //         'description': '设备列表',
-  //         'parentId': '-1',
-  //         'checked': false,
-  //         selectchecked: [],
-  //         checkAll: false,
-  //         isIndeterminate: false,
-  //         'sonData1': [
-  //           {
-  //             type: 2,
-  //             'description': '设备新增',
-  //             'parentId': '6',
-  //             'checked': false,
-  //             'id': '17',
-  //           },
-  //           {
-  //             type: 2,
-  //             'description': '设备修改',
-  //             'parentId': '6',
-  //             'checked': false,
-  //             'id': '18',
-  //           },
-  //           {
-  //             type: 2,
-  //             'description': '设备删除',
-  //             'parentId': '6',
-  //             'checked': false,
-  //             'id': '19',
-  //           }
-  //         ]
-  //       }
-  //     ]
-  //   }
-  // ]
-  // private getAuth(data: any) {
-  //   let opt: any = []
-  //   data.forEach((val: any) => {
-  //     opt.push(val.id)
-  //     if (val.children) {
-  //       val.children.forEach((el: any) => {
-  //         console.log(val.id)
-  //         if (el.selectchecked.length) {
-  //           opt.push(el.id)
-  //           opt.push(el.selectchecked)
-  //         }
-  //       })
-  //     }
-  //   })
-  //   console.log(data)
-  //   opt = opt.join().split(',').filter((n: any) => { return n })
-  //   console.log(opt)
-  // }
   private tabName: any = ['账户管理', '角色管理']
   private activeName = "userList"
   private selectedRole = { id: NaN, roleName: ''};
   private dialogTitle: string = ''
   private dialogName: string = ''
   private roleDialogVisible: boolean = false
-  private handleClick(tab: any, event: any) {
-    console.log(tab)
-    this.activeName = tab.name
-  }
   private roleList: any = [
     {
       id: 1,
       roleName: '默认角色',
     },
   ]
+  private columns: any = [
+    {
+      text: '菜单列表',
+      value: 'description',
+      width: 200,
+      option: 'sonData1',
+    },
+    {
+      text: '功能权限',
+      value: 'sonData1',
+      option: 'sonData1',
+      act: 'act',
+    },
+  ]
+  private data: any = [
+    {
+      type: 0,
+      checked: false,
+      id: '1',
+      description: '用户管理',
+      isIndeterminate: false,
+      checkAll: false,
+      act: '全选',
+      children: [
+        {
+          type: 1,
+          id: 6,
+          description: '用户列表',
+          parentId: '-1',
+          checked: false,
+          selectchecked: ['7'],
+          checkAll: false,
+          isIndeterminate: false,
+          sonData1: [
+            {
+              type: 2,
+              description: '用户新增',
+              parentId: '6',
+              checked: false,
+              id: '7',
+            },
+            {
+              type: 2,
+              description: '用户修改',
+              parentId: '6',
+              checked: false,
+              id: '8',
+            },
+            {
+              type: 2,
+              description: '用户删除',
+              parentId: '6',
+              checked: false,
+              id: '9',
+            },
+          ],
+        },
+        {
+          type: 1,
+          id: 13,
+          description: '角色列表',
+          parentId: '-1',
+          checked: false,
+          selectchecked: [],
+          checkAll: false,
+          isIndeterminate: false,
+          sonData1: [
+            {
+              type: 2,
+              description: '角色授权',
+              parentId: '6',
+              checked: false,
+              id: '10',
+            },
+            {
+              type: 2,
+              description: '角色修改',
+              parentId: '6',
+              checked: false,
+              id: '11',
+            },
+            {
+              type: 2,
+              description: '角色删除',
+              parentId: '6',
+              checked: false,
+              id: '12',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      type: 0,
+      checked: false,
+      id: '2',
+      description: '设备管理',
+      isIndeterminate: false,
+      checkAll: false,
+      act: '全选',
+      children: [
+        {
+          type: 1,
+          id: 6,
+          description: '设备列表',
+          parentId: '-1',
+          checked: false,
+          selectchecked: [],
+          checkAll: false,
+          isIndeterminate: false,
+          sonData1: [
+            {
+              type: 2,
+              description: '设备新增',
+              parentId: '6',
+              checked: false,
+              id: '17',
+            },
+            {
+              type: 2,
+              description: '设备修改',
+              parentId: '6',
+              checked: false,
+              id: '18',
+            },
+            {
+              type: 2,
+              description: '设备删除',
+              parentId: '6',
+              checked: false,
+              id: '19',
+            },
+          ],
+        },
+      ],
+    },
+  ]
+  private handleClick(tab: any, event: any) {
+    console.log(tab)
+    this.activeName = tab.name
+  }
   private handleRoleClick(item: any) {
     console.log(item)
     if (item.id === this.selectedRole.id) {
@@ -282,6 +264,25 @@ export default class RoleManage extends Vue {
         }
         break;
     }
+  }
+  private getAuth(data: any) {
+    let opt: any = []
+    data.forEach((val: any) => {
+      opt.push(val.id)
+      if (val.children) {
+        val.children.forEach((el: any) => {
+          console.log(val.id)
+          if (el.selectchecked.length) {
+            opt.push(el.id)
+            opt.push(el.selectchecked)
+          }
+        })
+      }
+    })
+    // console.log(data)
+    console.log(opt)
+    opt = opt.join().split(',').filter((n: any) => n)
+    console.log(opt)
   }
 }
 </script>

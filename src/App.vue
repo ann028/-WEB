@@ -76,5 +76,8 @@
   .el-dialog__footer{
     text-align: center;
   }
+  /deep/ .el-input-number{
+    width: 167px;
+  }
 }
 </style>

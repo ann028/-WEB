@@ -23,3 +23,11 @@ export function formatDate(timestap: any) {
   }
 }
 
+export function formatDateBy(timestap: any) {
+  if (timestap) {
+    return moment(timestap).format('YYYY' + '-' + 'MM' + '-' + 'DD')
+  } else {
+    return '-'
+  }
+}
+

@@ -37,54 +37,52 @@
 </template>
 
 <script>
-/**
-  Auth: Lei.j1ang
-  Created: 2018/1/19-13:59
-*/
 import treeToArray from './eval'
 export default {
   name: 'treeTable',
   props: {
     data: {
       type: [Array, Object],
-      required: true
+      required: true,
     },
     columns: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     evalFunc: Function,
     evalArgs: Array,
     expandAll: {
       type: Boolean,
-      default: true
+      default: true,
     },
   },
   computed: {
     // 格式化数据源
-    formatData: function() {
+    formatData() {
       let tmp
       if (!Array.isArray(this.data)) {
         tmp = [this.data]
       } else {
         tmp = this.data
       }
+      console.log('tmp', tmp)
       const func = this.evalFunc || treeToArray
       const args = this.evalArgs ? Array.concat([tmp, this.expandAll], this.evalArgs) : [tmp, this.expandAll]
+      // const args = this.evalArgs ? Array.concat([tmp, this.expandAll]) : [tmp, this.expandAll]
       return func.apply(null, args)
-    }
+    },
   },
   created() {
     this.defaultSelcet()
   },
   methods: {
-    showRow: function(row) {
+    showRow(row) {
       const show = (row.row.parent ? (row.row.parent._expanded && row.row.parent._show) : true)
       row.row._show = show
       return show ? 'animation:treeTableShow 1s;-webkit-animation:treeTableShow 1s;' : 'display:none;'
     },
     // 切换下级是否展开
-    toggleExpanded: function(trIndex) {
+    toggleExpanded(trIndex) {
       const record = this.formatData[trIndex]
       record._expanded = !record._expanded
     },
@@ -95,16 +93,16 @@ export default {
     handleCheckAllChange(index, row, opt) {
       this.cc()
       if (row.selectchecked.length && row.selectchecked.length !== opt.length) {
-        let arr = []
-        opt.forEach(element => {
+        const arr = []
+        opt.forEach((element) => {
           arr.push(element.id)
         })
         row.selectchecked = arr
         row.checkAll = true
         row.isIndeterminate = false
       } else if (!row.selectchecked.length) {
-        let arr = []
-        opt.forEach(element => {
+        const arr = []
+        opt.forEach((element) => {
           arr.push(element.id)
         })
         row.selectchecked = arr
@@ -123,10 +121,10 @@ export default {
     },
     handleCheckAllChange1(index, row, opt) {
       if (row.children) {
-        row.children.forEach(val => {
+        row.children.forEach((val) => {
           const arr = []
           if (row.checkAll) {
-            val[opt].forEach(element => {
+            val[opt].forEach((element) => {
               arr.push(element.id)
             })
             val.selectchecked = arr
@@ -142,9 +140,9 @@ export default {
       this.cc()
     },
     defaultSelcet() {
-      this.data.forEach(val => {
+      this.data.forEach((val) => {
         if (val.children) {
-          val.children.forEach(el => {
+          val.children.forEach((el) => {
             if (el.selectchecked.length && el.selectchecked.length !== el[this.columns[0].option].length) {
               el.isIndeterminate = true
               el.checkAll = false
@@ -161,11 +159,11 @@ export default {
       })
     },
     cc() {
-      this.data.forEach(val => {
-        let checkAllArr = []
-        let isIndeterminateArr = []
+      this.data.forEach((val) => {
+        const checkAllArr = []
+        const isIndeterminateArr = []
         if (val.children) {
-          val.children.forEach(el => {
+          val.children.forEach((el) => {
             checkAllArr.push(el.checkAll)
             isIndeterminateArr.push(el.isIndeterminate)
           })
@@ -201,7 +199,7 @@ export default {
     getAuth() {
       this.$emit('getAuth', this.data)
     },
-  }
+  },
 }
 </script>
 <style rel="stylesheet/css">
